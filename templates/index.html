@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>#ThinkAboutIt</title>
+     <link rel='stylesheet' type='text/css' href='static/css/styles.css' media='screen'>
+    <link rel="icon" href="../static/img/bryce.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Heebo:800" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!--Begin Body-->
+
+    <div id="wrapper">
+        <div id="sidebar">
+
+            <div id="title">
+
+                <a href="http://www.insidestl.com" target="_blank"><img id="insidestllogo" src="../static/img/insidestl.png"></a>
+                <img class='header_image' src="../static/img/soundboards.jpg">
+
+            </div><!--End title div-->
+
+                    <div id="chooser_wrap">
+                        <div id="chooser">
+                            <div class="chooser_button">Doug Vaughn</div>
+                            <div class="chooser_button">The Plow Boy</div>
+                            <div class="chooser_button">Larry Nickel</div>
+                            <div class="chooser_button">Mike Lee</div>
+                            <div class="chooser_button">Tim McKernan</div>
+                            <div class="chooser_button">Charlie Marlow</div>
+                            <div class="chooser_button">Jimmy 'The Cat' Hayes</div>
+                            <div class="chooser_button">Search All Drops</div>
+
+                        </div>
+                    </div>
+
+                    <div id="instructions">
+                    <ol>
+
+                        <li>Play drop(s) from results, or drag them to a cell</li>
+                        <li>Click cell to play drop, or reassign</li>
+                    </ol>
+                </div>
+
+
+
+                    <div id="search_container">
+
+                        <input type="text" name="search_term" id="search_term" autocomplete=off placeholder="Enter a tag">
+                        <button id="bttn" type="submit" class="btn btn-default">Submit</button><br>
+                    </div><!--End Search Container Div -->
+
+
+            <div id="results_container">
+
+
+                <div id="result_object">
+                    <div id="audio_container">
+                        <audio id="play" controls>
+                        <source class='audio_results' id="src" src="" type="audio/mp3">
+                        </audio>
+                    </div><!--End audio container-->
+
+
+                    <div id="meta_display">
+                        <p id="speaker"></p>
+                        <p id="transcription"></p>
+                    </div><!--End meta display-->
+
+                </div><!--End Audio Result Object-->
+
+
+
+            </div><!--End results div -->
+
+        </div><!-- End Sidebar Div-->
+
+
+
+        <div id="main_wrap">
+
+                <div id="pw_window">
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" autocomplete=off>
+                        <button type="submit" class="btn btn-default" id="pw_submit">Submit</button>
+                        <button type="submit" class="btn btn-default" id="pw_cancel">Cancel</button>
+                    </div>
+
+                </div>
+
+                <div id="upload_window">
+
+                                    <form method=POST enctype=multipart/form-data id="upload_form" disabled:true>
+                                      <div class="form-group">
+                                        <label for="audio">File Upload</label>
+                                        <input type=file class="form-control" id="audio" name=audio placeholder="Upload File" required>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="speaker">Speaker</label>
+                                        <input type="text" class="form-control" id="speaker" name="speaker" placeholder="Speaker" required>
+                                      </div>
+                                        <div class="form-group">
+                                        <label for="tags">Tags (separate by space)</label>
+                                        <textarea name="tags" style="width:250px; height;150px" id="tags" class="form-control" required></textarea>
+                                      </div>
+                                        <div class="form-group">
+                                        <label for="transcription">Transcription:</label>
+                                        <textarea name="transcription" style="width:250px; height;150px" id="transcription" class="form-control" required></textarea>
+                                      </div>
+                                        <button type="submit" class="btn btn-default" id="upload_submit">Upload</button>
+                                        <button type="button" class="btn btn-default" id="upload_cancel">Cancel</button>
+                                    </form>
+
+
+
+                </div>
+
+
+
+            <div id="main_grid">
+
+                <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div><!--End first row-->
+
+                 <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div><!--End second row-->
+
+                 <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div><!--End third row-->
+
+                 <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div><!--End fourth row-->
+
+                 <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div><!--End fifth row-->
+
+
+
+            </div><!--End main grid-->
+
+
+
+        </div><!-- End main panel wrapper-->
+
+
+    </div><!--End Wrapper Div-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+    <script src='/static/js/scripts.js'></script>
+    <script src='/static/js/dragdrop.js'></script>
+    <script src='/static/js/process.js'></script>
+    <script src='/static/js/upload.js'></script>
+    <script src='/static/js/dropdown.js'></script>
+  </body>
+
+</html>
