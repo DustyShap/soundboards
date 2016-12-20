@@ -1,5 +1,6 @@
 html {
   height: 100%;
+
   }
 
 
@@ -9,10 +10,17 @@ body {
 
 }
 
+
+p {
+
+    font-family: 'Heebo', sans-serif;
+    margin: 0px;
+}
+
 #wrapper {
   margin: 9px 5px 0 5px;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   height: 100%;
 }
 
@@ -56,10 +64,10 @@ body {
 
 
 .header_image {
-  height: 90px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-top: 15px;
+  height: 80px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-top: 1px;
 }
 
 #insidestllogo {
@@ -128,6 +136,7 @@ body {
 #bttn {
 
 margin-left:3px;
+height: 120%;
 }
 
 #upload_div {
@@ -147,11 +156,15 @@ margin-left:3px;
   display: none;
   justify-content: center;
   height: 50px;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-size: 150%;
 
 }
 
+#search_term{
+    height: 120%;
+
+}
 
 .btn {
 
@@ -240,9 +253,8 @@ margin: 5px 0 15px 0;
 
 .search_result {
 
-  border: 3px solid black;
+  border-bottom: 1px solid black;
   height: 85px;
-
   justify-content: center;
   flex-wrap: wrap;
   display:flex;
@@ -258,6 +270,7 @@ margin: 5px 0 15px 0;
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 1px;
 
 
 }
@@ -265,9 +278,13 @@ margin: 5px 0 15px 0;
 
 #meta_display {
 
-  height: 65px;
+  height: 45px;
   width: 100%;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 
 }
 
@@ -317,7 +334,13 @@ margin: 5px 0 15px 0;
 
 /* End sidebar */
 
+#main_header {
+    width: 89.3%;
+    height:50px;
+    border: 1px solid black;
+    margin-bottom: 5px;
 
+}
 
 #main_grid {
 
@@ -379,11 +402,9 @@ flex: 1;
 
 
 
-.speaker_text {
+#speaker {
 
-  font-size: 80%;
-  color: red;
-
+    margin: 0px;
 
 }
 
