@@ -205,7 +205,7 @@ $(document).ready(function(){
             }
         }); //Data done end
 
-        event.preventDefault();
+
 
     } //END SUBMIT DATA FUNCTION
 

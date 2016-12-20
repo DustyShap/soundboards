@@ -1,7 +1,7 @@
 from peewee import *
 from playhouse.csv_loader import *
 
-db = SqliteDatabase('staticmeta/drops.db')
+db = SqliteDatabase('/home/DustyShapiro/soundboards/staticmeta/drops.db')
 
 
 
