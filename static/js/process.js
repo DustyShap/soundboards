@@ -13,44 +13,43 @@ $(document).ready(function(){
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/mikelee.jpg");
             $(".header_image").attr('id','mike lee');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'Doug Vaughn'){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/vaughn.jpg");
             $(".header_image").attr('id','doug');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'The Plow Boy'){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/plowboy.jpg");
             $(".header_image").attr('id','plowboy');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'Larry Nickel'){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/larry.jpg");
             $(".header_image").attr('id','larry');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'Tim McKernan'){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/tmck.jpg");
             $(".header_image").attr('id','tim');
-
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'Charlie Marlow'){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','charlie');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == "Jimmy 'The Cat' Hayes"){
             $(this).addClass('button_chose');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','cat');
-            submitData(event);
+            submitData();
         } else if ($(this).text() == 'Search All Drops'){
             $(this).addClass('button_chose');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
@@ -152,7 +151,7 @@ $(document).ready(function(){
      //
 
 
-    function submitData(event){
+    function submitData(){
 
         var chosen = $(".header_image").attr('id');
         $("#results_container").empty();
