@@ -1,23 +1,23 @@
 from flask import Flask, render_template, request, jsonify, url_for
-from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
+#from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
 from models import *
 
 
 app = Flask(__name__)
 initialize_db()
 
-
+'''
 audio = UploadSet('audio', AUDIO)
 
 app.config['UPLOADED_AUDIO_DEST'] = 'static/audio'
 configure_uploads(app, audio)
-
+'''
 
 @app.route('/')
 def home():
     return render_template("index.html")
 
-
+'''
 @app.route('/upload', methods=['GET','POST'])
 def upload():
     filename = audio.save(request.files['audio'])
@@ -36,7 +36,7 @@ def upload():
 
     return jsonify({'file':filename})
 
-
+'''
 
 @app.route('/process', methods=['POST', 'GET'])
 def process():

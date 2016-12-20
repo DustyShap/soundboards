@@ -151,7 +151,7 @@ $(document).ready(function(){
      //
 
 
-    function submitData(event){
+    function submitData(){
 
         var chosen = $(".header_image").attr('id');
         $("#results_container").empty();
