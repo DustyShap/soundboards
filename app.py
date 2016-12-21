@@ -50,8 +50,11 @@ def process():
         )
 
     else:
+
+
         #drops = Drops.select().where(Drops.speaker.is_null(False))
         drops = Drops.select().where(Drops.speaker == chosen)
+
 
 
     drops_as_list = []
@@ -59,6 +62,7 @@ def process():
     if drops:
 
         for drop in drops:
+
             drop_as_dict = {
 
                 'filename': drop.filename,
