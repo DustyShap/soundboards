@@ -559,6 +559,12 @@ flex: 1;
 
     }
 
+    .play {
+
+        width: 70%;
+
+    }
+
     #meta_display p {
 
         font-size: 50%;
