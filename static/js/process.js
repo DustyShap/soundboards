@@ -6,6 +6,7 @@ $(document).ready(function(){
 
      //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
+
         $(".header_image").removeAttr('id');
         $(".chooser_button").removeClass('button_chose');
         if ($(this).text() == 'Mike Lee'){
@@ -52,9 +53,11 @@ $(document).ready(function(){
             submitData();
         } else if ($(this).text() == 'Search All Drops'){
             $(this).addClass('button_chose');
+
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','search_drops');
             $("#search_container").show().css('display','flex');
+            $("#search_term").focus();
             $("#results_container").empty();
 
         }

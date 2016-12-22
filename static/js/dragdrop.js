@@ -4,11 +4,11 @@ function dragStart(e){
 
     var target = e.target;
     var fromResult = 'true';
-    var audio_container = target.firstElementChild;
+    var audio_container = target.children[0];
     var audio = audio_container.firstElementChild;
     var audio_source = audio.firstElementChild;
     var source = audio_source.getAttribute('src');
-    var meta = target.lastElementChild;
+    var meta = target.children[1];
     var speaker = meta.firstElementChild.innerHTML;
     var trans = meta.lastElementChild.innerHTML;
     e.dataTransfer.setData('result_audio', source);

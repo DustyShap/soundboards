@@ -54,9 +54,10 @@ p {
    align-items: center;
    font-family: 'Yanone Kaffeesatz', sans-serif;
    font-size: 300%;
-   margin-top: 5px;
+   margin-top: 10px;
    justify-content: center;
    align-items: center;
+   padding-top: 5px;
 
 
 }
@@ -110,6 +111,8 @@ p {
   font-size: 120%;
   letter-spacing: 1.3px;
   padding: 10px;
+  cursor: pointer;
+
 
 }
 
@@ -123,7 +126,7 @@ p {
 
 .button_chose {
 
-    border: 4px solid red;
+    border: 2px solid red;
 
 }
 
@@ -154,7 +157,9 @@ height: 70%;
   font-family: 'Heebo', sans-serif;
   font-size: 150%;
   background-color: black;
-  width: 99%;
+  width: 100%;
+  border: 1px solid white;
+
 
 }
 
@@ -256,12 +261,42 @@ margin: 5px 0 15px 0;
   flex-wrap: wrap;
   display:flex;
   flex-direction: column;
+  background-color: #fafafa;
 
+}
+
+.gripper_container {
+
+    height: 30%;
+    width: 7%;
+    order: 3;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    cursor: move;
 
 
 
 }
 
+.gripper_cell {
+
+    width: 60%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fafafa;
+
+}
+
+.gripper {
+
+    width: 100%;
+    border: 2px solid grey;
+    background-color: #fafafa;
+
+}
 
 
 .search_result:hover {
@@ -272,13 +307,14 @@ margin: 5px 0 15px 0;
 #audio_container {
 
   height: 100%;
-  width: 30%;
+  width: 33%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1px;
   order:2;
-  border: 1px solid black;
+  background-color: #fafafa;
+
 
 
 }
@@ -286,8 +322,8 @@ margin: 5px 0 15px 0;
 
 .search_result #audio_container .play{
 
- width: 100px;
- background-color: black;
+ width: 100%;
+ background-color: #fafafa;
  margin-top: 10px;
  margin-bottom: 10px;
 
@@ -296,7 +332,7 @@ margin: 5px 0 15px 0;
 #meta_display {
 
   height: 100%;
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -305,10 +341,6 @@ margin: 5px 0 15px 0;
   order:1;
   background-color: black;
   border: 1px solid white;
-
-
-
-
 
 }
 
@@ -396,6 +428,7 @@ flex: 1;
 
 
 .cell {
+
   border: 1px solid black;
   padding: 1px;
   width: 100%;
@@ -410,14 +443,12 @@ flex: 1;
 
 }
 
-.celltop {
-
-    max-width: 100%
-    border-bottom: 1px solid black;
-    height: 20px;
 
 
-}
+
+
+
+
 
 .cell:hover {
 
@@ -459,5 +490,6 @@ flex: 1;
     font-size: 90%;
 
 }
+
 
 
