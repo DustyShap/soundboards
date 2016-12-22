@@ -545,7 +545,28 @@ flex: 1;
 
     }
 
+    .gripper_container {
+
+        display: none;
+
+    }
 
 
+    #audio_container {
+
+        width: 45%;
+
+    }
+
+    #meta_display p {
+
+        font-size: 70%;
+
+    }
+
+    #meta_display {
+
+        width: 40%;
+    }
 }
 
