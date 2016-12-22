@@ -91,8 +91,8 @@ function dropped(e){
             x.setAttribute('id','audio');
             x.setAttribute('class', 'audio_drop');
             y.setAttribute('class','speaker_text');
-            y.innerHTML = speaker.slice(8);
-            z.innerHTML = trans.slice(0,100);
+            y.innerHTML = speaker;
+            z.innerHTML = trans.slice(0,90);
             z.setAttribute('class','transcripted_text');
             target.appendChild(x);
             target.appendChild(y);

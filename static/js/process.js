@@ -127,8 +127,8 @@ $(document).ready(function(){
             var full_url = "../static/audio/" + filename;
             $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
             $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text("Speaker: " + speaker).css('color','black');
-            $("#result"+i + " #transcription").text("Transcription: " + transcription).css('color','black');
+            $("#result"+i + " #speaker").text(speaker).css('color','white');
+            $("#result"+i + " #transcription").text(transcription).css('color','white');
             $("#result"+i + " #src").attr('src', full_url);
             $("#search_term").val("");
 
@@ -196,8 +196,8 @@ $(document).ready(function(){
                var full_url = "../static/audio/" + filename;
                $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
                $("#result"+i).attr('draggable','True');
-               $("#result"+i + " #speaker").text("Speaker: " + speaker).css('color','red').css('display','none');
-               $("#result"+i + " #transcription").text(transcription).css('color','black');
+               $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
+               $("#result"+i + " #transcription").text(transcription).css('color','white');
                $("#result"+i + " #src").attr('src', full_url);
                $("#search_term").val("");
 

@@ -67,7 +67,7 @@ def process():
 
                 'filename': drop.filename,
                 'speaker': drop.speaker,
-                'transcription': drop.transcription,
+                'transcription': drop.transcription.upper(),
                 'search_term': search_term
             }
             drops_as_list.append(drop_as_dict)
