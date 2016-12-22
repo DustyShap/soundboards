@@ -44,7 +44,10 @@ function dropped(e){
     if (fromResult == 'false'){  //FromCell
 
         var target = e.target;
+
+
         if (target.firstChild) {
+
                 target.removeChild(target.firstChild);
                 target.innerHTML = '';
                }
