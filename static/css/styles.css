@@ -516,3 +516,36 @@ flex: 1;
 
 
 
+
+/* Media Queries for Mobile */
+
+@media screen and (max-width: 480px)
+{
+
+
+    #main_wrap {
+
+        display: none;
+
+
+    }
+
+    #wrapper {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    #sidebar {
+
+        width: 100%;
+
+    }
+
+
+
+}
+
