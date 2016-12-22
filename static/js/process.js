@@ -57,16 +57,22 @@ $(document).ready(function(){
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','jay jr');
             submitData();
-
-        }  else if ($(this).text() == 'Search All Drops'){
+        }  else if ($(this).text() === '@ProdJoe'){
             $(this).addClass('button_chose');
-
+            $("#search_container").css('display','none');
+            $(".header_image").attr('src', "../static/img/soundboards.jpg");
+            $(".header_image").attr('id','prodjoe');
+            submitData();
+        }   else if ($(this).text() == 'Search All Drops'){
+            $(this).addClass('button_chose');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','search_drops');
             $("#search_container").show().css('display','flex');
             $("#search_term").focus();
             $("#results_container").empty();
+
         }
+
     });
 
 
