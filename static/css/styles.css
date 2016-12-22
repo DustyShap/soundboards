@@ -52,7 +52,7 @@ p {
    display: flex;
    justify-content: center;
    align-items: center;
-   font-family: 'Yanone Kaffeesatz', sans-serif;
+   font-family: 'Heebo', sans-serif;
    font-size: 300%;
    margin-top: 10px;
    justify-content: center;
@@ -73,7 +73,8 @@ p {
   max-width:100%;
   margin-bottom: 10px;
   max-height: 100px;
-  max-width: 100%;
+
+
 
 }
 
@@ -83,6 +84,12 @@ p {
 }
 
 
+#chooser_wrap {
+
+
+    margin-top: 5px;
+
+}
 
 #chooser {
 
@@ -150,12 +157,12 @@ height: 70%;
 #search_container {
 
 
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
   font-family: 'Heebo', sans-serif;
-  font-size: 150%;
+  font-size: 120%;
   background-color: black;
   width: 100%;
   border: 1px solid white;
@@ -317,6 +324,8 @@ margin: 5px 0 15px 0;
 
 
 
+
+
 }
 
 
@@ -326,6 +335,7 @@ margin: 5px 0 15px 0;
  background-color: #fafafa;
  margin-top: 10px;
  margin-bottom: 10px;
+
 
 }
 
@@ -341,6 +351,9 @@ margin: 5px 0 15px 0;
   order:1;
   background-color: black;
   border: 1px solid white;
+  cursor: move;
+  padding: 5px;
+
 
 }
 

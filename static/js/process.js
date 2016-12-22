@@ -67,11 +67,9 @@ $(document).ready(function(){
     //Process data on button click
 
     $('#bttn').on('click', function(event) {
-
+        $(".header_image").attr('id','search_drops');
         if ($(".header_image").attr('id')){
             submitSearchData(event)
-        } else {
-            alert('Choose a soundboard!');
         }
 
     });
@@ -84,6 +82,7 @@ $(document).ready(function(){
         if ($("#search_term").val().length < 3) {
             alert('Search must be at least 3 letters')
             } else {
+                $(".header_image").attr('id','search_drops');
                 submitSearchData(event)
             }
          }
@@ -133,7 +132,7 @@ $(document).ready(function(){
             $("#result"+i + " #speaker").text(speaker).css('color','white');
             $("#result"+i + " #transcription").text(transcription).css('color','white');
             $("#result"+i + " #src").attr('src', full_url);
-            $("#search_term").val("");
+
 
 
             }
@@ -202,7 +201,7 @@ $(document).ready(function(){
                $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
                $("#result"+i + " #transcription").text(transcription).css('color','white');
                $("#result"+i + " #src").attr('src', full_url);
-               $("#search_term").val("");
+
 
 
             }
