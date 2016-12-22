@@ -265,7 +265,7 @@ margin: 5px 0 15px 0;
 .search_result {
 
   border-bottom: 1px solid black;
-  height: 85px;
+  height: 70px;
   justify-content: center;
   flex-wrap: wrap;
   display:flex;
