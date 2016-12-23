@@ -78,30 +78,29 @@ function dropped(e){
         e.preventDefault();
         var target = e.target;
         if (target.getAttribute("class") === 'cell'){
-
-            if (target.firstChild) {
-                target.removeChild(target.firstChild);
-                target.innerHTML = '';
+            var cell_top = target.children[0];
+            var cell_bottom = target.children[1];
+            if (cell_top.firstChild) {
+                console.log(target.children[1]);
+                cell_top.removeChild(target.firstChild);
+                cell_top.innerHTML = '';
                }
 
             var data = e.dataTransfer.getData('result_audio');
             var speaker = e.dataTransfer.getData('result_speaker');
             var trans = e.dataTransfer.getData('result_trans');
             var x = document.createElement("AUDIO");
-            var y = document.createElement('p');
-            var z = document.createElement('p');
+            var d = document.createElement('p').innerHTML = speaker
+            var t = document.createElement('p').innerHTML = trans
             x.setAttribute("src", data);
             x.setAttribute('id','audio');
             x.setAttribute('class', 'audio_drop');
-            y.setAttribute('class','speaker_text');
-            y.innerHTML = speaker;
-            z.innerHTML = trans.slice(0,90);
-            z.setAttribute('class','transcripted_text');
+            t.slice(0,90);
+            //z.innerHTML = trans.slice(0,90);
+            //z.setAttribute('class','transcripted_text');
             target.appendChild(x);
-            target.appendChild(y);
-            target.appendChild(z);
-
-
+            cell_bottom.append(t);
+            cell_top.append(d);
 
             }
 
