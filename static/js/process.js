@@ -149,6 +149,9 @@ $(document).ready(function(){
 
             }
 
+             $('.fa-play-circle').on('click', clickplay);
+             $('.fa-pause-circle').on('click', clickpause);
+
         });
     };
 
