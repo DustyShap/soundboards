@@ -53,7 +53,8 @@ function dropped(e){
                 //Empty
                } else {
                 $(this)[0].childNodes[0].innerHTML = ''
-                $(this)[0].childNodes[1].innerHTML = '';
+                $(this)[0].childNodes[1].innerHTML = ''
+                $(this)[0].childNodes[2].remove();
                }
 
         var audio_src = e.dataTransfer.getData('audio');
