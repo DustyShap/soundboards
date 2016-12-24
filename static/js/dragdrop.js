@@ -1,3 +1,33 @@
+function doFirst(){
+
+    var button = document.getElementById('bttn');
+    var theGrid = document.getElementById('main_grid');
+    var theParent = document.getElementById("results_container");
+    var cells = document.getElementsByClassName('cell');
+
+    for (i = 0; i < cells.length; i++){
+        cells[i].setAttribute('draggable','true');
+        cells[i].addEventListener("dragstart", cellDrag, false);
+        cells[i].addEventListener("drop", dropped, false);
+        cells[i].children[1].addEventListener("drop", result2cell, false);
+        }
+
+    theParent.addEventListener("dragstart", dragStart, false);
+    theGrid.addEventListener("dragenter", function(e){e.preventDefault();}, false);
+    theGrid.addEventListener("dragover", function(e){e.preventDefault();}, false);
+
+
+    }
+
+
+
+window.addEventListener("load", doFirst, false);
+
+
+
+
+
+
 function dragStart(e){
 
 
@@ -48,6 +78,7 @@ function result2cell(e){ //Drag a result object to an already populated cell
                 cell[0].childNodes[0].innerHTML = ''
                 cell[0].childNodes[1].innerHTML = ''
                 cell[0].childNodes[2].remove();
+
                }
     var data = e.dataTransfer.getData('result_audio');
     var speaker = e.dataTransfer.getData('result_speaker');
@@ -81,11 +112,14 @@ function dropped(e){
         cell_top = $(this)[0].childNodes[0];
         cell_bottom = $(this)[0].childNodes[1];
         $(this)[0].childNodes[2].remove();
+
+
         if ($(this)[0].childNodes[0].innerHTML === '') {
-                //Empty
+                console.log('cell is empty');
                } else {
                 $(this)[0].childNodes[0].innerHTML = ''
                 $(this)[0].childNodes[1].innerHTML = ''
+                $(this)[0].childNodes[2].remove();
 
                }
 
@@ -152,27 +186,3 @@ function dropped(e){
 
 
 
-function doFirst(){
-
-    var button = document.getElementById('bttn');
-    var theGrid = document.getElementById('main_grid');
-    var theParent = document.getElementById("results_container");
-    var cells = document.getElementsByClassName('cell');
-
-    for (i = 0; i < cells.length; i++){
-        cells[i].setAttribute('draggable','true');
-        cells[i].addEventListener("dragstart", cellDrag, false);
-        cells[i].addEventListener("drop", dropped, false);
-        cells[i].children[1].addEventListener("drop", result2cell, false);
-        }
-
-    theParent.addEventListener("dragstart", dragStart, false);
-    theGrid.addEventListener("dragenter", function(e){e.preventDefault();}, false);
-    theGrid.addEventListener("dragover", function(e){e.preventDefault();}, false);
-
-
-    }
-
-
-
-window.addEventListener("load", doFirst, false);
