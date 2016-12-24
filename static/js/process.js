@@ -216,11 +216,30 @@ $(document).ready(function(){
 
 
 
+
+
             }
+
+
+            $('.fa-play-circle').on('click', clickplay);
+            $('.fa-pause-circle').on('click', clickpause);
+
+
         }); //Data done end
+
+
+
 
 
 
     } //END SUBMIT DATA FUNCTION
 
+    function clickplay(e){
+        $(this).parent().children()[2].play();
+    }
+
+
+    function clickpause(e){
+        $(this).parent().children()[2].pause();
+    }
 });

@@ -1,3 +1,6 @@
+window.addEventListener("load", doFirst, false);
+
+
 function doFirst(){
 
     var button = document.getElementById('bttn');
@@ -5,11 +8,14 @@ function doFirst(){
     var theParent = document.getElementById("results_container");
     var cells = document.getElementsByClassName('cell');
 
+
+
     for (i = 0; i < cells.length; i++){
         cells[i].setAttribute('draggable','true');
         cells[i].addEventListener("dragstart", cellDrag, false);
         cells[i].addEventListener("drop", dropped, false);
         cells[i].children[1].addEventListener("drop", result2cell, false);
+
         }
 
     theParent.addEventListener("dragstart", dragStart, false);
@@ -20,10 +26,10 @@ function doFirst(){
     }
 
 
+function clickPlay(e){
 
-window.addEventListener("load", doFirst, false);
-
-
+    console.log(e);
+}
 
 
 
@@ -35,9 +41,7 @@ function dragStart(e){
     var target = e.target;
     var fromResult = 'true';
     var audio_container = target.children[0];
-    var audio = audio_container.firstElementChild;
-    var audio_source = audio.firstElementChild;
-    var source = audio_source.getAttribute('src');
+    var source = audio_container.children[2].children[0].getAttribute('src');
     var meta = target.children[1];
     var speaker = meta.firstElementChild.innerHTML;
     var trans = meta.lastElementChild.innerHTML;
@@ -118,13 +122,12 @@ function dropped(e){
 
 
         if ($(this)[0].childNodes[0].innerHTML === '') {
-                console.log('cell is empty');
-               } else {
+
+            } else {
                 $(this)[0].childNodes[0].innerHTML = ''
                 $(this)[0].childNodes[1].innerHTML = ''
                 $(this)[0].childNodes[2].remove();
-
-               }
+            };
 
         var audio_src = e.dataTransfer.getData('audio');
         var speaker = e.dataTransfer.getData('speaker');

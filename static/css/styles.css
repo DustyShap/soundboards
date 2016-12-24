@@ -10,7 +10,6 @@ body {
 }
 
 
-
 p {
 
     font-family: 'Heebo', sans-serif;
@@ -260,6 +259,7 @@ margin: 5px 0 15px 0;
 
 #result_object {
   display:none;
+
 }
 
 
@@ -275,6 +275,19 @@ margin: 5px 0 15px 0;
 
 }
 
+
+#test_object {
+
+
+  border-bottom: 1px solid black;
+  height: 70px;
+  justify-content: center;
+  flex-wrap: wrap;
+  display:flex;
+  flex-direction: column;
+  background-color: #fafafa;
+
+}
 .gripper_container {
 
     height: 30%;
@@ -331,6 +344,12 @@ margin: 5px 0 15px 0;
 
 }
 
+
+.fa:active {
+
+    transform: scale(0.85);
+
+}
 
 .search_result #audio_container .play{
 
@@ -504,10 +523,11 @@ flex: 1;
 .cell:active {
 
    background-color: darken(#444, 10%);
-  transform: scale(0.95);
+   transform: scale(0.95);
 
 
 }
+
 
 .cell:last-child {
 
@@ -603,6 +623,8 @@ flex: 1;
         width: 40%;
 
     }
+
+
 }
 
 
@@ -621,3 +643,4 @@ flex: 1;
 
 
 }
+

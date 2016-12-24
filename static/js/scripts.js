@@ -11,6 +11,8 @@ $(document).ready(function(){
 
 
 
+
+
     //Search term input validation
     $("#search_term").keyup(function(){
 
@@ -28,10 +30,13 @@ $(document).ready(function(){
 
 
 
+
+
     //Play audio contained within individual cell
     $(".cell").click(function(){
       if ($(this).find('audio').length) {
         var audio = $(this.children)[2];
+        console.log(audio);
         audio.play();
         }
 
