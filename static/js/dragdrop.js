@@ -37,6 +37,38 @@ function cellDrag(e){
 }
 
 
+function result2cell(e){ //Drag a result object to an already populated cell
+
+    var cell = $(this).parent();
+    cell_top = cell[0].childNodes[0];
+    cell_bottom = cell[0].childNodes[1];
+    if (cell[0].childNodes[0].innerHTML === '') {
+                //Empty
+               } else {
+                cell[0].childNodes[0].innerHTML = ''
+                cell[0].childNodes[1].innerHTML = ''
+                cell[0].childNodes[2].remove();
+               }
+    var data = e.dataTransfer.getData('result_audio');
+    var speaker = e.dataTransfer.getData('result_speaker');
+    var trans = e.dataTransfer.getData('result_trans');
+
+    var x = document.createElement("AUDIO");
+    var d = document.createElement('p').innerHTML = speaker
+    var t = document.createElement('p').innerHTML = trans
+    x.setAttribute("src", data);
+    x.setAttribute('id','audio');
+    x.setAttribute('class', 'audio_drop');
+    t = t.slice(0,90);
+
+            //z.innerHTML = trans.slice(0,90);
+            //z.setAttribute('class','transcripted_text');
+
+     cell.append(x);
+     cell_bottom.append(t);
+     cell_top.append(d);
+}
+
 
 function dropped(e){
 
@@ -48,13 +80,13 @@ function dropped(e){
 
         cell_top = $(this)[0].childNodes[0];
         cell_bottom = $(this)[0].childNodes[1];
-
+        $(this)[0].childNodes[2].remove();
         if ($(this)[0].childNodes[0].innerHTML === '') {
                 //Empty
                } else {
                 $(this)[0].childNodes[0].innerHTML = ''
                 $(this)[0].childNodes[1].innerHTML = ''
-                $(this)[0].childNodes[2].remove();
+
                }
 
         var audio_src = e.dataTransfer.getData('audio');
@@ -79,11 +111,14 @@ function dropped(e){
         //From Result
         e.preventDefault();
         var target = e.target;
+
         if (target.getAttribute("class") === 'cell'){
             var cell_top = target.children[0];
             var cell_bottom = target.children[1];
+
             if (cell_top.firstChild) {
-                cell_top.firstChild.innerHTML = '';
+                cell_top.firstChild.innerHTML = ''
+                cell_bottom.firstChild.innerHTML ='';
                }
 
             var data = e.dataTransfer.getData('result_audio');
@@ -128,7 +163,7 @@ function doFirst(){
         cells[i].setAttribute('draggable','true');
         cells[i].addEventListener("dragstart", cellDrag, false);
         cells[i].addEventListener("drop", dropped, false);
-
+        cells[i].children[1].addEventListener("drop", result2cell, false);
         }
 
     theParent.addEventListener("dragstart", dragStart, false);
