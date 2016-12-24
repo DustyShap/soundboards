@@ -36,7 +36,6 @@ $(document).ready(function(){
     $(".cell").click(function(){
       if ($(this).find('audio').length) {
         var audio = $(this.children)[2];
-        console.log(audio);
         audio.play();
         }
 

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Heebo';
+   src: url('../fonts/Heebo-Black.ttf');
+}
+
 html {
   height: 100%;
 

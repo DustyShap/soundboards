@@ -26,14 +26,6 @@ function doFirst(){
     }
 
 
-function clickPlay(e){
-
-    console.log(e);
-}
-
-
-
-
 function dragStart(e){
 
 
