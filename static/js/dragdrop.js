@@ -111,7 +111,10 @@ function dropped(e){
 
         cell_top = $(this)[0].childNodes[0];
         cell_bottom = $(this)[0].childNodes[1];
-        $(this)[0].childNodes[2].remove();
+
+        if ($(this)[0].childNodes[2]){
+            $(this)[0].childNodes[2].remove();
+            };
 
 
         if ($(this)[0].childNodes[0].innerHTML === '') {
