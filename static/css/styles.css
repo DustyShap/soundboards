@@ -572,7 +572,7 @@ flex: 1;
 
 /* Media Queries for Mobile */
 
-@media screen and (max-width: 600px)
+@media screen and (max-width: 800px)
 {
 
 
@@ -643,9 +643,70 @@ flex: 1;
 
     }
 
+    #wrapper {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
 
 
+    #sidebar {
+
+        width: 100%;
+
+    }
+
+    .gripper_container {
+
+        display: none;
+
+    }
+
+
+    #audio_container {
+
+        width: 45%;
+
+    }
+
+    .play {
+
+        width: 70%;
+
+    }
+
+    #meta_display p {
+
+        font-size: 50%;
+
+    }
+
+    #meta_display {
+
+        width: 40%;
+
+    }
 
 
 }
+
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+  #main_wrap {
+
+        display: none;
+
+
+    }
+
+}
+
+
 
