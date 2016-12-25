@@ -70,6 +70,9 @@ $(document).ready(function(){
             $("#search_container").show().css('display','flex');
             $("#search_term").focus();
             $("#results_container").empty();
+            $("#upload_window").hide()
+            $("#password_window").hide()
+            $("#results_container").show();
         }  else if ($(this).text() === 'Upload'){
 
 
@@ -109,7 +112,10 @@ $(document).ready(function(){
     function submitSearchData(event){
 
         $("#password_window").hide()
+        $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
+
+
 
         $("#search_container").show().css('display','flex');
         $("#results_container").empty();
@@ -174,11 +180,13 @@ $(document).ready(function(){
 
     function submitData(){
 
+        $("#upload_window").hide()
         $("#password_window").hide()
         var chosen = $(".header_image").attr('id');
         $("#results_container").empty();
         $("#instructions").hide();
         $("#length_display").attr('display','none');
+
 
         $.ajax({
             data : {

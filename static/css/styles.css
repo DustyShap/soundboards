@@ -76,7 +76,7 @@ p {
 
 
 
-  margin-top: 8px;
+  padding-top: 5px;
   max-width:100%;
   margin-bottom: 10px;
   max-height: 100px;
@@ -153,15 +153,6 @@ margin-left:3px;
 height: 70%;
 }
 
-#upload_div {
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 75%;
-  text-align: center;
-
-}
 
 
 #search_container {
@@ -242,7 +233,7 @@ margin: 5px 0 15px 0;
 
 #results_container {
 
-  height: 600px;
+  height: 100%;
   max-width: 100%;
   width: 100%;
   overflow-y: auto;
@@ -302,18 +293,6 @@ margin: 5px 0 15px 0;
 }
 
 
-#test_object {
-
-
-  border-bottom: 1px solid black;
-  height: 70px;
-  justify-content: center;
-  flex-wrap: wrap;
-  display:flex;
-  flex-direction: column;
-  background-color: #fafafa;
-
-}
 .gripper_container {
 
     height: 30%;
@@ -431,25 +410,41 @@ margin: 5px 0 15px 0;
 
 }
 
+/* UPLOAD WINDOW */
 
-#upload_pop {
 
-  display:none;
-  justify-content: center;
-  align-items: center;
+#upload_window{
+
+    padding: 20px;
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'Heebo', sans-serif;
+    overflow-y: auto;
+    overflow-y: -moz-scrollbars-vertical;
+    overflow-x: hidden;
+
+}
+
+
+#audio, #speaker, #tags, #transcription {
+
+    margin-bottom: 15px;
 
 }
 
 
-#upload_window {
 
-  width: 90%;
-  height: 80%;
-  display: none;
-  justify-content: center;
-  align-items: center;
+#upload_submit{
+
+
+
 
 }
+
+
 
 /* End sidebar */
 
@@ -549,7 +544,7 @@ flex: 1;
 .cell:active {
 
    background-color: darken(#444, 10%);
-   transform: scale(0.95);
+   transform: scale(0.90);
 
 
 }
@@ -702,13 +697,13 @@ flex: 1;
 
     }
 
-    #upload_button {
 
-        display: none;
-    }
 
 
 }
+
+
+
 
 
 

@@ -80,6 +80,11 @@ $(document).ready(function(){
 
         })
 
+        .fail(function(xhr, status, errorThrown){
+
+            alert('Not a sound file!');
+
+        }
         event.preventDefault();
         $("#main_grid").css('display','flex');
         $("#upload_window").css('display','none');
