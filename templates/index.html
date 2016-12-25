@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='UTF-8'>
-    <title>#ThinkAboutIt</title>
+     <meta charset='UTF-8'>
+     <title>Think About It</title>
      <link rel='stylesheet' type='text/css' href='static/css/styles.css' media='screen'>
-      <link rel="stylesheet" type ='text/css' href="static/css/font-awesome.min.css">
-      <link rel="stylesheet" type ='text/css' href="static/css/bootstrap.min.css">
-      <link rel="icon" href="../static/img/bryce.jpg">
-
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type ='text/css' href="static/css/font-awesome.min.css">
+     <link rel="stylesheet" type ='text/css' href="static/css/bootstrap.min.css">
+     <link rel="icon" href="../static/img/bryce.jpg">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
+  <!-- End Head -->
 
 
 
-
-  <body>
     <!--Begin Body-->
+  <body>
 
+    <!-- Begin whole page wrapper -->
     <div id="wrapper">
+
+        <!-- Begin Left Sidebar -->
         <div id="sidebar">
 
+            <!-- Begin Title Box -->
             <div id="title">
-
-
-
-
-              <!--  <a href="http://www.insidestl.com" target="_blank"><img id="insidestllogo" src="../static/img/590logo.png"></a>
-
-                  -->
                 <img class='header_image' src="../static/img/soundboards.jpg">
+            </div>
+            <!--End title div-->
 
 
-
-            </div><!--End title div-->
-
+                    <!-- Menu Buttons-->
                     <div id="chooser_wrap">
                         <div id="chooser">
                             <div class="chooser_button">Doug Vaughn</div>
@@ -46,18 +42,27 @@
                             <div class="chooser_button">Jay Jr</div>
                             <div class="chooser_button">@ProdJoe</div>
                             <div class="chooser_button">Search All Drops</div>
-                            <div class="chooser_button">Upload</div>
-
+                            <div class="chooser_button" id="upload_button">Upload</div>
                         </div>
                     </div>
+                    <!-- End Menu Buttons -->
 
 
+                    <!--Search Container -->
                     <div id="search_container">
-
                         <input type="text" name="search_term" id="search_term" autocomplete=off>
                         <button id="bttn" type="submit" class="btn btn-default">Search</button><br>
-                    </div><!--End Search Container Div -->
+                    </div>
+                    <!--End Search Container -->
 
+                    <!-- Password Window -->
+                    <div id="password_window">
+                    <p>Password:</p>
+                    <input type="text" name="password" id="password" autocomplete=off>
+                        <button id="password_button" type="submit" class="btn btn-default">Submit</button>
+                        <button id="password_cancel_button" type="submit" class="btn btn-default">Cancel</button>
+                    </div>
+                    <!-- End Password Window -->
 
 
             <div id="results_container">

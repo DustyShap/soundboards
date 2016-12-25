@@ -130,9 +130,11 @@ p {
 
 }
 
+
+
 .chooser_button:hover {
 
-    border: 2px solid red;
+    border: 1px solid red;
 
 
 
@@ -143,6 +145,7 @@ p {
     border: 2px solid red;
 
 }
+
 
 #bttn {
 
@@ -167,7 +170,7 @@ height: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 90px;
   font-family: 'Heebo', sans-serif;
   font-size: 120%;
   background-color: black;
@@ -251,6 +254,24 @@ margin: 5px 0 15px 0;
 
 }
 
+
+#password_window {
+
+    margin-top:10px;
+    width: 100%;
+    height:60%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Heebo', sans-serif;
+    flex-direction: column;
+}
+
+
+.btn {
+    margin: 2px;
+
+}
 
 #no_results {
 
@@ -644,6 +665,18 @@ flex: 1;
 
     }
 
+    #search_container{
+
+    height: 60px;
+
+    }
+
+    #bttn{
+
+
+        font-size: 70%;
+    }
+
 
 }
 
@@ -667,6 +700,11 @@ flex: 1;
      .search_result {
         height: 50px;
 
+    }
+
+    #upload_button {
+
+        display: none;
     }
 
 

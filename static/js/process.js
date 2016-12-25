@@ -70,6 +70,8 @@ $(document).ready(function(){
             $("#search_container").show().css('display','flex');
             $("#search_term").focus();
             $("#results_container").empty();
+        }  else if ($(this).text() === 'Upload'){
+
 
         }
 
@@ -105,6 +107,8 @@ $(document).ready(function(){
 
     //Process Data if Search All Drops is Selected.  Queries database for just tags, not speaker
     function submitSearchData(event){
+
+        $("#password_window").hide()
         var chosen = $(".header_image").attr('id');
 
         $("#search_container").show().css('display','flex');
@@ -150,7 +154,7 @@ $(document).ready(function(){
             }
 
              $('.fa-play-circle').on('click', clickplay);
-             $('.fa-pause-circle').on('click', clickpause);
+            $('.fa-pause-circle').on('click', clickpause);
 
         });
     };
@@ -170,6 +174,7 @@ $(document).ready(function(){
 
     function submitData(){
 
+        $("#password_window").hide()
         var chosen = $(".header_image").attr('id');
         $("#results_container").empty();
         $("#instructions").hide();
