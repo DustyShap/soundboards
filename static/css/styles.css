@@ -570,6 +570,10 @@ flex: 1;
 
 
 
+
+
+
+
 /* Media Queries for Mobile */
 
 @media screen and (max-width: 800px)
@@ -630,6 +634,17 @@ flex: 1;
     }
 
 
+    #title {
+
+    height: 50px;
+    }
+
+    .search_result {
+        height: 50px;
+
+    }
+
+
 }
 
 
@@ -640,6 +655,17 @@ flex: 1;
      #meta_display p {
 
         font-size: 60%;
+
+    }
+
+
+    #title {
+
+    height: 50px;
+    }
+
+     .search_result {
+        height: 50px;
 
     }
 
@@ -657,6 +683,13 @@ flex: 1;
 
 
     }
+
+     .search_result {
+        height: 50px;
+
+    }
+
+
 
     #wrapper {
 
@@ -702,6 +735,11 @@ flex: 1;
 
         width: 40%;
 
+    }
+
+    #title {
+
+    height: 50px;
     }
 
 
