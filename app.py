@@ -10,6 +10,8 @@ initialize_db()
 audio = UploadSet('audio', AUDIO)
 
 app.config['UPLOADED_AUDIO_DEST'] = 'static/audio'
+#app.config['UPLOADED_AUDIO_DEST'] = '/home/DustyShapiro/soundboards/static/audio'
+
 configure_uploads(app, audio)
 
 

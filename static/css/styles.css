@@ -672,6 +672,11 @@ flex: 1;
         font-size: 70%;
     }
 
+    #upload_button {
+
+        display: none;
+    }
+
 
 }
 
@@ -695,6 +700,11 @@ flex: 1;
      .search_result {
         height: 50px;
 
+    }
+
+    #upload_button {
+
+        display: none;
     }
 
 

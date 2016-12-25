@@ -68,23 +68,22 @@ $(document).ready(function(){
             console.log(data);
             if (data.warning){
 
+                alert('Please complete the form and ensure filetype is MP3/WAV');
+
+
             } else {
+
 
                 $("#chooser_wrap").show();
                 $("#upload_window").css('display', 'none');
                 $("#upload_button").hide();
+                console.log(data.file + ' uploaded');
 
             };
 
         });
 
         e.preventDefault();
-
-
-
-
-
-
 
 
     })
