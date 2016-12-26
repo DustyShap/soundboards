@@ -154,8 +154,7 @@ $(document).ready(function(){
             $("#result"+i + " #speaker").text(speaker).css('color','white');
             $("#result"+i + " #transcription").text(transcription).css('color','white');
             $("#result"+i + " #src").attr('src', full_url);
-
-
+            $("#result"+i + " #wav").attr('src', full_url);
 
             }
 
@@ -229,6 +228,7 @@ $(document).ready(function(){
                $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
                $("#result"+i + " #transcription").text(transcription).css('color','white');
                $("#result"+i + " #src").attr('src', full_url);
+               $("#result"+i + " #wav").attr('src', full_url);
 
 
 

@@ -501,6 +501,7 @@ flex: 1;
 
 
 
+
 }
 
 .cell_top{
@@ -515,6 +516,8 @@ flex: 1;
     align-items: center;
     justify-content: flex-start;
     padding-left: 15px;
+
+
 
 
 }
@@ -543,8 +546,9 @@ flex: 1;
 
 .cell:active {
 
-   background-color: darken(#444, 10%);
+   background-color: darken(#444, 30%);
    transform: scale(0.90);
+   transition-duration: 0.2s;
 
 
 }
@@ -589,10 +593,9 @@ flex: 1;
 
 
 
-
 /* Media Queries for Mobile */
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 760px)
 {
 
 
@@ -713,7 +716,125 @@ flex: 1;
 }
 
 
+@media screen and (max-height: 400px)
+{
+
+
+    #chooser_wrap {
+
+        display: none;
+
+    }
 
 
 
+
+}
+
+
+@media screen and (max-height: 460px)
+{
+
+
+    .chooser_button {
+
+        height: 10px;
+
+    }
+
+
+}
+
+
+@media screen and (max-width : 1000px) and (max-height : 600px)
+{
+
+
+    #main_wrap {
+
+        display: none;
+
+
+    }
+
+    #wrapper {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    #sidebar {
+
+        width: 100%;
+
+    }
+
+    .gripper_container {
+
+        display: none;
+
+    }
+
+
+    #audio_container {
+
+        width: 45%;
+
+    }
+
+    .play {
+
+        width: 70%;
+
+    }
+
+    #meta_display p {
+
+        font-size: 110%;
+
+    }
+
+    #meta_display {
+
+        width: 40%;
+
+    }
+
+
+    #title {
+
+    height: 50px;
+    }
+
+    .search_result {
+        height: 50px;
+
+    }
+
+    #search_container{
+
+    height: 60px;
+
+    }
+
+    #bttn{
+
+
+        font-size: 70%;
+    }
+
+    #upload_button {
+
+        display: none;
+    }
+
+    .chooser_button {
+
+        height: 40px;
+
+    }
+}
 
