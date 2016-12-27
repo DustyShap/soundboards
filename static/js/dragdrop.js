@@ -29,7 +29,6 @@ function doFirst(){
 function dragStart(e){
 
 
-    $("#initial").hide()
     var target = e.target;
     var fromResult = 'true';
     var audio_container = target.children[0];
