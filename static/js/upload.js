@@ -79,6 +79,7 @@ $(document).ready(function(){
                 $("#upload_window").css('display', 'none');
                 $("#upload_button").hide();
                 console.log(data.file + ' uploaded');
+                $("#upload_button").show();
 
             };
 
