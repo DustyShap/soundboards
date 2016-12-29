@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for
+from flask import Flask, render_template, request, jsonify
 from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
 from models import *
 
@@ -20,6 +20,7 @@ def home():
     return render_template("index.html")
 
 
+
 @app.route('/upload', methods=['GET','POST'])
 def upload():
 
@@ -29,9 +30,7 @@ def upload():
         tags = request.form['tags'].lower()
         transcription = request.form['transcription'].lower().replace("'","")
 
-
         Drops.create(
-
 
             filename=filename,
             speaker=speaker,
@@ -55,34 +54,25 @@ def process():
         drops = Drops.select().where(
             Drops.speaker.is_null(False),
             Drops.tags.contains(search_term)
+
+
         )
 
     else:
-
-
-        #drops = Drops.select().where(Drops.speaker.is_null(False))
         drops = Drops.select().where(Drops.speaker == chosen)
-
 
 
     drops_as_list = []
 
     if drops:
-
         for drop in drops:
 
-            drop_as_dict = {
-
-                'filename': drop.filename,
-                'speaker': drop.speaker,
-                'transcription': drop.transcription.upper(),
-                'search_term': search_term
-            }
+            drop_as_dict = drop.as_dict()
+            drop_as_dict['search_term'] = search_term
+            #Search term passed to server, why?
             drops_as_list.append(drop_as_dict)
 
-
         return jsonify({'filename':drops_as_list})
-
 
     return jsonify({'filename': drops_as_list})
 

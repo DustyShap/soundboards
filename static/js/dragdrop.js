@@ -15,7 +15,6 @@ function doFirst(){
         cells[i].addEventListener("dragstart", cellDrag, false);
         cells[i].addEventListener("drop", dropped, false);
         cells[i].children[1].addEventListener("drop", result2cell, false);
-
         }
 
     theParent.addEventListener("dragstart", dragStart, false);
@@ -46,18 +45,25 @@ function dragStart(e){
 function cellDrag(e){
 
 
+    if ($(this)[0].children[1].innerHTML === ''){
+        console.log('Drag empty cell!')
 
-    var fromResult = 'false';
-    var audio = $(this)[0].childNodes[2].getAttribute('src');
-    var transcription = $(this).children()[1].innerHTML;
-    var speaker = $(this).children()[0].innerHTML;
-    e.dataTransfer.setData('audio', audio);
-    e.dataTransfer.setData('speaker', speaker);
-    e.dataTransfer.setData('transcription', transcription);
-    e.dataTransfer.setData('fromResult', fromResult);
-    $(this)[0].childNodes[0].innerHTML = ''
-    $(this).children()[1].innerHTML = ''
-    $(this)[0].childNodes[2].remove()
+        } else {
+
+        var fromResult = 'false';
+        var audio = $(this)[0].childNodes[2].getAttribute('src');
+        var transcription = $(this).children()[1].innerHTML;
+        var speaker = $(this).children()[0].innerHTML;
+        e.dataTransfer.setData('audio', audio);
+        e.dataTransfer.setData('speaker', speaker);
+        e.dataTransfer.setData('transcription', transcription);
+        e.dataTransfer.setData('fromResult', fromResult);
+        $(this)[0].childNodes[0].innerHTML = ''
+        $(this).children()[1].innerHTML = ''
+        $(this)[0].childNodes[2].remove()
+
+        }
+
 
 }
 
@@ -98,10 +104,8 @@ function result2cell(e){ //Drag a result object to an already populated cell
 
 function dropped(e){
 
-    //Determine if the result object came from a cell
-
+    //Determine if the drag event object came from a cell
     var fromResult = e.dataTransfer.getData('fromResult');
-
     if (fromResult == 'false'){  //FromCell
 
         cell_top = $(this)[0].childNodes[0];

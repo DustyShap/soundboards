@@ -155,7 +155,6 @@ $(document).ready(function(){
             var filename = data.filename[i].filename;
             var speaker = data.filename[i].speaker;
             var transcription = data.filename[i].transcription;
-            var search_term = $('#search_term').val()
             var full_url = "../static/audio/" + filename;
             $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
             $("#result"+i).attr('draggable','True');
