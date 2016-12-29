@@ -205,6 +205,20 @@ height: 70%;
 
 }
 
+#no_results{
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: black;
+    width: 100%;
+    font-family: 'Heebo', sans-serif;
+    color: white;
+
+
+}
+
 #search_term{
 
     height: 70%;
@@ -270,13 +284,6 @@ margin: 5px 0 15px 0;
 
 }
 
-#no_results {
-
-  display: none;
-  text-align: center;
-  font-size: 2em;
-
-}
 
 
 
@@ -368,6 +375,11 @@ margin: 5px 0 15px 0;
  background-color: #fafafa;
  margin-top: 10px;
  margin-bottom: 10px;
+
+
+}
+
+.fa-play-circle:hover, .fa-pause-circle:hover{
 
 
 }

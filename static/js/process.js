@@ -6,7 +6,7 @@ $(document).ready(function(){
 
      //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
-
+        $("#no_results").hide()
         $(".header_image").removeAttr('id');
         $(".chooser_button").removeClass('button_chose');
         if ($(this).text() == 'Mike Lee'){
@@ -90,9 +90,11 @@ $(document).ready(function(){
     //Process data on button click
 
     $('#bttn').on('click', function(event) {
+        $("#no_results").hide()
         $(".header_image").attr('id','search_drops');
         if ($(".header_image").attr('id')){
             submitSearchData(event)
+            $("#no_results").hide()
         }
 
     });
@@ -105,8 +107,10 @@ $(document).ready(function(){
         if ($("#search_term").val().length < 3) {
             alert('Search must be at least 3 letters')
             } else {
+                 $("#no_results").hide()
                 $(".header_image").attr('id','search_drops');
                 submitSearchData(event)
+
             }
          }
      });
@@ -140,11 +144,9 @@ $(document).ready(function(){
 
 
         var results_length = data.filename.length;
-        $("#length_div").attr('display','flex');
-        $("#length_display").text('Number of Results: ' + results_length);
-
-
-
+        if (results_length < 1){
+            $("#no_results").css('display','flex');
+        }
 
         for (var i=0; i < results_length; i++){
 
@@ -179,7 +181,7 @@ $(document).ready(function(){
 
 
 
-     //Function to submit Data to process endpoint
+     //Function to submit Data to process endpoint when a name is clicked
      //
 
 
