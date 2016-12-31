@@ -10,16 +10,22 @@ function doFirst(){
 
 
 
+
+
     for (i = 0; i < cells.length; i++){
+
         cells[i].setAttribute('draggable','true');
         cells[i].addEventListener("dragstart", cellDrag, false);
         cells[i].addEventListener("drop", dropped, false);
         cells[i].children[1].addEventListener("drop", result2cell, false);
+
+
         }
 
     theParent.addEventListener("dragstart", dragStart, false);
     theGrid.addEventListener("dragenter", function(e){e.preventDefault();}, false);
     theGrid.addEventListener("dragover", function(e){e.preventDefault();}, false);
+
 
 
     }
@@ -46,7 +52,7 @@ function cellDrag(e){
 
 
     if ($(this)[0].children[1].innerHTML === ''){
-        console.log('Drag empty cell!')
+
 
         } else {
 
@@ -139,6 +145,7 @@ function dropped(e){
 
 
 
+
     } else {
 
         //Determine if the result came from a search result object
@@ -173,6 +180,7 @@ function dropped(e){
             target.appendChild(x);
             cell_bottom.append(t);
             cell_top.append(d);
+
 
             }
 
