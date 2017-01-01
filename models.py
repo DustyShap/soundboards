@@ -1,8 +1,9 @@
 from peewee import Model, PrimaryKeyField, TextField
-from playhouse.csv_loader import *
+from playhouse.csv_loader import SqliteDatabase
+import os
 
-db = SqliteDatabase('staticmeta/drops.db')
-#db = SqliteDatabase('/home/DustyShapiro/soundboards/staticmeta/drops.db')
+db = SqliteDatabase(os.environ['DB_PATH'])
+
 
 class Drops(Model):
 

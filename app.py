@@ -1,17 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
-from models import *
+from models import Drops, initialize_db
+import os
 
 
 app = Flask(__name__)
 initialize_db()
-
-
 audio = UploadSet('audio', AUDIO)
-
-app.config['UPLOADED_AUDIO_DEST'] = 'static/audio'
-#app.config['UPLOADED_AUDIO_DEST'] = '/home/DustyShapiro/soundboards/static/audio'
-
+app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
 
