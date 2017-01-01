@@ -70,6 +70,7 @@ p {
 #title {
 
    height: 33%;
+   max-height: 150px;
    width: 100%;
    flex-grow: 1;
    display: flex;
@@ -760,10 +761,14 @@ width: 100%;
 
      #meta_display p {
 
-        font-size: 50%;
+        font-size: 80%;
 
     }
 
+    #meta_display {
+
+        width: 60%;
+    }
 
     #title {
 
@@ -851,7 +856,7 @@ width: 100%;
 
     #audio_container {
 
-        width: 45%;
+        width: 40%;
         padding-right: 10px;
 
     }
@@ -864,13 +869,13 @@ width: 100%;
 
     #meta_display p {
 
-        font-size: 60%;
+        font-size: 90%;
 
     }
 
     #meta_display {
 
-        width: 40%;
+        width: 60%;
 
     }
 

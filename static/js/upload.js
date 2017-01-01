@@ -49,8 +49,7 @@ $(document).ready(function(){
 
 
 
-        var form_data = new FormData($("#upload_form"
-)[0]);
+        var form_data = new FormData($("#upload_form")[0]);
 
 
         $.ajax({
