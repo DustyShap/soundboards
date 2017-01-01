@@ -12,21 +12,20 @@ function doFirst(){
 
 
 
+
     for (i = 0; i < cells.length; i++){
+
 
         cells[i].setAttribute('draggable','true');
         cells[i].addEventListener("dragstart", cellDrag, false);
         cells[i].addEventListener("drop", dropped, false);
         cells[i].children[1].addEventListener("drop", result2cell, false);
 
-
         }
 
     theParent.addEventListener("dragstart", dragStart, false);
     theGrid.addEventListener("dragenter", function(e){e.preventDefault();}, false);
     theGrid.addEventListener("dragover", function(e){e.preventDefault();}, false);
-
-
 
     }
 
@@ -45,18 +44,34 @@ function dragStart(e){
     e.dataTransfer.setData('result_speaker', speaker);
     e.dataTransfer.setData('result_trans', trans);
     e.dataTransfer.setData('fromResult', fromResult);
+    console.log('A drag has started');
 
 }
 
 function cellDrag(e){
 
 
+
     if ($(this)[0].children[1].innerHTML === ''){
 
 
-        } else {
+          var fromResult = 'false';
+          var is_blank = 'true';
+          console.log('Dragging from empty cell!')
+          $(this)[0].setAttribute('draggable','false');
+          var is_blank = 'true';
+          e.dataTransfer.setData('is_blank', is_blank);
+          e.dataTransfer.setData('fromResult', fromResult);
 
+
+
+    } else {
+
+        //Cell is not empty!
+        var is_blank = 'false';
         var fromResult = 'false';
+
+
         var audio = $(this)[0].childNodes[2].getAttribute('src');
         var transcription = $(this).children()[1].innerHTML;
         var speaker = $(this).children()[0].innerHTML;
@@ -66,7 +81,8 @@ function cellDrag(e){
         e.dataTransfer.setData('fromResult', fromResult);
         $(this)[0].childNodes[0].innerHTML = ''
         $(this).children()[1].innerHTML = ''
-        $(this)[0].childNodes[2].remove()
+        $(this)[0].childNodes[2].remove();
+        e.dataTransfer.setData('is_blank',is_blank);
 
         }
 
@@ -110,17 +126,36 @@ function result2cell(e){ //Drag a result object to an already populated cell
 
 function dropped(e){
 
+
+
     //Determine if the drag event object came from a cell
     var fromResult = e.dataTransfer.getData('fromResult');
+    var is_blank = e.dataTransfer.getData('is_blank');
+
+
     if (fromResult == 'false'){  //FromCell
+
+
+        //IS THE CELL BLANK?!
+
+
+       if (is_blank == 'false'){
+
+            console.log('CELL IS NOT BLANK!!');
+
+
+
+
+        }
 
         cell_top = $(this)[0].childNodes[0];
         cell_bottom = $(this)[0].childNodes[1];
+        cell = $(this)[0];
+
 
         if ($(this)[0].childNodes[2]){
             $(this)[0].childNodes[2].remove();
             };
-
 
         if ($(this)[0].childNodes[0].innerHTML === '') {
 

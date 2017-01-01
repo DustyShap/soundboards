@@ -21,10 +21,13 @@ $(document).ready(function(){
 
     //Play audio contained within individual cell
     $(".cell").click(function(){
+
       if ($(this).find('audio').length) {
         var audio = $(this.children)[2];
         audio.play();
-        }
+      } else {
+        console.log('no audio');
+      }
 
     });
 
