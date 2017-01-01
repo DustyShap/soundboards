@@ -44,7 +44,7 @@ function dragStart(e){
     e.dataTransfer.setData('result_speaker', speaker);
     e.dataTransfer.setData('result_trans', trans);
     e.dataTransfer.setData('fromResult', fromResult);
-    console.log('A drag has started');
+
 
 }
 
@@ -58,7 +58,6 @@ function cellDrag(e){
           var fromResult = 'false';
           var is_blank = 'true';
           console.log('Dragging from empty cell!')
-          $(this)[0].setAttribute('draggable','false');
           var is_blank = 'true';
           e.dataTransfer.setData('is_blank', is_blank);
           e.dataTransfer.setData('fromResult', fromResult);
@@ -133,59 +132,56 @@ function dropped(e){
     var is_blank = e.dataTransfer.getData('is_blank');
 
 
-    if (fromResult == 'false'){  //FromCell
-
-
-        //IS THE CELL BLANK?!
-
+    if (fromResult == 'false'){
+    //Checking to see if the object that was dragged was a result or not (in this case, it was from a cell)
 
        if (is_blank == 'false'){
-
-            console.log('CELL IS NOT BLANK!!');
-
+        //Checking to see if the cell that was dragged was blank.  In this case, the cell was not blank
 
 
-
-        }
-
-        cell_top = $(this)[0].childNodes[0];
-        cell_bottom = $(this)[0].childNodes[1];
-        cell = $(this)[0];
+            cell_top = $(this)[0].childNodes[0];
+            cell_bottom = $(this)[0].childNodes[1];
+            cell = $(this)[0];
 
 
-        if ($(this)[0].childNodes[2]){
-            $(this)[0].childNodes[2].remove();
-            };
-
-        if ($(this)[0].childNodes[0].innerHTML === '') {
-
-            } else {
-                $(this)[0].childNodes[0].innerHTML = ''
-                $(this)[0].childNodes[1].innerHTML = ''
+            if ($(this)[0].childNodes[2]){
                 $(this)[0].childNodes[2].remove();
-            };
+                };
 
-        var audio_src = e.dataTransfer.getData('audio');
-        var speaker = e.dataTransfer.getData('speaker');
-        var trans = e.dataTransfer.getData('transcription');
-        var x = document.createElement("audio");
-        var y = document.createElement('p').innerHTML = speaker;
-        var z = document.createElement('p').innerHTML = trans;
-        x.setAttribute("src", audio_src);
-        x.setAttribute('id','audio');
-        x.setAttribute('class', 'audio_drop');
-        cell_top.append(y);
-        cell_bottom.append(z);
-        $(this)[0].append(x);
+            if ($(this)[0].childNodes[0].innerHTML === '') {
+
+                } else {
+                    $(this)[0].childNodes[0].innerHTML = ''
+                    $(this)[0].childNodes[1].innerHTML = ''
+                    $(this)[0].childNodes[2].remove();
+                };
+
+            var audio_src = e.dataTransfer.getData('audio');
+            var speaker = e.dataTransfer.getData('speaker');
+            var trans = e.dataTransfer.getData('transcription');
+            var x = document.createElement("audio");
+            var y = document.createElement('p').innerHTML = speaker;
+            var z = document.createElement('p').innerHTML = trans;
+            x.setAttribute("src", audio_src);
+            x.setAttribute('id','audio');
+            x.setAttribute('class', 'audio_drop');
+            cell_top.append(y);
+            cell_bottom.append(z);
+            $(this)[0].append(x);
 
 
-
+        } else {
+        //Else would mean the cell that was dragged was in fact false.
+            if ($(this).children()[2]){
+                $(this).children()[2].remove();
+            }
+        }
 
     } else {
 
         //Determine if the result came from a search result object
+        //This event was dragged from a result object
 
-        //From Result
         e.preventDefault();
         var target = e.target;
 

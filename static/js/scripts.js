@@ -26,7 +26,7 @@ $(document).ready(function(){
         var audio = $(this.children)[2];
         audio.play();
       } else {
-        console.log('no audio');
+        //Do nothing
       }
 
     });
