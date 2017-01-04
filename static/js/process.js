@@ -89,7 +89,7 @@ $(document).ready(function(){
 
     //Process data on button click
 
-    $('#bttn').on('click', function(event) {
+    $('#submit_button').on('click', function(event) {
         $("#no_results").hide()
         $(".header_image").attr('id','search_drops');
         if ($(".header_image").attr('id')){
@@ -158,8 +158,8 @@ $(document).ready(function(){
             var full_url = "../static/audio/" + filename;
             $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
             $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text(speaker).css('color','white');
-            $("#result"+i + " #transcription").text(transcription).css('color','white');
+            $("#result"+i + " #speaker").text(speaker).css('color','black');
+            $("#result"+i + " #transcription").text(transcription).css('color','black');
             $("#result"+i + " #src").attr('src', full_url);
             $("#result"+i + " #wav").attr('src', full_url);
 
@@ -233,7 +233,7 @@ $(document).ready(function(){
                $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
                $("#result"+i).attr('draggable','True');
                $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
-               $("#result"+i + " #transcription").text(transcription).css('color','white');
+               $("#result"+i + " #transcription").text(transcription).css('color','black');
                $("#result"+i + " #src").attr('src', full_url);
                $("#result"+i + " #wav").attr('src', full_url);
 
