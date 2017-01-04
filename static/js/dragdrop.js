@@ -151,6 +151,8 @@ function dropped(e){
         //Else would mean the cell that was dragged was in fact blank.
             if ($(this).children()[2]){
                 $(this).children()[2].remove();
+                $(this)[0].className = 'cell';
+                $(this).children()[0].className = 'cell_top';
              }
         }
 
