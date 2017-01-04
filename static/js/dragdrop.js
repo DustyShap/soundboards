@@ -48,9 +48,9 @@ function cellDrag(e){
 
           var fromResult = 'false';
           var is_blank = 'true';
-          var is_blank = 'true';
           e.dataTransfer.setData('is_blank', is_blank);
           e.dataTransfer.setData('fromResult', fromResult);
+
     } else {
 
         //Cell is not empty!
@@ -63,12 +63,13 @@ function cellDrag(e){
         e.dataTransfer.setData('speaker', speaker);
         e.dataTransfer.setData('transcription', transcription);
         e.dataTransfer.setData('fromResult', fromResult);
+        e.dataTransfer.setData('is_blank',is_blank);
         $(this)[0].childNodes[0].innerHTML = ''
         $(this).children()[1].innerHTML = ''
         $(this)[0].childNodes[2].remove();
-        e.dataTransfer.setData('is_blank',is_blank);
         $(this)[0].className = 'cell';
         $(this)[0].children[0].className = 'cell_top';
+        $(this)[0].children[1].className = 'cell_bottom';
 
         }
     }
@@ -90,7 +91,6 @@ function result2cell(e){ //Drag a result object to an already populated cell
     var data = e.dataTransfer.getData('result_audio');
     var speaker = e.dataTransfer.getData('result_speaker');
     var trans = e.dataTransfer.getData('result_trans');
-
     var x = document.createElement("AUDIO");
     var d = document.createElement('p').innerHTML = speaker
     var t = document.createElement('p').innerHTML = trans
@@ -98,9 +98,14 @@ function result2cell(e){ //Drag a result object to an already populated cell
     x.setAttribute('id','audio');
     x.setAttribute('class', 'audio_drop');
     t = t.slice(0,90);
-     cell.append(x);
-     cell_bottom.append(t);
-     cell_top.append(d);
+    cell.append(x);
+    cell_bottom.append(t);
+    cell_top.append(d);
+    cell_top.classList.add('populated');
+    $(this).parent().addClass('cell_populated');
+    $(this).addClass('bottom_populated');
+
+
     }
 
 
@@ -153,67 +158,13 @@ function dropped(e){
                 $(this).children()[2].remove();
                 $(this)[0].className = 'cell';
                 $(this).children()[0].className = 'cell_top';
+                $(this).children()[1].className = 'cell_bottom';
              }
         }
 
     } else {
-
-        //Determine if the result came from a search result object
-        //This event was dragged from a result object
-
-        e.preventDefault();
-        var target = e.target;
-
-        if (target.getAttribute("class") === 'cell' || target.getAttribute("class") === 'cell_bottom'){
-
-            var data = e.dataTransfer.getData('result_audio');
-            var speaker = e.dataTransfer.getData('result_speaker');
-            var trans = e.dataTransfer.getData('result_trans');
-
-            if (target.getAttribute('class') === 'cell') {
-
-                var cell_top = target.children[0];
-                var cell_bottom = target.children[1];
-                cell_top.classList.add('populated');
-                cell_top.parentElement.classList.add('cell_populated');
-
-
-
-            } else if (target.getAttribute('class') === 'cell_bottom'){
-
-                var cell_top = target.parentElement.children[0];
-                var cell_bottom = target.parentElement.children[1];
-                cell_top.classList.add('populated');
-                cell_top.parentElement.classList.add('cell_populated');
-
-            };
-
-
-
-            if (cell_top.firstChild) {
-                cell_top.firstChild.innerHTML = ''
-                cell_bottom.firstChild.innerHTML ='';
-
-               };
-
-
-            var x = document.createElement("AUDIO");
-            var d = document.createElement('p').innerHTML = speaker
-            var t = document.createElement('p').innerHTML = trans
-            x.setAttribute("src", data);
-            x.setAttribute('id','audio');
-            x.setAttribute('class', 'audio_drop');
-            t = t.slice(0,90);
-            cell_top.parentElement.appendChild(x);
-            cell_top.innerHTML = speaker;
-            cell_bottom.innerHTML = t;
-
-
-
-
-
-            }
-        };
+            //Handled in a diff function.  Re-write!
+        }
 } //End drop function
 
 
