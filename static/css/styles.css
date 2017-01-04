@@ -231,12 +231,17 @@ height: 70%;
   flex-direction: column;
   background-color: #fafafa;
   border-bottom: 1px solid black;
+  cursor: url('../img/hand.png'), auto;
 
 
 
 
 }
 
+.search_result:active {
+    cursor: url('../img/hand_closed.png'), auto;
+
+}
 
 .gripper_container {
 
@@ -245,9 +250,15 @@ height: 70%;
     order: 3;
     background-color: #ededed;
     display: flex;
-    cursor: -webkit-grab;;
+    cursor: url('../img/hand.png'), auto;
     align-items: center;
     justify-content: center;
+
+}
+
+.gripper_container:active {
+
+    cursor: url('../img/hand_closed.png'), auto;
 
 }
 
@@ -311,13 +322,18 @@ height: 70%;
   justify-content: center;
   order:1;
   background-color: #ededed;
-  cursor: move;
-  padding: 25px;
-  font-size: 80%;
+  cursor: url('../img/hand.png'), auto;
+  padding: 15px;
+  font-size: 70%;
 
 
 }
 
+#meta_display:active {
+
+    cursor: url('../img/hand_closed.png'), auto;
+
+}
 
 
 /* UPLOAD WINDOW */
@@ -436,6 +452,7 @@ height: 70%;
     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 6px 10px 0 rgba(0,0,0,0.19);
     background-color: #ededed;
     border-radius: 10px;
+    cursor: url('../img/hand.png'), auto;
 
 }
 
@@ -444,7 +461,8 @@ height: 70%;
     background-color: darken(#444, 30%);
     transform: scale(0.95);
     transition-duration: 0.2s;
-
+    border-radius: 10px;
+    cursor: url('../img/hand_closed.png'), auto;
 
 }
 
@@ -453,6 +471,7 @@ height: 70%;
     border: 1px solid red !important;
     transition-duration: 0.1s;
     box-shadow: 0 12px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    border-radius: 10px;
 
 
 }
@@ -471,6 +490,12 @@ height: 70%;
 
     background-color: #ededed;
     border-radius: 0 0 10px 10px;
+
+}
+
+.bottom_populated:active {
+
+    border-radius: 10px;
 
 }
 
