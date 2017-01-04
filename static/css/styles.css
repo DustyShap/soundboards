@@ -433,12 +433,14 @@ height: 70%;
 
     border: 1px solid black !important;
     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 6px 10px 0 rgba(0,0,0,0.19);
+    background-color: #ededed;
 
 }
 
 .cell_populated:active {
+
     background-color: darken(#444, 30%);
-    transform: scale(0.90);
+    transform: scale(0.95);
     transition-duration: 0.2s;
 
 
@@ -446,7 +448,7 @@ height: 70%;
 
 .cell_populated:hover {
 
-    border: 1px solid red;
+    border: 1px solid red !important;
     transition-duration: 0.1s;
     box-shadow: 0 12px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 
@@ -458,6 +460,13 @@ height: 70%;
 
     background-color: black;
     border: 1px solid black !important;
+
+
+}
+
+.bottom_populated {
+
+    background-color: #ededed;
 
 }
 
@@ -509,12 +518,14 @@ height: 70%;
 .cell_bottom{
 
     flex-grow:1;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Heebo', sans-serif;
     font-size: 90%;
     padding: 5px;
+
 
 
 }

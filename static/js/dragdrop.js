@@ -178,6 +178,7 @@ function dropped(e){
                 cell_top.parentElement.classList.add('cell_populated');
 
 
+
             } else if (target.getAttribute('class') === 'cell_bottom'){
 
                 var cell_top = target.parentElement.children[0];
