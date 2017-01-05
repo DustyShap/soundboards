@@ -3,6 +3,12 @@ from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
 from models import Drops, initialize_db
 import os
 
+#Results number
+#Look into cursor
+#JS Popover?
+#Hashable anchors / director.js
+#Check Browser
+#https://www.youtube.com/playlist?list=WL
 
 app = Flask(__name__)
 initialize_db()

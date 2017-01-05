@@ -1,6 +1,7 @@
 window.addEventListener("load", doFirst, false);
 
 
+
 function doFirst(){
 
     var button = document.getElementById('bttn');

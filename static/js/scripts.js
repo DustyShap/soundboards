@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
     //Search term input validation
     $("#search_term").keyup(function(){
 
@@ -11,9 +12,6 @@ $(document).ready(function(){
             $("#bttn").prop('disabled', true).css('color','red');
         }
     });
-
-
-
 
 
 
@@ -33,9 +31,17 @@ $(document).ready(function(){
 
 
 
+    $(".search_result").on(
+        mouseenter: function(){
 
+        console.log('test');
+        },
+        mouseleave: function(){
 
+        console.log('test2');
+        }
 
+    )
 });  //End of document ready wrap
 
 

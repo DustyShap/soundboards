@@ -237,10 +237,6 @@ $(document).ready(function(){
                $("#result"+i + " #src").attr('src', full_url);
                $("#result"+i + " #wav").attr('src', full_url);
 
-
-
-
-
             }
 
 
@@ -265,4 +261,10 @@ $(document).ready(function(){
     function clickpause(e){
         $(this).parent().children()[2].pause();
     }
+
+
+
+
 });
+
+

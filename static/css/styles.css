@@ -4,10 +4,6 @@
 }
 
 
-
-
-
-
 html {
   height: 100%;
 
@@ -145,7 +141,7 @@ p {
   font-size: 120%;
   background-color: black;
   width: 100%;
-  border: 1px solid white;
+  border: 1px solid #ededed;
 
 }
 
@@ -229,8 +225,7 @@ height: 70%;
   flex-wrap: wrap;
   display:flex;
   flex-direction: column;
-  background-color: #fafafa;
-  border-bottom: 1px solid black;
+  background-color: #ededed;
   cursor: url('../img/hand.png'), auto;
 
 
@@ -246,7 +241,7 @@ height: 70%;
 .gripper_container {
 
     height: 100%;
-    width: 7%;
+    width: 5%;
     order: 3;
     background-color: #ededed;
     display: flex;
@@ -254,7 +249,36 @@ height: 70%;
     align-items: center;
     justify-content: center;
 
+
 }
+
+
+.gripper_container:hover {
+
+
+
+}
+
+.gripper_column {
+
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px 0px 1px 1px solid black;
+
+}
+
+.gripper_dots {
+
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    font-size: 80px;
+}
+
+
 
 .gripper_container:active {
 
@@ -280,7 +304,7 @@ height: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1px;
+
   order:2;
   background-color: #ededed;
 
@@ -310,6 +334,7 @@ height: 70%;
  margin-bottom: 10px;
 
 }
+
 
 #meta_display {
 
@@ -374,7 +399,7 @@ height: 70%;
 .search_result:hover {
 
 
-    transform: scale(0.95);
+    border: 1.5px solid black;
 
 }
 
