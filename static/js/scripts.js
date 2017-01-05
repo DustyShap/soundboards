@@ -31,17 +31,8 @@ $(document).ready(function(){
 
 
 
-    $(".search_result").on(
-        mouseenter: function(){
 
-        console.log('test');
-        },
-        mouseleave: function(){
 
-        console.log('test2');
-        }
-
-    )
 });  //End of document ready wrap
 
 

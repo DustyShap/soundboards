@@ -84,7 +84,12 @@ $(document).ready(function(){
 
         }
 
+
+
     });
+
+
+
 
 
     //Process data on button click
@@ -95,6 +100,7 @@ $(document).ready(function(){
         if ($(".header_image").attr('id')){
             submitSearchData(event)
             $("#no_results").hide()
+
         }
 
     });
@@ -124,9 +130,6 @@ $(document).ready(function(){
         $("#password_window").hide()
         $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
-
-
-
         $("#search_container").show().css('display','flex');
         $("#results_container").empty();
         $("#instructions").hide();
@@ -167,6 +170,12 @@ $(document).ready(function(){
 
              $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
+            $('.search_result').hover(function(){
+                $(this).children()[2].className = 'gripper_container gripper_hover'
+                }, function(){
+                $(this).children()[2].className = 'gripper_container';
+            });
+
 
         });
     };
@@ -242,7 +251,11 @@ $(document).ready(function(){
 
             $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
-
+            $('.search_result').hover(function(){
+                $(this).children()[2].className = 'gripper_container gripper_hover'
+                }, function(){
+                $(this).children()[2].className = 'gripper_container';
+            });
 
         }); //Data done end
 
@@ -261,6 +274,8 @@ $(document).ready(function(){
     function clickpause(e){
         $(this).parent().children()[2].pause();
     }
+
+
 
 
 
