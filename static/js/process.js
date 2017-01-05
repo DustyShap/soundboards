@@ -251,6 +251,7 @@ $(document).ready(function(){
 
             $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
+
             $('.search_result').hover(function(){
                 $(this).children()[2].className = 'gripper_container gripper_hover'
                 }, function(){

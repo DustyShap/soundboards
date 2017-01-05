@@ -12,6 +12,7 @@ class Drops(Model):
     tags = TextField()
     transcription = TextField()
 
+
     def as_dict(self):
 
         return  {
