@@ -5,11 +5,11 @@ $(document).ready(function(){
     $("#search_term").keyup(function(){
 
         if ($(this).val().length >= 3){
-            $("#bttn").prop('disabled', false).css('color','green');
+            $("#submit_button").prop('disabled', false).css('color','white').css('background-color','green');
         }
 
         if ($(this).val().length < 3){
-            $("#bttn").prop('disabled', true).css('color','red');
+            $("#submit_button").prop('disabled', true).css('color','white').css('background-color','red');
         }
     });
 

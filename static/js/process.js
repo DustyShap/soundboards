@@ -75,7 +75,7 @@ $(document).ready(function(){
             $(".header_image").attr('id','search_drops');
             $("#search_container").show().css('display','flex');
             $("#search_term").focus();
-            $("#results_container").empty();
+
             $("#upload_window").hide()
             $("#password_window").hide()
             $("#results_container").show();
