@@ -50,6 +50,7 @@ p {
    justify-content: flex-start;
    background-color: #ededed;
 
+
 }
 
 
@@ -467,18 +468,6 @@ font-size: 14px;
 
 }
 
-
-
-#instructions {
-
-    margin-top: 10px;
-    display: flex;
-    font-family: 'Heebo', sans-serif;
-    justify-content: center;
-    align-items: center;
-    color: white;
-
-}
 
 
 /* End sidebar */
@@ -908,7 +897,7 @@ font-size: 14px;
 
     #meta_display p {
 
-        font-size: 80%;
+        font-size: 110%;
 
     }
 
@@ -1013,7 +1002,7 @@ font-size: 14px;
 
     #audio_container {
 
-        width: 45%;
+        width: 25%;
         padding-right: 10px;
 
     }
@@ -1026,13 +1015,13 @@ font-size: 14px;
 
     #meta_display p {
 
-        font-size: 50%;
+        font-size: 70%;
 
     }
 
     #meta_display {
 
-        width: 60%;
+        width: 80%;
 
     }
 
@@ -1078,43 +1067,3 @@ font-size: 14px;
 }
 
 
-
-
-////////////////////////////
-//button two
-//////////////////////////
-.btn-2 {
-    letter-spacing: 0;
-}
-
-.btn-2:hover,
-.btn-2:active {
-  letter-spacing: 5px;
-}
-
-.btn-2:after,
-.btn-2:before {
-  backface-visibility: hidden;
-  border: 1px solid rgba(#fff, 0);
-  bottom: 0px;
-  content: " ";
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  transition: all 280ms ease-in-out;
-  width: 0;
-}
-
-.btn-2:hover:after,
-.btn-2:hover:before {
-  backface-visibility: hidden;
-  border-color: #fff;
-  transition: width 350ms ease-in-out;
-  width: 70%;
-}
-
-.btn-2:hover:before {
-  bottom: auto;
-  top: 0;
-  width: 70%;
-}
