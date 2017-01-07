@@ -885,6 +885,12 @@ font-size: 14px;
 
     }
 
+    .chooser_button {
+
+        letter-spacing: 1px;
+
+    }
+
     .container {
 
         display: none;
@@ -964,7 +970,7 @@ font-size: 14px;
 
     #tma_image {
 
-        width: 35%;
+        width: 45%;
     }
 }
 
