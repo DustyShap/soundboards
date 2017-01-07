@@ -41,7 +41,7 @@ p {
 #sidebar {
 
    border: 2px solid black;
-   width: 45%;
+   width: 40%;
    height: 99%;
    overflow-y: hidden;
    display: flex;
@@ -584,7 +584,7 @@ font-size: 14px;
   width: 100%;
   flex: 1;
   margin: 5px;
-  font-size: 80%;
+  font-size: 85%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -593,9 +593,6 @@ font-size: 14px;
   border: 1px dashed black;
   background-color: white;
   border-radius: 10px;
-
-
-
 
 
 }
@@ -631,8 +628,10 @@ font-size: 14px;
     justify-content: center;
     align-items: center;
     font-family: 'Heebo', sans-serif;
-    font-size: 90%;
-    padding: 5px;
+    font-size: 76%;
+    padding: 2px;
+    max-height:95%;
+    overflow: hide;
 
 
 
@@ -986,20 +985,6 @@ font-size: 14px;
 
 
     }
-
-
-
-
-    .small_hide{
-
-        display:flex;
-        height: 5px;
-
-
-    }
-
-
-
 
     #wrapper {
 

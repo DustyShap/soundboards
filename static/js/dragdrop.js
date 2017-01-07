@@ -98,7 +98,7 @@ function result2cell(e){ //Drag a result object to an already populated cell
     x.setAttribute("src", data);
     x.setAttribute('id','audio');
     x.setAttribute('class', 'audio_drop');
-    t = t.slice(0,90);
+    t = t.slice(0,70);
     cell.append(x);
     cell_bottom.append(t);
     cell_top.append(d);
