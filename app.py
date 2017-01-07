@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 initialize_db()
 audio = UploadSet('audio', AUDIO)
-app.config['UPLOADED_AUDIO_DEST'] = '/static/audio' #os.environ['UPLOAD_PATH']
+app.config['UPLOADED_AUDIO_DEST'] = 'static/audio' #os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
 
@@ -26,25 +26,23 @@ def home():
 @app.route('/upload', methods=['GET','POST'])
 def upload():
 
-    try:
-        filename = audio.save(request.files['audio'])
-        speaker = request.form['speaker'].lower().strip()
-        tags = request.form['tags'].lower()
-        transcription = request.form['transcription'].lower().replace("'","")
 
-        Drops.create(
+    filename = audio.save(request.files['audio'])
+    speaker = request.form['speaker'].lower().strip()
+    tags = request.form['tags'].lower()
+    transcription = request.form['transcription'].lower().replace("'","")
 
-            filename=filename,
-            speaker=speaker,
-            tags=tags,
-            transcription=transcription
-        )
+    Drops.create(
 
-        return jsonify({'file':filename})
+         filename=filename,
+        speaker=speaker,
+        tags=tags,
+        transcription=transcription
+    )
 
-    except Exception:
+    return jsonify({'file':filename})
 
-        return jsonify({'warning':'Not allowed'})
+
 
 
 @app.route('/process', methods=['POST', 'GET'])

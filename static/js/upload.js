@@ -69,7 +69,7 @@ $(document).ready(function(){
 
             if (data.warning){
 
-                alert('Please complete the form and ensure filetype is MP3/WAV');
+
 
 
             } else {
