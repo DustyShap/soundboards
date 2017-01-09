@@ -12,6 +12,7 @@ import os
 
 app = Flask(__name__)
 initialize_db()
+
 audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = 'static/audio' #os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
@@ -66,13 +67,11 @@ def process():
         for drop in drops:
 
             drop_as_dict = drop.as_dict()
-            drop_as_dict['search_term'] = search_term
-            #Search term passed to server, why?
             drops_as_list.append(drop_as_dict)
 
-        return jsonify({'filename':drops_as_list})
+        return jsonify({'drops':drops_as_list})
 
-    return jsonify({'filename': drops_as_list})
+    return jsonify({'drops': drops_as_list})
 
 
 

@@ -1,5 +1,6 @@
 window.addEventListener("load", doFirst, false);
 
+var speakers = ['plowboy','doug','prodjoe','larry', 'tim','charlie','cat','timberfake']
 
 
 function doFirst(){
@@ -91,6 +92,7 @@ function result2cell(e){ //Drag a result object to an already populated cell
                }
     var data = e.dataTransfer.getData('result_audio');
     var speaker = e.dataTransfer.getData('result_speaker');
+    console.log(speaker);
     var trans = e.dataTransfer.getData('result_trans');
     var x = document.createElement("AUDIO");
     var d = document.createElement('p').innerHTML = speaker
@@ -106,8 +108,21 @@ function result2cell(e){ //Drag a result object to an already populated cell
     $(this).parent().addClass('cell_populated');
     $(this).addClass('bottom_populated');
 
+    if (speakers.indexOf(speaker) > -1){
+
+        cell_top.classList.add(speaker);
+
+    } else if (speaker == 'mike lee'){
+
+        cell_top.classList.add('mikelee');
+
+    } else if (speaker == 'jay jr'){
+
+        cell_top.classList.add('jayjr');
+    }
 
     }
+
 
 
 
@@ -152,6 +167,19 @@ function dropped(e){
             x.setAttribute('class', 'audio_drop');
             cell_top.innerHTML = speaker;
             cell_bottom.innerHTML = trans;
+            if (speakers.indexOf(speaker) > -1){
+
+                cell_top.classList.add(speaker);
+
+            } else if (speaker == 'mike lee'){
+
+                cell_top.classList.add('mikelee');
+
+            } else if (speaker == 'jay jr'){
+
+                cell_top.classList.add('jayjr');
+            }
+
             $(this)[0].append(x);
         } else {
         //Else would mean the cell that was dragged was in fact blank.

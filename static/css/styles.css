@@ -557,7 +557,7 @@ font-size: 14px;
 
 
     background-color: black;
-    border: 1px solid black !important;
+
     border-radius: 9px 9px 0px 0px;
 
 
@@ -572,7 +572,7 @@ font-size: 14px;
 
 .bottom_populated:active {
 
-    border-radius: 10px;
+
 
 }
 
@@ -584,7 +584,7 @@ font-size: 14px;
   width: 100%;
   flex: 1;
   margin: 5px;
-  font-size: 85%;
+  font-size: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -1093,4 +1093,66 @@ font-size: 14px;
 
 
 
+/* Character colors */
 
+
+
+
+.plowboy {
+
+    background-color: #386732;
+
+}
+
+.doug {
+
+    background-color: #b30086;
+
+}
+
+.larry {
+
+    background-color: #000080;
+
+}
+
+
+.tim {
+
+    background-color: #990000;
+
+}
+
+.mikelee {
+
+    background-color: #008080;
+}
+
+.charlie {
+
+    background-color: #663d00;
+}
+
+.cat {
+
+    background-color: #004C93;
+
+}
+
+
+.jayjr {
+
+    background-color: #600080;
+
+}
+
+
+.prodjoe {
+
+    background-color: #cc7a00;
+}
+
+.timberfake {
+
+    background-color: #999900;
+}

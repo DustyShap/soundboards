@@ -18,7 +18,7 @@ class Drops(Model):
         return  {
                 'filename': self.filename,
                 'speaker': self.speaker,
-                'transcription': self.transcription.upper()[0:100]
+                'transcription': self.transcription.upper()[0:110]
             }
 
     class Meta:

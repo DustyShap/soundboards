@@ -146,7 +146,7 @@ $(document).ready(function(){
         .done(function(data){
 
 
-        var results_length = data.filename.length;
+        var results_length = data.drops.length;
         if (results_length < 1){
             $("#no_results").css('display','flex');
         }
@@ -155,9 +155,9 @@ $(document).ready(function(){
 
             $results.show();
 
-            var filename = data.filename[i].filename;
-            var speaker = data.filename[i].speaker;
-            var transcription = data.filename[i].transcription;
+            var filename = data.drops[i].filename;
+            var speaker = data.drops[i].speaker;
+            var transcription = data.drops[i].transcription;
             var full_url = "../static/audio/" + filename;
             $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
             $("#result"+i).attr('draggable','True');
@@ -215,7 +215,7 @@ $(document).ready(function(){
 
         .done(function(data){
 
-            var results_length = data.filename.length;
+            var results_length = data.drops.length;
             $("#length_div").attr('display','flex');
             $("#length_display").text('Number of Results: ' + results_length);
 
@@ -234,9 +234,9 @@ $(document).ready(function(){
 
                $results.show();
 
-               var filename = data.filename[i].filename;
-               var speaker = data.filename[i].speaker;
-               var transcription = data.filename[i].transcription;
+               var filename = data.drops[i].filename;
+               var speaker = data.drops[i].speaker;
+               var transcription = data.drops[i].transcription;
                var search_term = $('#search_term').val()
                var full_url = "../static/audio/" + filename;
                $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
