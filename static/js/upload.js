@@ -32,6 +32,7 @@ $(document).ready(function(){
             $("#results_container").hide();
             $("#chooser_wrap").hide();
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
+            $("#password").val('');
 
 
         } else {
@@ -39,6 +40,7 @@ $(document).ready(function(){
             console.log('Wrong PW Attempt');
             alert('Wrong Password');
             $("#password").val('');
+
 
         }
 
@@ -50,6 +52,10 @@ $(document).ready(function(){
 
 
         var form_data = new FormData($("#upload_form")[0]);
+        $('#audio').val('');
+        $("#speaker").val('');
+        $("#tags").val('');
+        $("#transcription").val('');
 
 
         $.ajax({
@@ -66,6 +72,7 @@ $(document).ready(function(){
         .done(function(data){
 
             console.log(data);
+
 
             if (data.warning){
 
@@ -98,6 +105,10 @@ $(document).ready(function(){
         $("#results_container").show();
         $("#password").val('');
         $("#upload_button").show();
+        $('#audio').val('');
+        $("#speaker").val('');
+        $("#tags").val('');
+        $("#transcription").val('');
     })
 
 

@@ -212,32 +212,18 @@ $(document).ready(function(){
             url: '/process'
         })
 
-
         .done(function(data){
 
             var results_length = data.drops.length;
-            $("#length_div").attr('display','flex');
-            $("#length_display").text('Number of Results: ' + results_length);
-
-
-
-
             if (results_length < 1){
-
-
                 $("#results_container").empty();
-
             }
-
             for (var i=0; i < results_length; i++){
 
-
                $results.show();
-
                var filename = data.drops[i].filename;
                var speaker = data.drops[i].speaker;
                var transcription = data.drops[i].transcription;
-               var search_term = $('#search_term').val()
                var full_url = "../static/audio/" + filename;
                $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
                $("#result"+i).attr('draggable','True');

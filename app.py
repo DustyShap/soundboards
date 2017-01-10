@@ -1,22 +1,24 @@
 from flask import Flask, render_template, request, jsonify
 from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
-from models import Drops, initialize_db
+from models import *
 import os
 
-#Results number
-#Look into cursor
-#JS Popover?
-#Hashable anchors / director.js
-#Check Browser
-#https://www.youtube.com/playlist?list=WL
 
 app = Flask(__name__)
-initialize_db()
 
 audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = 'static/audio' #os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
+
+@app.before_request
+def before_request():
+    initialize_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db.close()
+    print('closed')
 
 @app.route('/')
 def home():
@@ -34,8 +36,7 @@ def upload():
     transcription = request.form['transcription'].lower().replace("'","")
 
     Drops.create(
-
-         filename=filename,
+        filename=filename,
         speaker=speaker,
         tags=tags,
         transcription=transcription
@@ -60,12 +61,10 @@ def process():
     else:
         drops = Drops.select().where(Drops.speaker == chosen)
 
-
     drops_as_list = []
 
     if drops:
         for drop in drops:
-
             drop_as_dict = drop.as_dict()
             drops_as_list.append(drop_as_dict)
 

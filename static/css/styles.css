@@ -253,6 +253,8 @@ font-size: 14px;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-top: 50px;
+
 
 }
 
@@ -1155,4 +1157,13 @@ font-size: 14px;
 .timberfake {
 
     background-color: #999900;
+}
+
+#tmalink {
+
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
 }

@@ -1,6 +1,6 @@
 window.addEventListener("load", doFirst, false);
 
-var speakers = ['plowboy','doug','prodjoe','larry', 'tim','charlie','cat','timberfake']
+var speakers = ['plowboy','doug','prodjoe','larry', 'tim','charlie','cat','timberfake', 'jayjr','mikelee']
 
 
 function doFirst(){
@@ -83,6 +83,14 @@ function result2cell(e){ //Drag a result object to an already populated cell
     var cell = $(this).parent();
     cell_top = cell[0].childNodes[0];
     cell_bottom = cell[0].childNodes[1];
+    speakers.forEach(function(entry){
+
+        //Iterate through speaker list, if there is a class, remove it
+        if (cell_top.classList.contains(entry)){
+            cell_top.classList.remove(entry);
+        };
+    });
+
     if (cell[0].childNodes[0].innerHTML === '') {
                 //Empty
                } else {
@@ -90,9 +98,9 @@ function result2cell(e){ //Drag a result object to an already populated cell
                 cell[0].childNodes[1].innerHTML = ''
                 cell[0].childNodes[2].remove();
                }
+
     var data = e.dataTransfer.getData('result_audio');
     var speaker = e.dataTransfer.getData('result_speaker');
-    console.log(speaker);
     var trans = e.dataTransfer.getData('result_trans');
     var x = document.createElement("AUDIO");
     var d = document.createElement('p').innerHTML = speaker
@@ -122,8 +130,6 @@ function result2cell(e){ //Drag a result object to an already populated cell
     }
 
     }
-
-
 
 
 

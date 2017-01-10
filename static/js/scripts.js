@@ -15,8 +15,6 @@ $(document).ready(function(){
 
 
 
-
-
     //Play audio contained within individual cell
     $(".cell").click(function(){
 
