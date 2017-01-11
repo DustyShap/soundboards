@@ -144,8 +144,9 @@ p {
 .button_chose {
 
     border: 1px solid white;
-    background-color: black;
     color: white;
+    background-color: black;
+
 
 }
 
@@ -340,7 +341,7 @@ font-size: 14px;
 
 .gripper_dots {
 
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+
     font-size: 80px;
 
 }

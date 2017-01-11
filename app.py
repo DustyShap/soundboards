@@ -14,6 +14,7 @@ configure_uploads(app, audio)
 @app.before_request
 def before_request():
     initialize_db()
+    print('init!')
 
 @app.teardown_request
 def teardown_request(exception):

@@ -4,67 +4,80 @@ $(document).ready(function(){
     var $results = $("#results_container")
     var $result_object = $("#result_object")
 
+
      //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
         $("#no_results").hide()
         $(".header_image").removeAttr('id');
-        $(".chooser_button").removeClass('button_chose');
+        $(".chooser_button").removeClass().addClass('chooser_button');
+
+
         if ($(this).text() == 'Mike Lee'){
             $(this).addClass('button_chose');
+            $(this).addClass('mikelee');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/mikelee.jpg");
             $(".header_image").attr('id','mike lee');
             submitData();
         } else if ($(this).text() == 'Doug Vaughn'){
             $(this).addClass('button_chose');
+            $(this).addClass('doug');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/vaughn.jpg");
             $(".header_image").attr('id','doug');
             submitData();
         } else if ($(this).text() == 'The Plow Boy'){
             $(this).addClass('button_chose');
+            $(this).addClass('plowboy');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/plowboy.jpg");
             $(".header_image").attr('id','plowboy');
             submitData();
         } else if ($(this).text() == 'Larry Nickel'){
             $(this).addClass('button_chose');
+            $(this).addClass('larry');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/larry.jpg");
             $(".header_image").attr('id','larry');
             submitData();
         } else if ($(this).text() == 'Tim McKernan'){
             $(this).addClass('button_chose');
+            $(this).addClass('tim');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/tmck.jpg");
             $(".header_image").attr('id','tim');
             submitData();
         } else if ($(this).text() == 'Charlie Marlow'){
             $(this).addClass('button_chose');
+            $(this).addClass('charlie');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','charlie');
             submitData();
         } else if ($(this).text() == "Jimmy 'The Cat' Hayes"){
             $(this).addClass('button_chose');
+            $(this).addClass('cat');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','cat');
             submitData();
         } else if ($(this).text() === 'Jay Jr'){
             $(this).addClass('button_chose');
+            $(this).addClass('jayjr');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','jay jr');
             submitData();
         }  else if ($(this).text() === '@ProdJoe'){
             $(this).addClass('button_chose');
+            $(this).addClass('prodjoe');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','prodjoe');
             submitData();
         }  else if ($(this).text() === 'Timberfake'){
             $(this).addClass('button_chose');
+            $(this).addClass('timberfake');
             $("#search_container").css('display','none');
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','timberfake');
@@ -75,7 +88,6 @@ $(document).ready(function(){
             $(".header_image").attr('id','search_drops');
             $("#search_container").show().css('display','flex');
             $("#search_term").focus();
-
             $("#upload_window").hide()
             $("#password_window").hide()
             $("#results_container").show();
