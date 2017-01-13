@@ -14,17 +14,14 @@ configure_uploads(app, audio)
 @app.before_request
 def before_request():
     initialize_db()
-    print('init!')
 
 @app.teardown_request
 def teardown_request(exception):
     db.close()
-    print('closed')
 
 @app.route('/')
 def home():
     return render_template("index.html")
-
 
 
 @app.route('/upload', methods=['GET','POST'])
@@ -40,7 +37,7 @@ def upload():
         filename=filename,
         speaker=speaker,
         tags=tags,
-        transcription=transcription
+        transcription=transcription,
     )
 
     return jsonify({'file':filename})
@@ -56,7 +53,8 @@ def process():
     if chosen == 'search_drops':
         drops = Drops.select().where(
             Drops.speaker.is_null(False),
-            Drops.tags.contains(search_term)
+            Drops.tags.contains(search_term),
+
         )
 
     else:

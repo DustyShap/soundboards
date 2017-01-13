@@ -137,6 +137,10 @@ $(document).ready(function(){
 
 
     //Process Data if Search All Drops is Selected.  Queries database for just tags, not speaker
+
+
+
+
     function submitSearchData(event){
 
         $("#password_window").hide()
@@ -146,6 +150,12 @@ $(document).ready(function(){
         $("#results_container").empty();
         $("#instructions").hide();
         $("#length_display").attr('display','none');
+
+
+
+
+
+
         $.ajax({
             data : {
                 tags: $('#search_term').val(),
@@ -162,11 +172,8 @@ $(document).ready(function(){
         if (results_length < 1){
             $("#no_results").css('display','flex');
         }
-
         for (var i=0; i < results_length; i++){
-
             $results.show();
-
             var filename = data.drops[i].filename;
             var speaker = data.drops[i].speaker;
             var transcription = data.drops[i].transcription;
@@ -177,7 +184,6 @@ $(document).ready(function(){
             $("#result"+i + " #transcription").text(transcription).css('color','black');
             $("#result"+i + " #src").attr('src', full_url);
             $("#result"+i + " #wav").attr('src', full_url);
-
             }
 
              $('.fa-play-circle').on('click', clickplay);

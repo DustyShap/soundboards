@@ -1,7 +1,5 @@
 window.addEventListener("load", doFirst, false);
-
 var speakers = ['plowboy','doug','prodjoe','larry', 'tim','charlie','cat','timberfake', 'jayjr','mikelee']
-
 
 function doFirst(){
 
@@ -22,9 +20,6 @@ function doFirst(){
     theGrid.addEventListener("dragenter", function(e){e.preventDefault();}, false);
     theGrid.addEventListener("dragover", function(e){e.preventDefault();}, false);
     }
-
-
-
 
 
 function dragStart(e){

@@ -3,6 +3,7 @@ import os
 
 db = SqliteDatabase('staticmeta/drops.db')   #os.environ['DB_PATH']
 
+
 class Drops(Model):
 
     _auto_pk = PrimaryKeyField()
@@ -10,6 +11,7 @@ class Drops(Model):
     speaker = TextField()
     tags = TextField()
     transcription = TextField()
+
 
 
     def as_dict(self):
