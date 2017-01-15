@@ -24,6 +24,8 @@ def home():
     return render_template("index.html")
 
 
+
+
 @app.route('/upload', methods=['GET','POST'])
 def upload():
 
@@ -70,6 +72,30 @@ def process():
         return jsonify({'drops':drops_as_list})
 
     return jsonify({'drops': drops_as_list})
+
+
+
+
+@app.route('/swope')
+def swope():
+    return render_template('swope.html')
+
+@app.route('/swopeprocess', methods=['GET','POST'])
+def swope_process():
+
+    keyword = request.form['keyword'].lower().strip()
+    print(keyword)
+    drops = Drops.select().where(Drops.transcription.contains(keyword))
+
+
+    drops_as_list = []
+
+    if drops:
+        for drop in drops:
+            drop_as_dict = drop.as_dict()
+            drops_as_list.append(drop_as_dict)
+        return jsonify({'keyword':drops_as_list})
+    return jsonify({'keyword':drops_as_list})
 
 
 
