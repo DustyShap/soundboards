@@ -37,7 +37,7 @@ def upload():
         filename=filename,
         speaker=speaker,
         tags=tags,
-        transcription=transcription,
+        transcription=transcription
     )
 
     return jsonify({'file':filename})

@@ -1,4 +1,5 @@
-from peewee import Model, PrimaryKeyField, TextField, SqliteDatabase
+from peewee import Model, PrimaryKeyField, TextField, SqliteDatabase, DateTimeField
+import datetime
 import os
 
 db = SqliteDatabase('staticmeta/drops.db')   #os.environ['DB_PATH']
@@ -11,6 +12,7 @@ class Drops(Model):
     speaker = TextField()
     tags = TextField()
     transcription = TextField()
+    added_date = DateTimeField(default=datetime.datetime.now)
 
 
 
