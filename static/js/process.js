@@ -91,9 +91,8 @@ $(document).ready(function(){
             $("#upload_window").hide()
             $("#password_window").hide()
             $("#results_container").show();
-        }  else if ($(this).text() === 'Upload'){
-
-
+        }  else if ($(this).text() === 'Last 10 Added'){
+            submitLastTen();
         }
 
 
@@ -135,6 +134,61 @@ $(document).ready(function(){
 
 
 
+
+
+    function submitLastTen(event){
+        $("#password_window").hide()
+        $("#upload_window").hide()
+        $("#results_container").empty();
+        var chosen = 'last_ten'
+
+        $.ajax({
+            data: {
+                tags: null,
+                chosen: chosen
+            },
+            type: 'POST',
+            url: '/process'
+        })
+
+        .done(function(data){
+
+
+        var results_length = data.drops.length;
+        if (results_length < 1){
+            $("#no_results").css('display','flex');
+        }
+        for (var i=0; i < results_length; i++){
+            $results.show();
+            var filename = data.drops[i].filename;
+            var speaker = data.drops[i].speaker;
+            var transcription = data.drops[i].transcription;
+            var full_url = "../static/audio/" + filename;
+            $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
+            $("#result"+i).attr('draggable','True');
+            $("#result"+i + " #speaker").text(speaker).css('color','black');
+            $("#result"+i + " #transcription").text(transcription).css('color','black');
+            $("#result"+i + " #src").attr('src', full_url);
+            $("#result"+i + " #wav").attr('src', full_url);
+            }
+
+             $('.fa-play-circle').on('click', clickplay);
+            $('.fa-pause-circle').on('click', clickpause);
+            $('.search_result').hover(function(){
+                $(this).children()[2].className = 'gripper_container gripper_hover'
+                }, function(){
+                $(this).children()[2].className = 'gripper_container';
+            });
+
+
+        });
+
+
+
+
+
+
+    };
 
     //Process Data if Search All Drops is Selected.  Queries database for just tags, not speaker
 

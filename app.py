@@ -52,12 +52,15 @@ def process():
     search_term = request.form['tags'].lower().strip()
     chosen = request.form['chosen'].lower()
 
+
     if chosen == 'search_drops':
         drops = Drops.select().where(
             Drops.speaker.is_null(False),
             Drops.tags.contains(search_term),
 
         )
+    elif chosen == 'last_ten':
+        drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc())
 
     else:
         drops = Drops.select().where(Drops.speaker == chosen)
