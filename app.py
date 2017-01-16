@@ -61,6 +61,7 @@ def process():
         )
     elif chosen == 'last_ten':
         drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc())
+        print('yes')
 
     else:
         drops = Drops.select().where(Drops.speaker == chosen)
