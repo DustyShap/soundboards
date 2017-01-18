@@ -1,4 +1,4 @@
-from peewee import Model, PrimaryKeyField, TextField, SqliteDatabase, DateTimeField
+from peewee import Model, PrimaryKeyField, TextField, SqliteDatabase, DateTimeField, IntegerField
 import datetime
 import os
 
@@ -13,8 +13,11 @@ class Drops(Model):
     tags = TextField()
     transcription = TextField()
     added_date = DateTimeField(default=datetime.datetime.now)
+    count = IntegerField()
 
+    def return_count(self):
 
+        return self.count
 
     def as_dict(self):
 

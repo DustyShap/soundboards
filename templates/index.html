@@ -8,6 +8,11 @@
      <link rel="stylesheet" type ='text/css' href="static/css/bootstrap.min.css">
      <link rel="icon" href="../static/img/bryce.jpg">
      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="author" content="Deke Dotem">
+     <meta property="og:image" content="../static/img/bryce.jpg">
+     <meta name="keywords" content="TMA, The Morning After, InsideSTL, ClipThatOff, Soundboard, Doug Vaughn">
+
+
   </head>
   <!-- End Head -->
 
@@ -112,7 +117,7 @@
                         <source class='audio_results' id="src" src="" type="audio/mp3">
                         <source class='audio_results' id='wav' src="" type="audio/wav">
                         </audio>
-
+                    <i class="fa fa-link link_button" aria-hidden="true" style="font-size:25px; margin-left:15px" data-clipboard-target="#copypaste"></i>
                     </div><!--End audio container-->
 
                     <div id="meta_display">
@@ -129,6 +134,7 @@
                 </div><!--End Audio Result Object-->
 
             </div><!--End results div -->
+            <input id="copypaste" hidden="true">
 
         </div><!-- End Sidebar Div-->
 
@@ -195,6 +201,7 @@
     <script src='/static/js/dragdrop.js'></script>
     <script src='/static/js/process.js'></script>
     <script src='/static/js/upload.js'></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
 
   </body>
 

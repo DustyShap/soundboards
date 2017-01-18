@@ -45,6 +45,29 @@ def upload():
     return jsonify({'file':filename})
 
 
+@app.route('/count', methods=['GET','POST'])
+def count():
+
+    filename = request.form['filename']
+    element = request.form['element']
+
+    if filename != 'CLIP%20THAT%20OFF.mp3':
+
+        c = Drops.select().where(Drops.filename == filename)
+        for drop in c:
+            dropcount = drop.return_count()
+            if dropcount:
+                q = Drops.update(count=Drops.count+1).where(Drops.filename == filename)
+            else:
+                q = Drops.update(count = 1).where(Drops.filename == filename)
+
+            q.execute()
+
+
+
+    return jsonify({'filename':filename})
+
+
 
 
 @app.route('/process', methods=['POST', 'GET'])
@@ -60,8 +83,8 @@ def process():
 
         )
     elif chosen == 'last_ten':
-        drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc())
-        print('yes')
+        drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc()).limit(10)
+
 
     else:
         drops = Drops.select().where(Drops.speaker == chosen)

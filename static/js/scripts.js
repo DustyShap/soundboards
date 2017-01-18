@@ -20,7 +20,23 @@ $(document).ready(function(){
 
       if ($(this).find('audio').length) {
         var audio = $(this.children)[2];
+        var filename = $(this).children()[2].getAttribute('src').slice(16);
+        var element = 'cell';
         audio.play();
+
+        $.ajax({
+            data : {
+                filename: filename,
+                element: element
+            },
+            type: 'POST',
+            url: '/count'
+        })
+        .done(function(data){
+
+            console.log(data);
+
+        })
       } else {
         //Do nothing
       }

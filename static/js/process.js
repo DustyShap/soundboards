@@ -3,6 +3,7 @@ $(document).ready(function(){
 
     var $results = $("#results_container")
     var $result_object = $("#result_object")
+    var url = 'www.clipthatoff.com'
 
 
      //Display header based on who's audio is selected
@@ -175,11 +176,15 @@ $(document).ready(function(){
 
              $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
+            $(".link_button").on('click', clicklink);
             $('.search_result').hover(function(){
                 $(this).children()[2].className = 'gripper_container gripper_hover'
                 }, function(){
                 $(this).children()[2].className = 'gripper_container';
             });
+
+
+
 
 
         });
@@ -243,6 +248,7 @@ $(document).ready(function(){
 
              $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
+            $(".link_button").on('click', clicklink);
             $('.search_result').hover(function(){
                 $(this).children()[2].className = 'gripper_container gripper_hover'
                 }, function(){
@@ -310,6 +316,7 @@ $(document).ready(function(){
 
             $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
+            $(".link_button").on('click', clicklink);
 
             $('.search_result').hover(function(){
                 $(this).children()[2].className = 'gripper_container gripper_hover'
@@ -328,6 +335,23 @@ $(document).ready(function(){
 
     function clickplay(e){
         $(this).parent().children()[2].play();
+        var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
+        var element = 'result'
+
+        $.ajax({
+            data : {
+                filename: filename,
+                element: element
+            },
+            type: 'POST',
+            url: '/count'
+        })
+        .done(function(data){
+
+            console.log(data);
+
+        })
+
     }
 
 
@@ -335,6 +359,16 @@ $(document).ready(function(){
         $(this).parent().children()[2].pause();
     }
 
+    function clicklink(e){
+
+        var filename = $(this).parent()[0].children[2].children[0].getAttribute('src');
+        var f = filename.substr(2);
+        var copy = url + f
+        $("#copypaste").val(copy);
+        var diff = document.getElementById('#copypaste');
+
+
+    }
 
 
 
