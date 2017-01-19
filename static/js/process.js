@@ -92,7 +92,7 @@ $(document).ready(function(){
             $("#upload_window").hide()
             $("#password_window").hide()
             $("#results_container").show();
-        }  else if ($(this).text() === 'Last 10 Added'){
+        }  else if ($(this).text() === 'Last 20 Added'){
             submitLastTen();
         }
 
