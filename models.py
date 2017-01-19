@@ -2,7 +2,8 @@ from peewee import Model, PrimaryKeyField, TextField, SqliteDatabase, DateTimeFi
 import datetime
 import os
 
-db = SqliteDatabase(os.environ['DB_PATH'])
+db = SqliteDatabase('staticmeta/drops.db')
+
 
 
 class Drops(Model):

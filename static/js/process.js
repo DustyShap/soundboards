@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     var $results = $("#results_container")
     var $result_object = $("#result_object")
-    var url = 'www.clipthatoff.com'
+    var url = '/static/audio/'
 
 
      //Display header based on who's audio is selected
@@ -361,11 +361,15 @@ $(document).ready(function(){
 
     function clicklink(e){
 
-        var filename = $(this).parent()[0].children[2].children[0].getAttribute('src');
-        var f = filename.substr(2);
-        var copy = url + f
-        $("#copypaste").val(copy);
-        var diff = document.getElementById('#copypaste');
+
+        var filename =  $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
+        full = url+filename;
+        var a = $(this).parent()[0];
+        a.setAttribute('href',full);
+
+
+
+
 
 
     }
