@@ -174,7 +174,7 @@ $(document).ready(function(){
             $("#result"+i + " #wav").attr('src', full_url);
             }
 
-             $('.fa-play-circle').on('click', clickplay);
+            $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
             $(".link_button").on('click', clicklink);
             $('.search_result').hover(function(){

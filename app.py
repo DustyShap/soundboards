@@ -1,13 +1,16 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response
 from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
 from models import *
 import os
-
+import csv
+import datetime
+import pytz
+import os
 
 app = Flask(__name__)
 
 audio = UploadSet('audio', AUDIO)
-app.config['UPLOADED_AUDIO_DEST'] = 'static/audio'
+app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
 
@@ -28,7 +31,6 @@ def home():
 
 @app.route('/upload', methods=['GET','POST'])
 def upload():
-
 
     filename = audio.save(request.files['audio'])
     speaker = request.form['speaker'].lower().strip()
@@ -75,7 +77,10 @@ def process():
     search_term = request.form['tags'].lower().strip()
     chosen = request.form['chosen'].lower()
 
-
+    with open('/home/DustyShapiro/soundboards/logs.csv','a') as searchFile:
+        searchFileWriter = csv.writer(searchFile)
+        searchFileWriter.writerow([search_term,datetime.datetime.now(pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
+        searchFile.close()
     if chosen == 'search_drops':
         drops = Drops.select().where(
             Drops.speaker.is_null(False),
