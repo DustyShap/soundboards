@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 audio = UploadSet('audio', AUDIO)
-app.config['UPLOADED_AUDIO_DEST'] = 'static/audio'
+app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
 
