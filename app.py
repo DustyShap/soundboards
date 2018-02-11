@@ -5,7 +5,7 @@ import os
 import csv
 import datetime
 import pytz
-import os
+
 
 app = Flask(__name__)
 

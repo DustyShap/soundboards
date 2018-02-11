@@ -4,8 +4,6 @@ import os
 
 db = SqliteDatabase(os.environ['DB_PATH'])
 
-
-
 class Drops(Model):
 
     _auto_pk = PrimaryKeyField()
