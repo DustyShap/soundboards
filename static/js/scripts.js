@@ -34,7 +34,6 @@ $(document).ready(function(){
         })
         .done(function(data){
 
-            console.log(data);
 
         })
       } else {
@@ -51,5 +50,3 @@ $(document).ready(function(){
 
 
 });  //End of document ready wrap
-
-

@@ -160,7 +160,7 @@ $(document).ready(function(){
             $("#no_results").css('display','flex');
         }
         for (var i=0; i < results_length; i++){
-            console.log('test');
+
             $results.show();
             var filename = data.drops[i].filename;
             var speaker = data.drops[i].speaker;
@@ -348,7 +348,7 @@ $(document).ready(function(){
         })
         .done(function(data){
 
-            console.log(data);
+            
 
         })
 
@@ -379,5 +379,3 @@ $(document).ready(function(){
 
 
 });
-
-

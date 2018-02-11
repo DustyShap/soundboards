@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 from models import *
-import os
+import os,csv,pytz
 
 
 app = Flask(__name__)
@@ -82,6 +82,10 @@ def process():
             Drops.tags.contains(search_term),
 
         )
+        with open(os.environ['HOME_PATH']+'logs.csv','a') as searchFile:
+            searchFileWriter = csv.writer(searchFile)
+            searchFileWriter.writerow([search_term,datetime.datetime.now(pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
+            searchFile.close()
     elif chosen == 'last_ten':
         drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc()).limit(20)
 
