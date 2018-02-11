@@ -1,10 +1,8 @@
 from flask import Flask, render_template, request, jsonify, Response
-from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
+from flask_uploads import UploadSet, configure_uploads, AUDIO
 from models import *
-import os
-import csv
-import datetime
-import pytz
+import os, csv, datetime, pytz
+
 
 
 app = Flask(__name__)
@@ -77,7 +75,7 @@ def process():
     search_term = request.form['tags'].lower().strip()
     chosen = request.form['chosen'].lower()
 
-    with open('/home/DustyShapiro/soundboards/logs.csv','a') as searchFile:
+    with open('logs.csv','a') as searchFile:
         searchFileWriter = csv.writer(searchFile)
         searchFileWriter.writerow([search_term,datetime.datetime.now(pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
         searchFile.close()
