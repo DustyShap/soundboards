@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask.ext.uploads import UploadSet, configure_uploads, AUDIO
+from flask_uploads import UploadSet, configure_uploads, AUDIO
 from models import *
 import os
 
