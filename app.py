@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 from models import *
-import os,csv,pytz
+import os
+import csv
+import pytz
 
 
 app = Flask(__name__)
@@ -15,25 +17,24 @@ configure_uploads(app, audio)
 def before_request():
     initialize_db()
 
+
 @app.teardown_request
 def teardown_request(exception):
     db.close()
+
 
 @app.route('/')
 def home():
     return render_template("index.html")
 
 
-
-
-@app.route('/upload', methods=['GET','POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-
 
     filename = audio.save(request.files['audio'])
     speaker = request.form['speaker'].lower().strip()
     tags = request.form['tags'].lower()
-    transcription = request.form['transcription'].lower().replace("'","")
+    transcription = request.form['transcription'].lower().replace("'", "")
 
     Drops.create(
         filename=filename,
@@ -42,10 +43,10 @@ def upload():
         transcription=transcription
     )
 
-    return jsonify({'file':filename})
+    return jsonify({'file': filename})
 
 
-@app.route('/count', methods=['GET','POST'])
+@app.route('/count', methods=['GET', 'POST'])
 def count():
 
     filename = request.form['filename']
@@ -57,17 +58,14 @@ def count():
         for drop in c:
             dropcount = drop.return_count()
             if dropcount:
-                q = Drops.update(count=Drops.count+1).where(Drops.filename == filename)
+                q = Drops.update(count=Drops.count +
+                                 1).where(Drops.filename == filename)
             else:
-                q = Drops.update(count = 1).where(Drops.filename == filename)
+                q = Drops.update(count=1).where(Drops.filename == filename)
 
             q.execute()
 
-
-
-    return jsonify({'filename':filename})
-
-
+    return jsonify({'filename': filename})
 
 
 @app.route('/process', methods=['POST', 'GET'])
@@ -75,20 +73,20 @@ def process():
     search_term = request.form['tags'].lower().strip()
     chosen = request.form['chosen'].lower()
 
-
     if chosen == 'search_drops':
         drops = Drops.select().where(
             Drops.speaker.is_null(False),
             Drops.tags.contains(search_term),
 
         )
-        with open(os.environ['HOME_PATH']+'logs.csv','a') as searchFile:
+        with open(os.environ['HOME_PATH'] + 'logs.csv', 'a') as searchFile:
             searchFileWriter = csv.writer(searchFile)
-            searchFileWriter.writerow([search_term,datetime.datetime.now(pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
+            searchFileWriter.writerow([search_term, datetime.datetime.now(
+                pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
             searchFile.close()
     elif chosen == 'last_ten':
-        drops = Drops.select().where(Drops.added_date).order_by(Drops.added_date.desc()).limit(20)
-
+        drops = Drops.select().where(Drops.added_date).order_by(
+            Drops.added_date.desc()).limit(20)
 
     else:
         drops = Drops.select().where(Drops.speaker == chosen)
@@ -100,24 +98,22 @@ def process():
             drop_as_dict = drop.as_dict()
             drops_as_list.append(drop_as_dict)
 
-        return jsonify({'drops':drops_as_list})
+        return jsonify({'drops': drops_as_list})
 
     return jsonify({'drops': drops_as_list})
-
-
 
 
 @app.route('/swope')
 def swope():
     return render_template('swope.html')
 
-@app.route('/swopeprocess', methods=['GET','POST'])
+
+@app.route('/swopeprocess', methods=['GET', 'POST'])
 def swope_process():
 
     keyword = request.form['keyword'].lower().strip()
     print(keyword)
     drops = Drops.select().where(Drops.transcription.contains(keyword))
-
 
     drops_as_list = []
 
@@ -125,10 +121,8 @@ def swope_process():
         for drop in drops:
             drop_as_dict = drop.as_dict()
             drops_as_list.append(drop_as_dict)
-        return jsonify({'keyword':drops_as_list})
-    return jsonify({'keyword':drops_as_list})
-
-
+        return jsonify({'keyword': drops_as_list})
+    return jsonify({'keyword': drops_as_list})
 
 
 if __name__ == "__main__":
