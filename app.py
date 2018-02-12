@@ -54,6 +54,12 @@ def count():
 
     if filename != 'CLIP%20THAT%20OFF.mp3':
 
+        with open(os.environ['HOME_PATH'] + 'logs.csv', 'a') as searchFile:
+            searchFileWriter = csv.writer(searchFile)
+            searchFileWriter.writerow(["Audio clicked",filename, datetime.datetime.now(
+                pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
+            searchFile.close()
+
         c = Drops.select().where(Drops.filename == filename)
         for drop in c:
             dropcount = drop.return_count()
@@ -81,7 +87,7 @@ def process():
         )
         with open(os.environ['HOME_PATH'] + 'logs.csv', 'a') as searchFile:
             searchFileWriter = csv.writer(searchFile)
-            searchFileWriter.writerow([search_term, datetime.datetime.now(
+            searchFileWriter.writerow(["Search Term",search_term, datetime.datetime.now(
                 pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
             searchFile.close()
     elif chosen == 'last_ten':
