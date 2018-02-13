@@ -12,6 +12,13 @@ audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 
+def logger(play_type,search_term):
+    with open(os.environ['HOME_PATH'] + 'logs.csv','a') as searchFile:
+        searchFileWriter = csv.writer(searchFile)
+        searchFileWriter.writerow([play_type,search_term,datetime.datetime.now(
+            pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
+        searchFile.close()
+
 
 @app.before_request
 def before_request():
@@ -54,11 +61,7 @@ def count():
 
     if filename != 'CLIP%20THAT%20OFF.mp3':
 
-        with open(os.environ['HOME_PATH'] + 'logs.csv', 'a') as searchFile:
-            searchFileWriter = csv.writer(searchFile)
-            searchFileWriter.writerow(["Audio clicked",filename, datetime.datetime.now(
-                pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
-            searchFile.close()
+        logger('Audio Clicked',filename)
 
         c = Drops.select().where(Drops.filename == filename)
         for drop in c:
@@ -85,11 +88,9 @@ def process():
             Drops.tags.contains(search_term),
 
         )
-        with open(os.environ['HOME_PATH'] + 'logs.csv', 'a') as searchFile:
-            searchFileWriter = csv.writer(searchFile)
-            searchFileWriter.writerow(["Search Term",search_term, datetime.datetime.now(
-                pytz.timezone('America/Chicago')).strftime("%A, %d. %B %Y %I:%M%p")])
-            searchFile.close()
+
+        logger('Search Term ',search_term)
+
     elif chosen == 'last_ten':
         drops = Drops.select().where(Drops.added_date).order_by(
             Drops.added_date.desc()).limit(20)
@@ -129,6 +130,8 @@ def swope_process():
             drops_as_list.append(drop_as_dict)
         return jsonify({'keyword': drops_as_list})
     return jsonify({'keyword': drops_as_list})
+
+
 
 
 if __name__ == "__main__":
