@@ -6,80 +6,70 @@ $(document).ready(function(){
     var url = '/static/audio/'
 
 
-     //Display header based on who's audio is selected
+
+    //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
         $("#no_results").hide()
         $(".header_image").removeAttr('id');
         $(".chooser_button").removeClass().addClass('chooser_button');
 
-
         if ($(this).text() == 'Mike Lee'){
-            $(this).addClass('button_chose');
-            $(this).addClass('mikelee');
-            $("#search_container").css('display','none');
+            addClass($(this),'mikelee')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/mikelee.jpg");
             $(".header_image").attr('id','mike lee');
             submitData();
         } else if ($(this).text() == 'Doug Vaughn'){
-            $(this).addClass('button_chose');
-            $(this).addClass('doug');
-            $("#search_container").css('display','none');
+            addClass($(this),'doug')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/vaughn.jpg");
             $(".header_image").attr('id','doug');
             submitData();
         } else if ($(this).text() == 'The Plow Boy'){
-            $(this).addClass('button_chose');
-            $(this).addClass('plowboy');
-            $("#search_container").css('display','none');
+            addClass($(this),'plowboy')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/plowboy.jpg");
             $(".header_image").attr('id','plowboy');
             submitData();
         } else if ($(this).text() == 'Larry Nickel'){
-            $(this).addClass('button_chose');
-            $(this).addClass('larry');
-            $("#search_container").css('display','none');
+            addClass($(this),'larry')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/larry.jpg");
             $(".header_image").attr('id','larry');
             submitData();
         } else if ($(this).text() == 'Tim McKernan'){
-            $(this).addClass('button_chose');
-            $(this).addClass('tim');
-            $("#search_container").css('display','none');
+            addClass($(this),'tim')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/tmck.jpg");
             $(".header_image").attr('id','tim');
             submitData();
         } else if ($(this).text() == 'Charlie Marlow'){
-            $(this).addClass('button_chose');
-            $(this).addClass('charlie');
-            $("#search_container").css('display','none');
+            addClass($(this),'charlie')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','charlie');
             submitData();
         } else if ($(this).text() == "Jimmy 'The Cat' Hayes"){
-            $(this).addClass('button_chose');
-            $(this).addClass('cat');
-            $("#search_container").css('display','none');
+            addClass($(this),'cat');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','cat');
             submitData();
         } else if ($(this).text() === 'Jay Jr'){
-            $(this).addClass('button_chose');
-            $(this).addClass('jayjr');
-            $("#search_container").css('display','none');
+            addClass($(this),'jayjr');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','jay jr');
             submitData();
         }  else if ($(this).text() === '@ProdJoe'){
-            $(this).addClass('button_chose');
-            $(this).addClass('prodjoe');
-            $("#search_container").css('display','none');
+            addClass($(this),'prodjoe');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','prodjoe');
             submitData();
         }  else if ($(this).text() === 'Timberfake'){
-            $(this).addClass('button_chose');
-            $(this).addClass('timberfake');
-            $("#search_container").css('display','none');
+            addClass($(this),'timberfake');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','timberfake');
             submitData();
@@ -95,17 +85,9 @@ $(document).ready(function(){
         }  else if ($(this).text() === 'Last 20 Added'){
             submitLastTen();
         }
-
-
-
     });
 
-
-
-
-
     //Process data on button click
-
     $('#submit_button').on('click', function(event) {
         $("#no_results").hide()
         $(".header_image").attr('id','search_drops');
@@ -141,7 +123,7 @@ $(document).ready(function(){
         $("#password_window").hide()
         $("#upload_window").hide()
         $("#results_container").empty();
-        var chosen = 'last_ten'
+        var chosen = 'last_twenty'
 
         $.ajax({
             data: {
@@ -200,21 +182,17 @@ $(document).ready(function(){
 
 
 
-
+    //Function to pass search term to datbase
+    //take returned values and put them as results
     function submitSearchData(event){
-
         $("#password_window").hide()
         $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
+        // if the search drop button was clicked, the id of the header is search_drops
         $("#search_container").show().css('display','flex');
         $("#results_container").empty();
         $("#instructions").hide();
         $("#length_display").attr('display','none');
-
-
-
-
-
 
         $.ajax({
             data : {
@@ -224,10 +202,7 @@ $(document).ready(function(){
             type: 'POST',
             url: '/process'
         })
-
         .done(function(data){
-
-
         var results_length = data.drops.length;
         if (results_length < 1){
             $("#no_results").css('display','flex');
@@ -245,8 +220,7 @@ $(document).ready(function(){
             $("#result"+i + " #src").attr('src', full_url);
             $("#result"+i + " #wav").attr('src', full_url);
             }
-
-             $('.fa-play-circle').on('click', clickplay);
+            $('.fa-play-circle').on('click', clickplay);
             $('.fa-pause-circle').on('click', clickpause);
             $(".link_button").on('click', clicklink);
             $('.search_result').hover(function(){
@@ -254,24 +228,10 @@ $(document).ready(function(){
                 }, function(){
                 $(this).children()[2].className = 'gripper_container';
             });
-
-
         });
     };
 
-
-
-
-
-
-
-
-
-
      //Function to submit Data to process endpoint when a name is clicked
-     //
-
-
     function submitData(){
 
         $("#upload_window").hide()
@@ -336,22 +296,6 @@ $(document).ready(function(){
     function clickplay(e){
         $(this).parent().children()[2].play();
         var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
-        var element = 'result'
-
-        $.ajax({
-            data : {
-                filename: filename,
-                element: element
-            },
-            type: 'POST',
-            url: '/count'
-        })
-        .done(function(data){
-
-            
-
-        })
-
     }
 
 
@@ -360,20 +304,18 @@ $(document).ready(function(){
     }
 
     function clicklink(e){
-
-
         var filename =  $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
         full = url+filename;
         var a = $(this).parent()[0];
         a.setAttribute('href',full);
-
-
-
-
-
-
     }
 
+    function addClass($element,classtoAdd){
+          $element.addClass(classtoAdd).addClass('button_chose')
+  }
+    function removeSearch(){
+      $("#search_container").css('display','none');
+    }
 
 
 
