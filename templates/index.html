@@ -18,180 +18,154 @@
   </head>
   <!-- #FreeDotem -->
   <body>
-    <!-- Begin whole page wrapper -->
     <div id="wrapper">
-        <!-- Begin Left Sidebar -->
-        <div id="sidebar">
-            <!-- Begin Title Box -->
-            <div id="title">
-                <img class='header_image' src="../static/img/headerTMAupdate.jpg">
+     <div id="sidebar">
+      <div id="title">
+       <img class='header_image' src="../static/img/headerTMAupdate.jpg">
+      </div>
+      <!--End title div-->
+      <!-- Menu Buttons-->
+      <div id="chooser_wrap">
+       <div id="chooser">
+          <div class="chooser_button">Doug Vaughn</div>
+          <div class="chooser_button">The Plow Boy</div>
+          <div class="chooser_button">Larry Nickel</div>
+          <div class="chooser_button">Mike Lee</div>
+          <div class="chooser_button">Tim McKernan</div>
+          <div class="chooser_button">Charlie Marlow</div>
+          <div class="chooser_button">Jimmy 'The Cat' Hayes</div>
+          <div class="chooser_button">Jay Jr</div>
+          <div class="chooser_button">@ProdJoe</div>
+          <div class="chooser_button">Timberfake</div>
+          <div class="chooser_button" id="upload_button">Upload</div>
+          <div class="chooser_button">Last 20 Added</div>
+          <div class="chooser_button">Search All Drops</div>
+        </div>
+       </div>
+       <!-- End Menu Buttons -->
+       <!--Search Container -->
+        <div id="search_container">
+         <input type="text" name="search_term" id="search_term" autocomplete=off>
+         <button id="submit_button" type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button><br>
+        </div>
+        <!--End Search Container -->
+        <div id="no_results">NO RESULTS!</div>
+        <!-- Password Window -->
+        <div id="password_window">
+         <p>Password:</p>
+         <input type="text" name="password" id="password" autocomplete=off>
+          <div id="button_container">
+           <button id="password_button" type="submit" class="btn btn-default">Submit</button>
+           <button id="password_cancel_button" type="submit" class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+        <!-- End Password Window -->
+        <div id="upload_window">
+        <form method=POST enctype=multipart/form-data id="upload_form" disabled:true>
+          <div class="form-group">
+            <label for="audio">File Upload</label>
+            <input type=file class="form-control" id="audio" name=audio placeholder="Upload File" required>
+          </div>
+          <div class="form-group">
+            <label for="speaker">Speaker</label>
+            <input type="text" class="form-control" id="speaker" name="speaker" placeholder="Speaker" required>
+          </div>
+            <div class="form-group">
+            <label for="tags">Tags (separate by space)</label>
+            <textarea name="tags" style="width:250px; height;150px" id="tags" class="form-control" required></textarea>
+          </div>
+            <div class="form-group">
+            <label for="transcription">Transcription:</label>
+            <textarea name="transcription" style="width:250px; height;150px" id="transcription" class="form-control" required></textarea>
+          </div>
+            <button type="submit" class="btn btn-default" id="upload_submit">Upload</button>
+            <button type="button" class="btn btn-default" id="upload_cancel">Cancel</button>
+        </form>
+        </div>
+          <!--Audio results container -->
+          <div id="results_container">
+            <div id="tma_image_container">
+             <a id='tmalink' href ='http://www.insidestl.com' target="_blank">
+              <img src="../static/img/insideSTLupdate.jpg" alt="TMASTL" id="tma_image">
+             </a>
             </div>
-            <!--End title div-->
-                    <!-- Menu Buttons-->
-                    <div id="chooser_wrap">
-                        <div id="chooser">
-                            <div class="chooser_button">Doug Vaughn</div>
-                            <div class="chooser_button">The Plow Boy</div>
-                            <div class="chooser_button">Larry Nickel</div>
-                            <div class="chooser_button">Mike Lee</div>
-                            <div class="chooser_button">Tim McKernan</div>
-                            <div class="chooser_button">Charlie Marlow</div>
-                            <div class="chooser_button">Jimmy 'The Cat' Hayes</div>
-                            <div class="chooser_button">Jay Jr</div>
-                            <div class="chooser_button">@ProdJoe</div>
-                            <div class="chooser_button">Timberfake</div>
-                            <div class="chooser_button" id="upload_button">Upload</div>
-                            <div class="chooser_button">Last 20 Added</div>
-                            <div class="chooser_button">Search All Drops</div>
 
-                        </div>
-                    </div>
-                    <!-- End Menu Buttons -->
-
-
-                    <!--Search Container -->
-                    <div id="search_container">
-                        <input type="text" name="search_term" id="search_term" autocomplete=off>
-                        <button id="submit_button" type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button><br>
-                    </div>
-                    <!--End Search Container -->
-                    <div id="no_results">NO RESULTS!</div>
-
-                    <!-- Password Window -->
-                    <div id="password_window">
-                    <p>Password:</p>
-                    <input type="text" name="password" id="password" autocomplete=off>
-                     <div id="button_container">
-                        <button id="password_button" type="submit" class="btn btn-default">Submit</button>
-                        <button id="password_cancel_button" type="submit" class="btn btn-default">Cancel</button>
-                     </div>
-                    </div>
-                    <!-- End Password Window -->
-
-                    <div id="upload_window">
-                    <form method=POST enctype=multipart/form-data id="upload_form" disabled:true>
-                                      <div class="form-group">
-                                        <label for="audio">File Upload</label>
-                                        <input type=file class="form-control" id="audio" name=audio placeholder="Upload File" required>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="speaker">Speaker</label>
-                                        <input type="text" class="form-control" id="speaker" name="speaker" placeholder="Speaker" required>
-                                      </div>
-                                        <div class="form-group">
-                                        <label for="tags">Tags (separate by space)</label>
-                                        <textarea name="tags" style="width:250px; height;150px" id="tags" class="form-control" required></textarea>
-                                      </div>
-                                        <div class="form-group">
-                                        <label for="transcription">Transcription:</label>
-                                        <textarea name="transcription" style="width:250px; height;150px" id="transcription" class="form-control" required></textarea>
-                                      </div>
-                                        <button type="submit" class="btn btn-default" id="upload_submit">Upload</button>
-                                        <button type="button" class="btn btn-default" id="upload_cancel">Cancel</button>
-                                    </form>
-                    </div>
-
-
-            <div id="results_container">
-
-                <div id="tma_image_container"><a id='tmalink' href ='http://www.insidestl.com' target="_blank"><img src="../static/img/insideSTLupdate.jpg" alt="TMASTL" id="tma_image"></a></div>
-                <div id="result_object">
-
-                    <div id="audio_container">
-
-                        <i class="fa fa-play-circle bigplay" style="font-size:40px; margin-right:10px; cursor:pointer;"></i>
-                        <i class="fa fa-pause-circle" style="font-size:40px; cursor:pointer;"></i>
-
-                        <audio class="t_play">
-                        <source class='audio_results' id="src" src="" type="audio/mp3">
-                        <source class='audio_results' id='wav' src="" type="audio/wav">
-                        </audio>
-                    <a target="_blank"><i class="fa fa-link link_button" aria-hidden="true" style="font-size:25px; margin-left:15px"></i></a>
-                    </div><!--End audio container-->
-
-                    <div id="meta_display">
-                        <p id="speaker"></p>
-                        <p id="transcription"></p>
-                    </div><!--End meta display-->
-
-
-                    <div class="gripper_container">
-                        <div class="gripper_column"><i class="fa fa-ellipsis-v gripper_dots" style="font-size:20px" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                </div><!--End Audio Result Object-->
-
-            </div><!--End results div -->
-            <input id="copypaste" hidden="true">
-
-        </div><!-- End Sidebar Div-->
-
-
-        <div id="main_wrap">
-
-
-            <div id="main_grid">
-
-
-                <div class="row">
-                    <div class="cell cell_populated"><div class="cell_top populated plowboy">plowboy</div><div class="cell_bottom bottom_populated">CLIP THAT OFF</div><audio src="../static/audio/CLIP THAT OFF.mp3"></audio></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                </div><!--End first row-->
-
-                 <div class="row">
-                     <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                </div><!--End second row-->
-
-                 <div class="row">
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                </div><!--End third row-->
-
-                 <div class="row">
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                </div><!--End fourth row-->
-
-                 <div class="row">
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                    <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
-                </div><!--End fifth row-->
-
-
-
-            </div><!--End main grid-->
-
-
-
-        </div><!-- End main panel wrapper-->
-
-
-    </div><!--End Wrapper Div-->
-    <script src="/static/js/jquery-3.1.1.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-    <script src='/static/js/scripts.js'></script>
-    <script src='/static/js/dragdrop.js'></script>
-    <script src='/static/js/process.js'></script>
-    <script src='/static/js/upload.js'></script>
-    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
-
+            <!--Audio result object-->
+            <div id="result_object">
+              <div id="audio_container">
+               <i class="fa fa-play-circle bigplay" style="font-size:40px; margin-right:10px; cursor:pointer;"></i>
+               <i class="fa fa-pause-circle" style="font-size:40px; cursor:pointer;"></i>
+                <audio class="t_play">
+                 <source class='audio_results' id="src" src="" type="audio/mp3">
+                 <source class='audio_results' id='wav' src="" type="audio/wav">
+                </audio>
+               <a target="_blank">
+                <i class="fa fa-link link_button" aria-hidden="true" style="font-size:25px; margin-left:15px"></i>
+              </a>
+              </div>
+              <!--End audio container-->
+              <div id="meta_display">
+               <p id="speaker"></p>
+               <p id="transcription"></p>
+              </div>
+              <!--End meta display-->
+              <div class="gripper_container">
+               <div class="gripper_column">
+                <i class="fa fa-ellipsis-v gripper_dots" style="font-size:20px" aria-hidden="true"></i>
+               </div>
+              </div>
+            </div>
+            <!--End Audio Result Object-->
+        </div>
+        <!--End results container div -->
+        <input id="copypaste" hidden="true">
+    </div><!-- End Sidebar Div-->
+    <div id="main_wrap">
+      <div id="main_grid">
+        <div class="row">
+            <div class="cell cell_populated"><div class="cell_top populated plowboy">plowboy</div><div class="cell_bottom bottom_populated">CLIP THAT OFF</div><audio src="../static/audio/CLIP THAT OFF.mp3"></audio></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+        </div><!--End first row-->
+         <div class="row">
+             <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+        </div><!--End second row-->
+         <div class="row">
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+        </div><!--End third row-->
+         <div class="row">
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+        </div><!--End fourth row-->
+         <div class="row">
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+            <div class="cell"><div class="cell_top"></div><div class="cell_bottom"></div></div>
+        </div><!--End fifth row-->
+       </div><!--End main grid-->
+      </div><!-- End main panel wrapper-->
+     </div><!--End Wrapper Div-->
+     <script src="/static/js/jquery-3.1.1.min.js"></script>
+	   <script src="/static/js/bootstrap.min.js"></script>
+     <script src='/static/js/scripts.js'></script>
+     <script src='/static/js/dragdrop.js'></script>
+     <script src='/static/js/process.js'></script>
+     <script src='/static/js/upload.js'></script>
+     <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
   </body>
-
 </html>
