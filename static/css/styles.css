@@ -1,4 +1,10 @@
-.chooser_button, #submit_button {
+.gripper_column, #meta_display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.chooser_button, #submit_button, #tma_image_container, .gripper_container, #audio_container, #main_wrap, .cell_bottom {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -155,9 +161,6 @@ p {
   background-color: #ededed; }
 
 #tma_image_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
   margin-top: 50px; }
 
@@ -189,10 +192,7 @@ p {
   width: 7%;
   order: 3;
   background-color: #ededed;
-  display: flex;
-  cursor: url("../img/hand.png"), auto;
-  align-items: center;
-  justify-content: center; }
+  cursor: url("../img/hand.png"), auto; }
 
 .gripper_hover {
   border-left: 1.5px solid black;
@@ -202,10 +202,6 @@ p {
 .gripper_column {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border: 1px 0px 1px 1px solid black;
   margin-left: 2px; }
 
@@ -224,9 +220,6 @@ p {
 #audio_container {
   height: 100%;
   width: 33%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   order: 2;
   background-color: #ededed; }
 
@@ -245,11 +238,7 @@ p {
 #meta_display {
   height: 100%;
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   flex-grow: 1;
-  justify-content: center;
   order: 1;
   background-color: #ededed;
   cursor: url("../img/hand.png"), auto;
@@ -281,10 +270,7 @@ p {
 
 /* End sidebar */
 #main_wrap {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  flex: 1; }
 
 #main_grid {
   width: 100%;
@@ -363,9 +349,6 @@ p {
 .cell_bottom {
   flex-grow: 1;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Heebo', sans-serif;
   font-size: 76%;
   padding: 2px;

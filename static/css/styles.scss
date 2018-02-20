@@ -2,6 +2,7 @@
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 %flex_center_row{
@@ -190,9 +191,7 @@ p {
 }
 
 #tma_image_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex_center_row;
   padding: 20px;
   margin-top: 50px;
 }
@@ -230,10 +229,8 @@ p {
   width: 7%;
   order: 3;
   background-color: #ededed;
-  display: flex;
   cursor: url('../img/hand.png'), auto;
-  align-items: center;
-  justify-content: center;
+  @extend %flex_center_row;
 }
 
 .gripper_hover {
@@ -243,12 +240,9 @@ p {
 }
 
 .gripper_column {
+  @extend %flex_center_column;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border: 1px 0px 1px 1px solid black;
   margin-left: 2px;
 }
@@ -270,11 +264,9 @@ p {
 }
 
 #audio_container {
+  @extend %flex_center_row;
   height: 100%;
   width: 33%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   order: 2;
   background-color: #ededed;
 }
@@ -295,13 +287,10 @@ p {
 }
 
 #meta_display {
+  @extend %flex_center_column;
   height: 100%;
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   flex-grow: 1;
-  justify-content: center;
   order: 1;
   background-color: #ededed;
   cursor: url('../img/hand.png'), auto;
@@ -343,9 +332,7 @@ p {
 
 #main_wrap {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex_center_row;
 }
 
 #main_grid {
@@ -436,21 +423,15 @@ p {
 }
 
 .cell_bottom {
+  @extend %flex_center_row;
   flex-grow: 1;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Heebo', sans-serif;
   font-size: 76%;
   padding: 2px;
   max-height: 95%;
   overflow: hide;
 }
-
-.cell:hover {}
-
-.cell:active {}
 
 .cell:last-child {
   margin-right: 0px;
