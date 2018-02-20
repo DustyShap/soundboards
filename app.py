@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 import os
 import csv
@@ -7,6 +9,9 @@ import pytz
 
 
 app = Flask(__name__)
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
 
 audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
