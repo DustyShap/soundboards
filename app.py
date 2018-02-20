@@ -86,48 +86,35 @@ def upload():
 def process():
     search_term = request.form['tags'].lower().strip()
     chosen = request.form['chosen'].lower() #This is either the name of the speaker or search_drops
-
+    drops_list = []
     if chosen == 'search_drops':
-        drops = db.execute("SELECT * FROM drops WHERE speaker IS NOT NULL AND tags LIKE :tags",{"tags":add_wildcard(search_term)}).fetchall()
+        drops = db.execute(
+        "SELECT * \
+        FROM drops \
+        WHERE speaker IS NOT NULL \
+        AND tags LIKE :tags",
+        {"tags":add_wildcard(search_term)}).fetchall()
 
-        drops_list = []
-        for drop in drops:
-            drop_as_dict = as_dict(drop)
-            drops_list.append(drop_as_dict)
-        return jsonify({"drops":drops_list})
-
-
-        # drops = Drops.select().where(
-        #     Drops.speaker.is_null(False),
-        #     Drops.tags.contains(search_term),
-        #
-        # )
-
-    #     logger('Search Term ',search_term)
-    #
     elif chosen == 'last_twenty':
-        drops = db.execute("SELECT * FROM drops ORDER BY id DESC LIMIT 20").fetchall()
-        drops_list = []
-        for drop in drops:
-            drop_as_dict = as_dict(drop)
-            drops_list.append(drop_as_dict)
-        return jsonify({"drops":drops_list})
-    #     drops = Drops.select().where(Drops.added_date).order_by(
-    #         Drops.added_date.desc()).limit(20)
-    #
-    # else:
-    #     drops = Drops.select().where(Drops.speaker == chosen)
-    #
-    # drops_as_list = []
-    #
-    # if drops:
-    #     for drop in drops:
-    #         drop_as_dict = drop.as_dict()
-    #         drops_as_list.append(drop_as_dict)
-    #
-    #     return jsonify({'drops': drops_as_list})
-    #
-    # return jsonify({'drops': drops_as_list})
+        drops = db.execute(
+        "SELECT * \
+        FROM drops \
+        ORDER BY id \
+        DESC LIMIT 20").fetchall()
+
+    else:
+        drops = db.execute(
+        "SELECT * \
+        FROM drops \
+        WHERE speaker = :chosen",
+        {"chosen":chosen}).fetchall()
+
+    #Function this
+    for drop in drops:
+        drop_as_dict = to_dict(drop)
+        drops_list.append(drop_as_dict)
+
+    return jsonify({"drops":drops_list})
 
 
 @app.route('/swope')
@@ -151,15 +138,21 @@ def swope_process():
         return jsonify({'keyword': drops_as_list})
     return jsonify({'keyword': drops_as_list})
 
+
 def add_wildcard(string):
     return "%" + string + "%"
 
-def as_dict(drops):
+def to_dict(drops):
     return {
         'filename': drops.filename,
         'speaker': drops.speaker,
         'transcription': drops.transcription.upper()[0:110]
-    }
+        }
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
