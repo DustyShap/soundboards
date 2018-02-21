@@ -5,8 +5,6 @@ $(document).ready(function(){
     var $result_object = $("#result_object")
     var url = '/static/audio/'
 
-
-
     //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
         $("#no_results").hide()
@@ -83,20 +81,19 @@ $(document).ready(function(){
             $("#password_window").hide()
             $("#results_container").show();
         }  else if ($(this).text() === 'Last 20 Added'){
-            submitLastTen();
+            submitLastTwenty();
         }
     });
 
-    //Process data on button click
+
+    //Process data if a speaker's name is clicked
     $('#submit_button').on('click', function(event) {
         $("#no_results").hide()
         $(".header_image").attr('id','search_drops');
         if ($(".header_image").attr('id')){
             submitSearchData(event)
             $("#no_results").hide()
-
         }
-
     });
 
 
@@ -107,24 +104,19 @@ $(document).ready(function(){
         if ($("#search_term").val().length < 3) {
             alert('Search must be at least 3 letters')
             } else {
-                 $("#no_results").hide()
+                $("#no_results").hide()
                 $(".header_image").attr('id','search_drops');
                 submitSearchData(event)
-
             }
          }
      });
 
-
-
-
-
-    function submitLastTen(event){
+     //Function to query the DB for the last 20 added drops
+    function submitLastTwenty(event){
         $("#password_window").hide()
         $("#upload_window").hide()
         $("#results_container").empty();
         var chosen = 'last_twenty'
-
         $.ajax({
             data: {
                 tags: null,
@@ -133,58 +125,18 @@ $(document).ready(function(){
             type: 'POST',
             url: '/process'
         })
-
         .done(function(data){
-
-
-        var results_length = data.drops.length;
-        if (results_length < 1){
-            $("#no_results").css('display','flex');
-        }
-        for (var i=0; i < results_length; i++){
-
-            $results.show();
-            var filename = data.drops[i].filename;
-            var speaker = data.drops[i].speaker;
-            var transcription = data.drops[i].transcription;
-            var full_url = "../static/audio/" + filename;
-            $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-            $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text(speaker).css('color','black');
-            $("#result"+i + " #transcription").text(transcription).css('color','black');
-            $("#result"+i + " #src").attr('src', full_url);
-            $("#result"+i + " #wav").attr('src', full_url);
-            }
-
-             $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
-
-
-
-
-
+        processData(data)
         });
-
-
-
-
-
-
     };
 
-    //Process Data if Search All Drops is Selected.  Queries database for just tags, not speaker
 
 
 
-    //Function to pass search term to datbase
-    //take returned values and put them as results
+    //Function that takes a searched value and queries the DB for associated tags
     function submitSearchData(event){
+
+      
         $("#password_window").hide()
         $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
@@ -203,36 +155,13 @@ $(document).ready(function(){
             url: '/process'
         })
         .done(function(data){
-        var results_length = data.drops.length;
-        if (results_length < 1){
-            $("#no_results").css('display','flex');
-        }
-        for (var i=0; i < results_length; i++){
-            $results.show();
-            var filename = data.drops[i].filename;
-            var speaker = data.drops[i].speaker;
-            var transcription = data.drops[i].transcription;
-            var full_url = "../static/audio/" + filename;
-            $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-            $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text(speaker).css('color','black');
-            $("#result"+i + " #transcription").text(transcription).css('color','black');
-            $("#result"+i + " #src").attr('src', full_url);
-            $("#result"+i + " #wav").attr('src', full_url);
-            }
-            $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
+          processData(data);
         });
     };
 
      //Function to submit Data to process endpoint when a name is clicked
     function submitData(){
+
 
         $("#upload_window").hide()
         $("#password_window").hide()
@@ -252,57 +181,56 @@ $(document).ready(function(){
         })
 
         .done(function(data){
-
-            var results_length = data.drops.length;
-            if (results_length < 1){
-                $("#results_container").empty();
-            }
-            for (var i=0; i < results_length; i++){
-
-               $results.show();
-               var filename = data.drops[i].filename;
-               var speaker = data.drops[i].speaker;
-               var transcription = data.drops[i].transcription;
-               var full_url = "../static/audio/" + filename;
-               $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-               $("#result"+i).attr('draggable','True');
-               $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
-               $("#result"+i + " #transcription").text(transcription).css('color','black');
-               $("#result"+i + " #src").attr('src', full_url);
-               $("#result"+i + " #wav").attr('src', full_url);
-
-            }
-
-
-            $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
-
-        }); //Data done end
+            processData(data);
+        });
+      }
 
 
 
 
+    //This function takes data returned from the server (which is drops returned from a query)
+    //and adds the information to a result object which is appended into the result container
+    function processData(data){
+      var results_length = data.drops.length;
+      if (results_length < 1){
+          $("#results_container").empty();
+      }
+      for (var i=0; i < results_length; i++){
+         $results.show();
+         var filename = data.drops[i].filename;
+         var speaker = data.drops[i].speaker;
+         var transcription = data.drops[i].transcription;
+         var full_url = "../static/audio/" + filename;
+         $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
+         $("#result"+i).attr('draggable','True');
+         $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
+         $("#result"+i + " #transcription").text(transcription).css('color','black');
+         $("#result"+i + " #src").attr('src', full_url);
+         $("#result"+i + " #wav").attr('src', full_url);
+      }
+      $('.fa-play-circle').on('click', clickplay);
+      $('.fa-pause-circle').on('click', clickpause);
+      $(".link_button").on('click', clicklink);
+      $('.search_result').hover(function(){
+          $(this).children()[2].className = 'gripper_container gripper_hover'
+          }, function(){
+          $(this).children()[2].className = 'gripper_container';
+      });
+    }
 
 
-    } //END SUBMIT DATA FUNCTION
-
+    //Function to handle play in a result object
     function clickplay(e){
         $(this).parent().children()[2].play();
         var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
     }
 
-
+    //Function to handle pause in a result object
     function clickpause(e){
         $(this).parent().children()[2].pause();
     }
 
+    //Function to handle generating a link in a result object
     function clicklink(e){
         var filename =  $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
         full = url+filename;
@@ -310,14 +238,14 @@ $(document).ready(function(){
         a.setAttribute('href',full);
     }
 
+    //Function to add the button_chose as well as the speaker name as classes
     function addClass($element,classtoAdd){
           $element.addClass(classtoAdd).addClass('button_chose')
   }
+
+    //Function to remove the search bar
     function removeSearch(){
       $("#search_container").css('display','none');
     }
-
-
-
 
 });

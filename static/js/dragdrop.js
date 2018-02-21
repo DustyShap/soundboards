@@ -1,12 +1,16 @@
+//This file handles the drag and drop functionality
+
 window.addEventListener("load", doFirst, false);
 var speakers = ['plowboy','doug','prodjoe','larry', 'tim','charlie','cat','timberfake', 'jayjr','mikelee']
 
 function doFirst(){
 
+
     var button = document.getElementById('bttn');
     var theGrid = document.getElementById('main_grid');
     var theParent = document.getElementById("results_container");
     var cells = document.getElementsByClassName('cell');
+
 
     for (i = 0; i < cells.length; i++){
 
@@ -50,6 +54,7 @@ function cellDrag(e){
 
     } else {
 
+
         //Cell is not empty!
         var is_blank = 'false';
         var fromResult = 'false';
@@ -74,6 +79,7 @@ function cellDrag(e){
 
 
 function result2cell(e){ //Drag a result object to an already populated cell
+
 
     var cell = $(this).parent();
     cell_top = cell[0].childNodes[0];
@@ -129,6 +135,7 @@ function result2cell(e){ //Drag a result object to an already populated cell
 
 
 function dropped(e){
+
 
     //Determine if the drag event object came from a cell
     var fromResult = e.dataTransfer.getData('fromResult');
@@ -195,10 +202,6 @@ function dropped(e){
     } else {
             //Handled in a diff function.  Re-write!
         }
-} //End drop function
+}
 
-
-
-
-
-
+//End drop function

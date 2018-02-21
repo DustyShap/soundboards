@@ -48,12 +48,17 @@ def upload():
     tags = request.form['tags'].lower()
     transcription = request.form['transcription'].lower().replace("'", "")
 
-    Drops.create(
-        filename=filename,
-        speaker=speaker,
-        tags=tags,
-        transcription=transcription
-    )
+    db.execute("INSERT INTO drops (filename,speaker,tags,transcription)\
+        VALUES (:filename,:speaker,:tags,:transcription)",
+        {"filename":filename,"speaker":speaker,"tags":tags,"transcription":transcription})
+
+    db.commit()
+    # Drops.create(
+    #     filename=filename,
+    #     speaker=speaker,
+    #     tags=tags,
+    #     transcription=transcription
+    # )
 
     return jsonify({'file': filename})
 
@@ -81,40 +86,52 @@ def upload():
 #
 #     return jsonify({'filename': filename})
 
-#Refactoring here
+
 @app.route('/process', methods=['POST', 'GET'])
 def process():
     search_term = request.form['tags'].lower().strip()
-    chosen = request.form['chosen'].lower() #This is either the name of the speaker or search_drops
-    drops_list = []
+    # This is either the name of the speaker or search_drops
+    chosen = request.form['chosen'].lower()
+
     if chosen == 'search_drops':
         drops = db.execute(
-        "SELECT * \
+            "SELECT * \
         FROM drops \
         WHERE speaker IS NOT NULL \
         AND tags LIKE :tags",
-        {"tags":add_wildcard(search_term)}).fetchall()
+            {"tags": add_wildcard(search_term)}).fetchall()
 
     elif chosen == 'last_twenty':
         drops = db.execute(
-        "SELECT * \
+            "SELECT * \
         FROM drops \
         ORDER BY id \
         DESC LIMIT 20").fetchall()
 
-    else:
+    else:  # if a name was clicked
         drops = db.execute(
-        "SELECT * \
+            "SELECT * \
         FROM drops \
         WHERE speaker = :chosen",
-        {"chosen":chosen}).fetchall()
+            {"chosen": chosen}).fetchall()
 
-    #Function this
-    for drop in drops:
-        drop_as_dict = to_dict(drop)
-        drops_list.append(drop_as_dict)
+    return jsonify({"drops": process_drop_results(drops)})
 
-    return jsonify({"drops":drops_list})
+    #
+    # def to_dict(drops):
+    #     return {
+    #         'filename': drops.filename,
+    #         'speaker': drops.speaker,
+    #         'transcription': drops.transcription.upper()[0:110]
+    #         }
+    #
+    #
+    # #Function this
+    # for drop in drops:
+    #     drop_as_dict = to_dict(drop)
+    #     drops_list.append(drop_as_dict)
+    #
+    # return jsonify({"drops":drops_list})
 
 
 @app.route('/swope')
@@ -126,7 +143,6 @@ def swope():
 def swope_process():
 
     keyword = request.form['keyword'].lower().strip()
-    print(keyword)
     drops = Drops.select().where(Drops.transcription.contains(keyword))
 
     drops_as_list = []
@@ -142,16 +158,17 @@ def swope_process():
 def add_wildcard(string):
     return "%" + string + "%"
 
-def to_dict(drops):
-    return {
-        'filename': drops.filename,
-        'speaker': drops.speaker,
-        'transcription': drops.transcription.upper()[0:110]
+
+def process_drop_results(drops):
+    drops_list = []
+    for drop in drops:
+        drop_as_dict = {
+            'filename': drop.filename,
+            'speaker': drop.speaker,
+            'transcription': drop.transcription.upper()[0:110]
         }
-
-
-
-
+        drops_list.append(drop_as_dict)
+    return drops_list
 
 
 if __name__ == "__main__":

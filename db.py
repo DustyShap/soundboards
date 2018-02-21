@@ -19,7 +19,13 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="DustyShapiro",
+    password="<Dbottoms2!",
+    hostname="DustyShapiro.mysql.pythonanywhere-services.com",
+    databasename="DustyShapiro$drops",
+)
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
 db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/", methods=['POST', 'GET'])
