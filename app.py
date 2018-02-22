@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-#from models import *
 import os
 import csv
 import pytz
@@ -72,7 +71,7 @@ def process():
         WHERE speaker = :chosen",
             {"chosen": chosen}).fetchall()
 
-    return jsonify({"drops": process_drop_results(drops)})
+    return process_drop_results(drops)
 
 
 
@@ -90,7 +89,7 @@ def process_drop_results(drops):
             'transcription': drop.transcription.upper()[0:110]
         }
         drops_list.append(drop_as_dict)
-    return drops_list
+    return jsonify({"drops":drops_list})
 
 
 if __name__ == "__main__":
