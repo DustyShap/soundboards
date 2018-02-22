@@ -412,6 +412,9 @@ p {
     display: none; }
 
   .gripper_cell {
+    display: none; }
+
+  a {
     display: none; } }
 @media screen and (max-width: 1000px) {
   #meta_display p {
