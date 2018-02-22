@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-#from models import *
 import os
 import csv
 import pytz
@@ -76,6 +75,19 @@ def process():
 
 
 
+
+# @app.route('/swope')
+# def swope():
+#     return render_template('swope.html')
+#
+#
+# @app.route('/swopeprocess', methods=['GET', 'POST'])
+# def swope_process():
+#
+#     keyword = request.form['keyword'].lower().strip()
+#     drops = Drops.select().where(Drops.transcription.contains(keyword))
+#     return jsonify({"keyword":process_drop_results(drops)})
+#
 
 def add_wildcard(string):
     return "%" + string + "%"
