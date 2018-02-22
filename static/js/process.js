@@ -136,7 +136,7 @@ $(document).ready(function(){
     //Function that takes a searched value and queries the DB for associated tags
     function submitSearchData(event){
 
-      
+
         $("#password_window").hide()
         $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
@@ -191,6 +191,7 @@ $(document).ready(function(){
     //This function takes data returned from the server (which is drops returned from a query)
     //and adds the information to a result object which is appended into the result container
     function processData(data){
+      var search_method = data.search_method;
       var results_length = data.drops.length;
       if (results_length < 1){
           $("#results_container").empty();
@@ -203,7 +204,10 @@ $(document).ready(function(){
          var full_url = "../static/audio/" + filename;
          $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
          $("#result"+i).attr('draggable','True');
-         $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
+         $("#result"+i + " #speaker").text(speaker).css('color','red');
+         if (search_method == 'name'){
+           $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
+         }
          $("#result"+i + " #transcription").text(transcription).css('color','black');
          $("#result"+i + " #src").attr('src', full_url);
          $("#result"+i + " #wav").attr('src', full_url);

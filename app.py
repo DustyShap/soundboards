@@ -50,6 +50,7 @@ def process():
     chosen = request.form['chosen'].lower()
 
     if chosen == 'search_drops':
+        search_method = 'search_value'
         drops = db.execute(
             "SELECT * \
         FROM drops \
@@ -58,6 +59,7 @@ def process():
             {"tags": add_wildcard(search_term)}).fetchall()
 
     elif chosen == 'last_twenty':
+        search_method = 'last_twenty'
         drops = db.execute(
             "SELECT * \
         FROM drops \
@@ -65,14 +67,14 @@ def process():
         DESC LIMIT 20").fetchall()
 
     else:  # if a name was clicked
+        search_method = 'name'
         drops = db.execute(
             "SELECT * \
         FROM drops \
         WHERE speaker = :chosen",
             {"chosen": chosen}).fetchall()
 
-    return process_drop_results(drops)
-
+    return process_drop_results(drops,search_method)
 
 
 
@@ -80,8 +82,9 @@ def add_wildcard(string):
     return "%" + string + "%"
 
 
-def process_drop_results(drops):
+def process_drop_results(drops,search_method):
     drops_list = []
+    search_method = search_method
     for drop in drops:
         drop_as_dict = {
             'filename': drop.filename,
@@ -89,7 +92,7 @@ def process_drop_results(drops):
             'transcription': drop.transcription.upper()[0:110]
         }
         drops_list.append(drop_as_dict)
-    return jsonify({"drops":drops_list})
+    return jsonify({"drops":drops_list,"search_method":search_method})
 
 
 if __name__ == "__main__":
