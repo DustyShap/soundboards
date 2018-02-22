@@ -36,6 +36,10 @@ def upload():
         {"filename":filename,"speaker":speaker,"tags":tags,"transcription":transcription})
 
     db.commit()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27a0edd4942b87c7fe02360efb038a84e6c2aaf1
 
     return jsonify({'file': filename})
 
@@ -74,6 +78,10 @@ def process():
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27a0edd4942b87c7fe02360efb038a84e6c2aaf1
 # @app.route('/swope')
 # def swope():
 #     return render_template('swope.html')
@@ -84,8 +92,10 @@ def process():
 #
 #     keyword = request.form['keyword'].lower().strip()
 #     drops = Drops.select().where(Drops.transcription.contains(keyword))
+<<<<<<< HEAD
 #     return jsonify({"keyword":process_drop_results(drops)})
 #
+
 
 
 def add_wildcard(string):
