@@ -96,4 +96,4 @@ def process_drop_results(drops,search_method):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
