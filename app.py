@@ -7,6 +7,7 @@ import csv
 import pytz
 
 
+
 app = Flask(__name__)
 
 engine = create_engine(os.getenv("DATABASE_URL"))
@@ -31,9 +32,15 @@ def upload():
     tags = request.form['tags'].lower()
     transcription = request.form['transcription'].lower().replace("'", "")
 
-    db.execute("INSERT INTO drops (filename,speaker,tags,transcription)\
-        VALUES (:filename,:speaker,:tags,:transcription)",
-        {"filename":filename,"speaker":speaker,"tags":tags,"transcription":transcription})
+    db.execute("INSERT INTO drops \
+    (filename,speaker,tags,transcription)\
+    VALUES \
+    (:filename,:speaker,:tags,:transcription)",
+    {
+        "filename":filename,
+        "speaker":speaker,
+        "tags":tags,
+        "transcription":transcription})
 
     db.commit()
 
@@ -76,6 +83,35 @@ def process():
 
     return process_drop_results(drops,search_method)
 
+@app.route("/drop_stats",methods=['POST'])
+def drop_stats():
+    filename = request.form['filename'].replace(" ", "%20")
+    cell_clicked = request.form['cell_clicked']
+
+    drop = db.execute(
+     "SELECT id \
+      FROM drops \
+      WHERE filename = :filename",
+      {"filename":filename}).fetchall()
+
+    drop_id = drop[0][0]
+
+
+
+
+    db.execute("INSERT INTO click_stats \
+    (drop_id,clicked_from_cell,click_time)\
+    VALUES \
+    (:drop_id,:clicked_from_cell,now())",
+    {
+        "drop_id":drop_id,
+        "clicked_from_cell":cell_clicked
+    })
+
+    db.commit()
+
+
+    return ('', 204)
 
 
 def add_wildcard(string):

@@ -20,6 +20,16 @@ $(document).ready(function() {
       var filename = $(this).children()[2].getAttribute('src').slice(16);
       var element = 'cell';
       audio.play();
+
+      $.ajax({
+          data : {
+              filename: filename,
+              cell_clicked: true
+          },
+          type: 'POST',
+          url: '/drop_stats'
+      })
+
     }
   });
 }); //End of document ready wrap
