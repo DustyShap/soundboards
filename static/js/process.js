@@ -93,7 +93,7 @@ $(document).ready(function(){
             $("#password_window").hide()
             $("#results_container").show();
         }  else if ($(this).text() === 'Last 20 Added'){
-            submitLastTen();
+            submitLastTwenty();
         }
 
 
@@ -137,9 +137,10 @@ $(document).ready(function(){
 
 
 
-    function submitLastTen(event){
+    function submitLastTwenty(event){
         $("#password_window").hide()
         $("#upload_window").hide()
+        $("#search_container").css('display','none');
         $("#results_container").empty();
         var chosen = 'last_ten'
 
@@ -156,6 +157,7 @@ $(document).ready(function(){
 
 
         var results_length = data.drops.length;
+        console.log(data);
         if (results_length < 1){
             $("#no_results").css('display','flex');
         }
@@ -348,7 +350,7 @@ $(document).ready(function(){
         })
         .done(function(data){
 
-            
+
 
         })
 
