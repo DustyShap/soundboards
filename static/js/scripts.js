@@ -28,8 +28,7 @@ function submitLastTwenty(event) {
 
 //Function that takes a searched value and queries the DB for associated tags
 function submitSearchData(event) {
-
-
+  
   $("#password_window").hide()
   $("#upload_window").hide()
   var chosen = $(".header_image").attr('id');

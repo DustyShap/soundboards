@@ -65,6 +65,15 @@ def process():
         AND tags LIKE :tags",
             {"tags": add_wildcard(search_term)}).fetchall()
 
+        #Inserting search term into the DB for stats
+        db.execute("INSERT INTO search_stats\
+        (search_string)\
+        VALUES\
+        (:search_string)",
+        {"search_string":search_term})
+        db.commit()
+
+
     elif chosen == 'last_twenty':
         search_method = 'last_twenty'
         drops = db.execute(
