@@ -67,9 +67,9 @@ def process():
 
         #Inserting search term into the DB for stats
         db.execute("INSERT INTO search_stats\
-        (search_string)\
+        (search_string, search_time)\
         VALUES\
-        (:search_string)",
+        (:search_string,now())",
         {"search_string":search_term})
         db.commit()
 
