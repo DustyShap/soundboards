@@ -196,6 +196,7 @@ $(document).ready(function(){
       var results_length = data.drops.length;
       if (results_length < 1){
           $("#results_container").empty();
+          $("#no_results").show().css('display','flex');
       }
       for (var i=0; i < results_length; i++){
          $results.show();
@@ -228,7 +229,6 @@ $(document).ready(function(){
     function clickplay(e){
         $(this).parent().children()[2].play();
         var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
-<<<<<<< HEAD
         var element = 'result'
 
         $.ajax({
@@ -245,8 +245,6 @@ $(document).ready(function(){
 
         })
 
-=======
->>>>>>> 3bffb55e6fec109b55a38f24a6ea9d8d6ed5302b
     }
 
     //Function to handle pause in a result object
