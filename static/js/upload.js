@@ -70,17 +70,9 @@ $(document).ready(function(){
            })
 
         .done(function(data){
-
-            console.log(data);
-
-
             if (data.warning){
 
-
-
-
             } else {
-
 
                 $("#chooser_wrap").show();
                 $("#upload_window").css('display', 'none');

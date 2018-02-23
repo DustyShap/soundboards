@@ -5,81 +5,69 @@ $(document).ready(function(){
     var $result_object = $("#result_object")
     var url = '/static/audio/'
 
-
-     //Display header based on who's audio is selected
+    //Display header based on who's audio is selected
     $(".chooser_button").click(function(){
         $("#no_results").hide()
         $(".header_image").removeAttr('id');
         $(".chooser_button").removeClass().addClass('chooser_button');
 
-
         if ($(this).text() == 'Mike Lee'){
-            $(this).addClass('button_chose');
-            $(this).addClass('mikelee');
-            $("#search_container").css('display','none');
+            addClass($(this),'mikelee')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/mikelee.jpg");
             $(".header_image").attr('id','mike lee');
             submitData();
         } else if ($(this).text() == 'Doug Vaughn'){
-            $(this).addClass('button_chose');
-            $(this).addClass('doug');
-            $("#search_container").css('display','none');
+            addClass($(this),'doug')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/vaughn.jpg");
             $(".header_image").attr('id','doug');
             submitData();
         } else if ($(this).text() == 'The Plow Boy'){
-            $(this).addClass('button_chose');
-            $(this).addClass('plowboy');
-            $("#search_container").css('display','none');
+            addClass($(this),'plowboy')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/plowboy.jpg");
             $(".header_image").attr('id','plowboy');
             submitData();
         } else if ($(this).text() == 'Larry Nickel'){
-            $(this).addClass('button_chose');
-            $(this).addClass('larry');
-            $("#search_container").css('display','none');
+            addClass($(this),'larry')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/larry.jpg");
             $(".header_image").attr('id','larry');
             submitData();
         } else if ($(this).text() == 'Tim McKernan'){
-            $(this).addClass('button_chose');
-            $(this).addClass('tim');
-            $("#search_container").css('display','none');
+            addClass($(this),'tim')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/tmck.jpg");
             $(".header_image").attr('id','tim');
             submitData();
         } else if ($(this).text() == 'Charlie Marlow'){
-            $(this).addClass('button_chose');
-            $(this).addClass('charlie');
-            $("#search_container").css('display','none');
+            addClass($(this),'charlie')
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','charlie');
             submitData();
         } else if ($(this).text() == "Jimmy 'The Cat' Hayes"){
-            $(this).addClass('button_chose');
-            $(this).addClass('cat');
-            $("#search_container").css('display','none');
+            addClass($(this),'cat');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','cat');
             submitData();
         } else if ($(this).text() === 'Jay Jr'){
-            $(this).addClass('button_chose');
-            $(this).addClass('jayjr');
-            $("#search_container").css('display','none');
+            addClass($(this),'jayjr');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','jay jr');
             submitData();
         }  else if ($(this).text() === '@ProdJoe'){
-            $(this).addClass('button_chose');
-            $(this).addClass('prodjoe');
-            $("#search_container").css('display','none');
+            addClass($(this),'prodjoe');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','prodjoe');
             submitData();
         }  else if ($(this).text() === 'Timberfake'){
-            $(this).addClass('button_chose');
-            $(this).addClass('timberfake');
-            $("#search_container").css('display','none');
+            addClass($(this),'timberfake');
+            removeSearch()
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','timberfake');
             submitData();
@@ -95,26 +83,17 @@ $(document).ready(function(){
         }  else if ($(this).text() === 'Last 20 Added'){
             submitLastTwenty();
         }
-
-
-
     });
 
 
-
-
-
-    //Process data on button click
-
+    //Process data if a speaker's name is clicked
     $('#submit_button').on('click', function(event) {
         $("#no_results").hide()
         $(".header_image").attr('id','search_drops');
         if ($(".header_image").attr('id')){
             submitSearchData(event)
             $("#no_results").hide()
-
         }
-
     });
 
 
@@ -125,25 +104,20 @@ $(document).ready(function(){
         if ($("#search_term").val().length < 3) {
             alert('Search must be at least 3 letters')
             } else {
-                 $("#no_results").hide()
+                $("#no_results").hide()
                 $(".header_image").attr('id','search_drops');
                 submitSearchData(event)
-
             }
          }
      });
 
-
-
-
-
+     //Function to query the DB for the last 20 added drops
     function submitLastTwenty(event){
         $("#password_window").hide()
         $("#upload_window").hide()
         $("#search_container").css('display','none');
         $("#results_container").empty();
-        var chosen = 'last_ten'
-
+        var chosen = 'last_twenty'
         $.ajax({
             data: {
                 tags: null,
@@ -152,72 +126,27 @@ $(document).ready(function(){
             type: 'POST',
             url: '/process'
         })
-
         .done(function(data){
-
-
-        var results_length = data.drops.length;
-        console.log(data);
-        if (results_length < 1){
-            $("#no_results").css('display','flex');
-        }
-        for (var i=0; i < results_length; i++){
-
-            $results.show();
-            var filename = data.drops[i].filename;
-            var speaker = data.drops[i].speaker;
-            var transcription = data.drops[i].transcription;
-            var full_url = "../static/audio/" + filename;
-            $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-            $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text(speaker).css('color','black');
-            $("#result"+i + " #transcription").text(transcription).css('color','black');
-            $("#result"+i + " #src").attr('src', full_url);
-            $("#result"+i + " #wav").attr('src', full_url);
-            }
-
-             $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
-
-
-
-
-
+        processData(data)
         });
-
-
-
-
-
-
     };
 
-    //Process Data if Search All Drops is Selected.  Queries database for just tags, not speaker
 
 
 
-
+    //Function that takes a searched value and queries the DB for associated tags
     function submitSearchData(event){
+
 
         $("#password_window").hide()
         $("#upload_window").hide()
         var chosen = $(".header_image").attr('id');
+        // if the search drop button was clicked, the id of the header is search_drops
         $("#search_container").show().css('display','flex');
         $("#results_container").empty();
         $("#instructions").hide();
         $("#length_display").attr('display','none');
 
-
-
-
-
-
         $.ajax({
             data : {
                 tags: $('#search_term').val(),
@@ -226,55 +155,14 @@ $(document).ready(function(){
             type: 'POST',
             url: '/process'
         })
-
         .done(function(data){
-
-
-        var results_length = data.drops.length;
-        if (results_length < 1){
-            $("#no_results").css('display','flex');
-        }
-        for (var i=0; i < results_length; i++){
-            $results.show();
-            var filename = data.drops[i].filename;
-            var speaker = data.drops[i].speaker;
-            var transcription = data.drops[i].transcription;
-            var full_url = "../static/audio/" + filename;
-            $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-            $("#result"+i).attr('draggable','True');
-            $("#result"+i + " #speaker").text(speaker).css('color','black');
-            $("#result"+i + " #transcription").text(transcription).css('color','black');
-            $("#result"+i + " #src").attr('src', full_url);
-            $("#result"+i + " #wav").attr('src', full_url);
-            }
-
-             $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
-
-
+          processData(data);
         });
     };
 
-
-
-
-
-
-
-
-
-
      //Function to submit Data to process endpoint when a name is clicked
-     //
-
-
     function submitData(){
+
 
         $("#upload_window").hide()
         $("#password_window").hide()
@@ -294,50 +182,53 @@ $(document).ready(function(){
         })
 
         .done(function(data){
-
-            var results_length = data.drops.length;
-            if (results_length < 1){
-                $("#results_container").empty();
-            }
-            for (var i=0; i < results_length; i++){
-
-               $results.show();
-               var filename = data.drops[i].filename;
-               var speaker = data.drops[i].speaker;
-               var transcription = data.drops[i].transcription;
-               var full_url = "../static/audio/" + filename;
-               $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
-               $("#result"+i).attr('draggable','True');
-               $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
-               $("#result"+i + " #transcription").text(transcription).css('color','black');
-               $("#result"+i + " #src").attr('src', full_url);
-               $("#result"+i + " #wav").attr('src', full_url);
-
-            }
-
-
-            $('.fa-play-circle').on('click', clickplay);
-            $('.fa-pause-circle').on('click', clickpause);
-            $(".link_button").on('click', clicklink);
-
-            $('.search_result').hover(function(){
-                $(this).children()[2].className = 'gripper_container gripper_hover'
-                }, function(){
-                $(this).children()[2].className = 'gripper_container';
-            });
-
-        }); //Data done end
+            processData(data);
+        });
+      }
 
 
 
 
+    //This function takes data returned from the server (which is drops returned from a query)
+    //and adds the information to a result object which is appended into the result container
+    function processData(data){
+      var search_method = data.search_method;
+      var results_length = data.drops.length;
+      if (results_length < 1){
+          $("#results_container").empty();
+      }
+      for (var i=0; i < results_length; i++){
+         $results.show();
+         var filename = data.drops[i].filename;
+         var speaker = data.drops[i].speaker;
+         var transcription = data.drops[i].transcription;
+         var full_url = "../static/audio/" + filename;
+         $result_object.clone().appendTo($("#results_container")).attr('id', 'result'+i).addClass("search_result");
+         $("#result"+i).attr('draggable','True');
+         $("#result"+i + " #speaker").text(speaker).css('color','red');
+         if (search_method == 'name'){
+           $("#result"+i + " #speaker").text(speaker).css('color','red').css('display','none');
+         }
+         $("#result"+i + " #transcription").text(transcription).css('color','black');
+         $("#result"+i + " #src").attr('src', full_url);
+         $("#result"+i + " #wav").attr('src', full_url);
+      }
+      $('.fa-play-circle').on('click', clickplay);
+      $('.fa-pause-circle').on('click', clickpause);
+      $(".link_button").on('click', clicklink);
+      $('.search_result').hover(function(){
+          $(this).children()[2].className = 'gripper_container gripper_hover'
+          }, function(){
+          $(this).children()[2].className = 'gripper_container';
+      });
+    }
 
 
-    } //END SUBMIT DATA FUNCTION
-
+    //Function to handle play in a result object
     function clickplay(e){
         $(this).parent().children()[2].play();
         var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
+<<<<<<< HEAD
         var element = 'result'
 
         $.ajax({
@@ -354,30 +245,31 @@ $(document).ready(function(){
 
         })
 
+=======
+>>>>>>> 3bffb55e6fec109b55a38f24a6ea9d8d6ed5302b
     }
 
-
+    //Function to handle pause in a result object
     function clickpause(e){
         $(this).parent().children()[2].pause();
     }
 
+    //Function to handle generating a link in a result object
     function clicklink(e){
-
-
         var filename =  $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
         full = url+filename;
         var a = $(this).parent()[0];
         a.setAttribute('href',full);
-
-
-
-
-
-
     }
 
+    //Function to add the button_chose as well as the speaker name as classes
+    function addClass($element,classtoAdd){
+          $element.addClass(classtoAdd).addClass('button_chose')
+  }
 
-
-
+    //Function to remove the search bar
+    function removeSearch(){
+      $("#search_container").css('display','none');
+    }
 
 });
