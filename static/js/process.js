@@ -81,6 +81,7 @@ $(document).ready(function(){
             $("#password_window").hide()
             $("#results_container").show();
         }  else if ($(this).text() === 'Last 20 Added'){
+            $(this).addClass('button_chose');
             submitLastTwenty();
         }
     });

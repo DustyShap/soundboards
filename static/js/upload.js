@@ -8,6 +8,7 @@ $(document).ready(function(){
          $("#password_window").css('display','flex');
          $(".search_result").remove()
          $("#password").focus();
+         $(this).addClass('button_chose');
 
     });
 
