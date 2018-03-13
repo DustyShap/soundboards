@@ -55,6 +55,7 @@ def process():
     search_term = request.form['tags'].lower().strip()
     # This is either the name of the speaker or search_drops
     chosen = request.form['chosen'].lower()
+    print(chosen)
 
     if chosen == 'search_drops':
         search_method = 'search_value'
@@ -74,13 +75,13 @@ def process():
         db.commit()
 
 
-    elif chosen == 'last_twenty':
-        search_method = 'last_twenty'
+    elif chosen == 'last_fifty':
+        search_method = 'last_fifty'
         drops = db.execute(
             "SELECT * \
         FROM drops \
         ORDER BY id \
-        DESC LIMIT 20").fetchall()
+        DESC LIMIT 50").fetchall()
 
     else:  # if a name was clicked
         search_method = 'name'
