@@ -80,9 +80,9 @@ $(document).ready(function(){
             $("#upload_window").hide()
             $("#password_window").hide()
             $("#results_container").show();
-        }  else if ($(this).text() === 'Last 20 Added'){
+        }  else if ($(this).text() === 'Last 50 Added'){
             $(this).addClass('button_chose');
-            submitLastTwenty();
+            submitLastFifty();
         }
     });
 

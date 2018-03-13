@@ -7,11 +7,11 @@ var url = '/static/audio/'
 
 
 //Function to query the DB for the last 20 added drops
-function submitLastTwenty(event) {
+function submitLastFifty(event) {
   $("#password_window").hide()
   $("#upload_window").hide()
   $("#results_container").empty();
-  var chosen = 'last_twenty'
+  var chosen = 'last_fifty'
   $.ajax({
       data: {
         tags: null,
