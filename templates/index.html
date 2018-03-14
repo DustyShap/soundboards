@@ -55,7 +55,7 @@
         <!-- Password Window -->
         <div id="password_window">
          <p>Password:</p>
-         <input type="text" name="password" id="password" autocomplete=off>
+         <input type="password" name="password" id="password" autocomplete=off>
           <div id="button_container">
            <button id="password_button" type="submit" class="btn btn-default">Submit</button>
            <button id="password_cancel_button" type="submit" class="btn btn-default">Cancel</button>
@@ -70,7 +70,21 @@
           </div>
           <div class="form-group">
             <label for="speaker">Speaker</label>
-            <input type="text" class="form-control" id="speaker" name="speaker" placeholder="Speaker" required>
+            <select id='upload_speaker_chooser'>
+              <option value='tim'>Tim McKernan</option>
+              <option value='cat'>Jimmy "The Cat" Hayes</option>
+              <option value='doug'>Doug Vaughn</option>
+              <option value='plowboy'>The Plowboy</option>
+              <option value='mikelee'>Mike Lee</option>
+              <option value='larry'>Larry Nickel</option>
+              <option value='charlie'>Charlie Marlow</option>
+              <option value='jayjr'>Jay Jr</option>
+              <option value='prodjoe'>@ProdJoe</option>
+              <option value='timberfake'>Timberfake</option>
+              <option value='unknown man'>Unknown Male</option>
+              <option value='unknown woman'>Unknown Female</option>
+              <option value='other'>Other (specify below)</option>
+            <input type="text" class="form-control" id="speaker" name="speaker" placeholder="Speaker" hidden>
           </div>
             <div class="form-group">
             <label for="tags">Tags (separate by space)</label>

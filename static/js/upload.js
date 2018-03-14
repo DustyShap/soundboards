@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-
-
     $("#upload_button").click(function(){
 
          $("#search_container").css('display','none');
@@ -18,9 +16,6 @@ $(document).ready(function(){
         $("#results_container").show();
         $("#password").val('');
 
-
-
-
     })
 
     $("#password_button").click(function(){
@@ -34,7 +29,7 @@ $(document).ready(function(){
             $("#chooser_wrap").hide();
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $("#password").val('');
-
+            $("#speaker").hide();
 
         } else {
 
@@ -48,9 +43,17 @@ $(document).ready(function(){
 
     })
 
+      $("#upload_speaker_chooser").change(function(event){
+        if ($("#upload_speaker_chooser option:selected").val() == 'other'){
+          $("#speaker").show()
+        } else {
+          $("#speaker").hide()
+          $("#speaker").val($("#upload_speaker_chooser option:selected").val())
+          console.log($("#upload_speaker_chooser option:selected").val())
+        }
+      })
+
     $("#upload_submit").click(function(e){
-
-
 
         var form_data = new FormData($("#upload_form")[0]);
         $('#audio').val('');
