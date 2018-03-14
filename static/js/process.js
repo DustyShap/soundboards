@@ -82,6 +82,7 @@ $(document).ready(function(){
             $("#results_container").show();
         }  else if ($(this).text() === 'Last 50 Added'){
             $(this).addClass('button_chose');
+            removeSearch()
             submitLastFifty();
         }
     });
