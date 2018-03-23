@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     $("#password_button").click(function(){
 
-        if ($("#password").val() === 'twinkaboutit'){
+        if ($("#password").val() === 'thinkaboutit'){
             $("#password_window").css('display','none');
             $("#search_container").css('display','none');
             $("#upload_window").css('display', 'flex');
