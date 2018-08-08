@@ -65,36 +65,40 @@ def process():
 
     if chosen == 'search_drops':
         search_method = 'search_value'
-        drops = db.execute(
-            "SELECT * \
-        FROM drops \
-        WHERE speaker IS NOT NULL \
-        AND tags LIKE :tags",
-            {"tags": add_wildcard(search_term)}).fetchall()
+        # drops = db.execute(
+        #     "SELECT * \
+        # FROM drops \
+        # WHERE speaker IS NOT NULL \
+        # AND tags LIKE :tags",
+        #     {"tags": add_wildcard(search_term)}).fetchall()
+        drops = Drop.query.filter(
+                Drop.speaker.isnot(None),
+                Drop.tags.ilike("%"+search_term+"%")
+        ).all()
 
         # Inserting search term into the DB for stats
-        db.execute("INSERT INTO search_stats\
-        (search_string, search_time)\
-        VALUES\
-        (:search_string,now())", {
-            "search_string": search_term})
-        db.commit()
+        # db.execute("INSERT INTO search_stats\
+        # (search_string, search_time)\
+        # VALUES\
+        # (:search_string,now())", {
+        #     "search_string": search_term})
+        # db.commit()
 
-    elif chosen == 'last_fifty':
-        search_method = 'last_fifty'
-        drops = db.execute(
-            "SELECT * \
-        FROM drops \
-        ORDER BY id \
-        DESC LIMIT 50").fetchall()
-
-    else:  # if a name was clicked
-        search_method = 'name'
-        drops = db.execute(
-            "SELECT * \
-        FROM drops \
-        WHERE speaker = :chosen",
-            {"chosen": chosen}).fetchall()
+    # elif chosen == 'last_fifty':
+    #     search_method = 'last_fifty'
+    #     drops = db.execute(
+    #         "SELECT * \
+    #     FROM drops \
+    #     ORDER BY id \
+    #     DESC LIMIT 50").fetchall()
+    #
+    # else:  # if a name was clicked
+    #     search_method = 'name'
+    #     drops = db.execute(
+    #         "SELECT * \
+    #     FROM drops \
+    #     WHERE speaker = :chosen",
+    #         {"chosen": chosen}).fetchall()
 
     return process_drop_results(drops, search_method)
 
