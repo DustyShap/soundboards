@@ -84,8 +84,9 @@ def process():
         #     "search_string": search_term})
         # db.commit()
 
-    # elif chosen == 'last_fifty':
-    #     search_method = 'last_fifty'
+    elif chosen == 'last_fifty':
+        search_method = 'last_fifty'
+        drops = db.session.query(Drop).order_by(desc(Drop.id)).limit(50)
     #     drops = db.execute(
     #         "SELECT * \
     #     FROM drops \
