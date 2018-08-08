@@ -1,19 +1,23 @@
-from flask import Flask, render_template, request, jsonify
-from flask_uploads import UploadSet, configure_uploads, AUDIO
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
 import os
-import csv
-import pytz
+from flask import (Flask, session,
+                   render_template, url_for, redirect, request, jsonify)
+from flask_session import Session
+from sqlalchemy import create_engine, desc
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import create_engine
+from models import Drop, db
+from create import create_app
+import csv, pytz
+from flask_uploads import UploadSet, configure_uploads, AUDIO
 
-app = Flask(__name__)
 
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
-
+app = create_app()
 audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
+app.app_context().push()
+
+
 
 
 @app.route('/')
@@ -29,16 +33,25 @@ def upload():
     tags = request.form['tags'].lower()
     transcription = request.form['transcription'].lower().replace("'", "")
 
-    db.execute("INSERT INTO drops \
-    (filename,speaker,tags,transcription)\
-    VALUES \
-    (:filename,:speaker,:tags,:transcription)", {
-        "filename": filename,
-        "speaker": speaker,
-        "tags": tags,
-        "transcription": transcription})
+    file_upload = Drop(
+                filename=filename,
+                speaker=speaker,
+                tags=tags,
+                transcription=transcription)
 
-    db.commit()
+    db.session.add(file_upload)
+    db.session.commit()
+    #
+    # db.execute("INSERT INTO drops \
+    # (filename,speaker,tags,transcription)\
+    # VALUES \
+    # (:filename,:speaker,:tags,:transcription)", {
+    #     "filename": filename,
+    #     "speaker": speaker,
+    #     "tags": tags,
+    #     "transcription": transcription})
+    #
+    # db.commit()
 
     return jsonify({'file': filename})
 
