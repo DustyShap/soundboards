@@ -61,7 +61,7 @@ def process():
     search_term = request.form['tags'].lower().strip()
     # This is either the name of the speaker or search_drops
     chosen = request.form['chosen'].lower()
-    print(chosen)
+
 
     if chosen == 'search_drops':
         search_method = 'search_value'
@@ -93,8 +93,11 @@ def process():
     #     ORDER BY id \
     #     DESC LIMIT 50").fetchall()
     #
-    # else:  # if a name was clicked
-    #     search_method = 'name'
+    else:  # if a name was clicked
+        search_method = 'name'
+        drops = Drop.query.filter(
+                Drop.speaker == chosen
+        ).all()
     #     drops = db.execute(
     #         "SELECT * \
     #     FROM drops \
