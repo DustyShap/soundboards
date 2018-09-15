@@ -1,0 +1,14 @@
+flask_session
+static/audio
+staticmeta
+venv
+.env
+__pycache__
+.DS_Store
+.idea
+test.db
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
