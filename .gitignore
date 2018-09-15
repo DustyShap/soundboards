@@ -8,3 +8,5 @@ __pycache__
 .idea
 test.db
 docker.env
+*.pyc
+postgres-data
