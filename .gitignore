@@ -1,0 +1,12 @@
+flask_session
+static/audio
+staticmeta
+venv
+.env
+__pycache__
+.DS_Store
+.idea
+test.db
+docker.env
+*.pyc
+postgres-data
