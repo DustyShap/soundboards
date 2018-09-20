@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -6,7 +6,7 @@ import os
 import csv
 import pytz
 
-application = app = Flask(__name__)
+app = Flask(__name__)
 
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
@@ -130,4 +130,4 @@ def process_drop_results(drops, search_method):
 
 
 if __name__ == "__main__":
-    application.run()
+    app.run()
