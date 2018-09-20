@@ -1,6 +1,6 @@
 __pycache__
 .idea
-postgres-data
+postgres-data/
 static/audio
 venv
 .DS_Store
