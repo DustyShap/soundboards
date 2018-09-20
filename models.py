@@ -13,6 +13,13 @@ class Drop(db.Model):
     tags = db.Column(db.String, nullable=False)
     transcription = db.Column(db.String, nullable=False)
 
+    def as_dict(self):
+        return {
+        'filename': self.filename,
+        'speaker': self.speaker,
+        'transcription': self.transcription.upper()
+        }
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
