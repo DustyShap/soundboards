@@ -13,8 +13,7 @@ from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 application = app = Flask(__name__)
 
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
+
 
 app = create_app()
 audio = UploadSet('audio', AUDIO)
