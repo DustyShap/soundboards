@@ -5,7 +5,7 @@ from flask_session import Session
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from models import Drop, db
+from models import Drop, db, AdminUser
 from create import create_app
 import csv, pytz
 from flask_uploads import UploadSet, configure_uploads, AUDIO
@@ -23,6 +23,18 @@ app.app_context().push()
 @app.route('/')
 def home():
     return render_template("index.html")
+
+@app.route('/upload_login', methods=['GET','POST'])
+def upload_login():
+    error_msg = ""
+    if request.method == 'GET':
+        return redirect(url_for('home'))
+    password_attempt = request.form['upload_password']
+    password = db.session.query(AdminUser.password).first()
+    print(password_attempt)
+    if password_attempt == password[0]:
+        return jsonify({'password_correct':True})
+    return jsonify({'password_correct':False})
 
 
 @app.route('/upload', methods=['GET', 'POST'])
