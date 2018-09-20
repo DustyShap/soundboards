@@ -93,7 +93,7 @@ def process():
 
     return process_drop_results(drops, search_method)
 
-    
+
 @app.route("/drop_stats", methods=['POST'])
 def drop_stats():
     filename = request.form['filename'].replace(" ", "%20")
@@ -135,7 +135,3 @@ def process_drop_results(drops, search_method):
         }
         drops_list.append(drop_as_dict)
     return jsonify({"drops": drops_list, "search_method": search_method})
-
-
-if __name__ == "__main__":
-    app.run()
