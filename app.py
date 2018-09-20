@@ -7,7 +7,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from models import Drop, db, AdminUser
 from create import create_app
-import csv, pytz
+import csv
+import pytz
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 
@@ -18,13 +19,12 @@ configure_uploads(app, audio)
 app.app_context().push()
 
 
-
-
 @app.route('/')
 def home():
     return render_template("index.html")
 
-@app.route('/upload_login', methods=['GET','POST'])
+
+@app.route('/upload_login', methods=['GET', 'POST'])
 def upload_login():
     error_msg = ""
     if request.method == 'GET':
@@ -33,8 +33,8 @@ def upload_login():
     password = db.session.query(AdminUser.password).first()
     print(password_attempt)
     if password_attempt == password[0]:
-        return jsonify({'password_correct':True})
-    return jsonify({'password_correct':False})
+        return jsonify({'password_correct': True})
+    return jsonify({'password_correct': False})
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -74,51 +74,26 @@ def process():
     # This is either the name of the speaker or search_drops
     chosen = request.form['chosen'].lower()
 
-
     if chosen == 'search_drops':
         search_method = 'search_value'
-        # drops = db.execute(
-        #     "SELECT * \
-        # FROM drops \
-        # WHERE speaker IS NOT NULL \
-        # AND tags LIKE :tags",
-        #     {"tags": add_wildcard(search_term)}).fetchall()
         drops = Drop.query.filter(
                 Drop.speaker.isnot(None),
                 Drop.tags.ilike("%"+search_term+"%")
         ).all()
 
-        # Inserting search term into the DB for stats
-        # db.execute("INSERT INTO search_stats\
-        # (search_string, search_time)\
-        # VALUES\
-        # (:search_string,now())", {
-        #     "search_string": search_term})
-        # db.commit()
-
     elif chosen == 'last_fifty':
         search_method = 'last_fifty'
         drops = db.session.query(Drop).order_by(desc(Drop.id)).limit(50)
-    #     drops = db.execute(
-    #         "SELECT * \
-    #     FROM drops \
-    #     ORDER BY id \
-    #     DESC LIMIT 50").fetchall()
-    #
+
     else:  # if a name was clicked
         search_method = 'name'
         drops = Drop.query.filter(
                 Drop.speaker == chosen
         ).all()
-    #     drops = db.execute(
-    #         "SELECT * \
-    #     FROM drops \
-    #     WHERE speaker = :chosen",
-    #         {"chosen": chosen}).fetchall()
 
     return process_drop_results(drops, search_method)
 
-
+    
 @app.route("/drop_stats", methods=['POST'])
 def drop_stats():
     filename = request.form['filename'].replace(" ", "%20")
