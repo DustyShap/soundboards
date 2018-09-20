@@ -129,7 +129,7 @@ $(".cell").click(function() {
     console.log(filename);
     var element = 'cell';
     audio.play();
-    postServer(filename, true)
+    // postServer(filename, true)
 
   }
 });
@@ -138,7 +138,7 @@ $(".cell").click(function() {
 function clickplay(e) {
   $(this).parent().children()[2].play();
   var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
-  postServer(filename, false)
+  // postServer(filename, false)
 }
 
 //Function to handle pause in a result object
@@ -181,13 +181,13 @@ $("#search_term").keyup(function() {
 
 
 
-function postServer(filename, cell_clicked) {
-  $.ajax({
-    data: {
-      filename: filename,
-      cell_clicked: cell_clicked
-    },
-    type: 'POST',
-    url: '/drop_stats'
-  })
-}
+// function postServer(filename, cell_clicked) {
+//   $.ajax({
+//     data: {
+//       filename: filename,
+//       cell_clicked: cell_clicked
+//     },
+//     type: 'POST',
+//     url: '/drop_stats'
+//   })
+// }

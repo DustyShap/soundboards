@@ -19,26 +19,33 @@ $(document).ready(function(){
     })
 
     $("#password_button").click(function(){
+      $.ajax({
+          type: "POST",
+          url: "/upload_login",
+          data: {
+            upload_password: $("#password").val()
+          }
+         })
 
-        if ($("#password").val() === 'thinkaboutit'){
-            $("#password_window").css('display','none');
-            $("#search_container").css('display','none');
-            $("#upload_window").css('display', 'flex');
-            $("#upload_button").hide();
-            $("#results_container").hide();
-            $("#chooser_wrap").hide();
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $("#password").val('');
-            $("#speaker").hide();
+      .done(function(data){
+          if (data.password_correct){
+              $("#password_window").css('display','none');
+              $("#search_container").css('display','none');
+              $("#upload_window").css('display', 'flex');
+              $("#upload_button").hide();
+              $("#results_container").hide();
+              $("#chooser_wrap").hide();
+              $(".header_image").attr('src', "../static/img/soundboards.jpg");
+              $("#password").val('');
+              $("#speaker").hide();
 
-        } else {
+          } else {
+              console.log('Wrong PW Attempt');
+              alert('Wrong Password');
+              $("#password").val('');
+          }
+      });
 
-            console.log('Wrong PW Attempt');
-            alert('Wrong Password');
-            $("#password").val('');
-
-
-        }
 
 
     })
