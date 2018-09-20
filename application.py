@@ -5,7 +5,7 @@ from flask_session import Session
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from models import Drop, db, AdminUser
+from models import Drop, db, AdminUser, User
 from create import create_app
 import csv
 import pytz
@@ -39,6 +39,18 @@ def upload_login():
         return jsonify({'password_correct': True})
     return jsonify({'password_correct': False})
 
+@app.route('/user_login', methods=['POST','GET'])
+def user_login():
+    error_message = ""
+    if request.method == 'POST':
+        email = request.form['user_email']
+        password_attempt = request.form['user_password']
+        user = User.query.filter_by(email=email).first()
+        if user is None:
+            return render_template('user_login.html', error_message='User not found!')
+        else:
+            return user.password
+    return render_template('user_login.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
