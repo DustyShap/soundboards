@@ -2,7 +2,7 @@
 
 var $results = $("#results_container")
 var $result_object = $("#result_object")
-var url = '/static/audio/'
+var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/'
 
 
 
@@ -94,7 +94,7 @@ function processData(data) {
     var filename = data.drops[i].filename;
     var speaker = data.drops[i].speaker;
     var transcription = data.drops[i].transcription;
-    var full_url = "../static/audio/" + filename;
+    var full_url = "https://s3-us-west-2.amazonaws.com/tmadrops/" + filename;
     $result_object.clone().appendTo($("#results_container")).attr('id', 'result' + i).addClass("search_result");
     $("#result" + i).attr('draggable', 'True');
     $("#result" + i + " #speaker").text(speaker).css('color', 'red');
@@ -102,10 +102,10 @@ function processData(data) {
       $("#result" + i + " #speaker").text(speaker).css('color', 'red').css('display', 'none');
     }
     $("#result" + i + " #transcription").text(transcription).css('color', 'black');
-    $("#result" + i + " #src").attr('src', full_url);
-    $("#result" + i + " #wav").attr('src', full_url);
+    // $("#result" + i + " #src").attr('src', full_url);
+    // $("#result" + i + " #wav").attr('src', full_url);
   }
-  $('.fa-play-circle').on('click', clickplay);
+  $('.fa-play-circle').on('click', {url: full_url}, clickplay);
   $('.fa-pause-circle').on('click', clickpause);
   $(".link_button").on('click', clicklink);
   $('.search_result').hover(function() {
@@ -136,8 +136,11 @@ $(".cell").click(function() {
 
 //Function to handle play in a result object
 function clickplay(e) {
-  $(this).parent().children()[2].play();
-  var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
+  // $(this).parent().children()[2].attr('src', e.data.url)
+  console.log($(this).parent().children())
+  // console.log(e.data.url)
+  // $(this).parent().children()[2].play();
+  // var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
   // postServer(filename, false)
 }
 
@@ -148,10 +151,9 @@ function clickpause(e) {
 
 //Function to handle generating a link in a result object
 function clicklink(e) {
-  var filename = $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
-  full = url + filename;
+  var filename = $(this).parent().parent()[0].children[2].children[0].getAttribute('src');
   var a = $(this).parent()[0];
-  a.setAttribute('href', full);
+  a.setAttribute('href', filename);
 }
 
 //Function to add the button_chose as well as the speaker name as classes
