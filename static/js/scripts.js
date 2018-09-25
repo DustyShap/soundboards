@@ -107,7 +107,7 @@ function processData(data) {
     // $("#result" + i + " #src").attr('src', $("#result" + i).attr('data-url'));
     // $("#result" + i + " #wav").attr('src', $("#result" + i).attr('data-url'));
   }
-  $(".search_result").hover(searchHover)
+  // $(".search_result").hover(searchHover)
   $('.fa-play-circle').on('click', clickplay);
   $('.fa-pause-circle').on('click', clickpause);
   $(".link_button").on('click', clicklink);
@@ -149,10 +149,11 @@ function searchHover(e){
 // }
 //Function to handle play in a result object
 function clickplay(e) {
-  // file_path = $(this).parent().parent().data().url
+  file_path = $(this).parent().parent().data().url
   // console.log(file_path)
-  // $(this).parent().children().children("#src").attr('src',file_path)
-  // $(this).parent().children().children("#wav").attr('src',file_path)
+  $(this).parent().children().children("#src").attr('src',file_path)
+  $(this).parent().children().children("#wav").attr('src',file_path)
+  $(this).parent().children()[2].load();
   $(this).parent().children()[2].play();
   // $(this).parent().children().children("#src").attr('src',e.data.url)
   // console.log(e.data.url)
