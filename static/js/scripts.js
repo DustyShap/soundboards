@@ -3,6 +3,7 @@
 var $results = $("#results_container")
 var $result_object = $("#result_object")
 var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/'
+// var url = '/static/audio/'
 
 
 
@@ -94,7 +95,7 @@ function processData(data) {
     var filename = data.drops[i].filename;
     var speaker = data.drops[i].speaker;
     var transcription = data.drops[i].transcription;
-    var full_url = "https://s3-us-west-2.amazonaws.com/tmadrops/" + filename;
+    var full_url = url + filename;
     $result_object.clone().appendTo($("#results_container")).attr('id', 'result' + i).addClass("search_result");
     $("#result" + i).attr('draggable', 'True');
     $("#result" + i + " #speaker").text(speaker).css('color', 'red');
@@ -102,12 +103,14 @@ function processData(data) {
       $("#result" + i + " #speaker").text(speaker).css('color', 'red').css('display', 'none');
     }
     $("#result" + i + " #transcription").text(transcription).css('color', 'black');
-    // $("#result" + i + " #src").attr('src', full_url);
-    // $("#result" + i + " #wav").attr('src', full_url);
+    $("#result" + i).attr('data-url',full_url)
+    // $("#result" + i + " #src").attr('src', $("#result" + i).attr('data-url'));
+    // $("#result" + i + " #wav").attr('src', $("#result" + i).attr('data-url'));
   }
-  $('.fa-play-circle').on('click', {url: full_url}, clickplay);
+  $('.fa-play-circle').on('click', clickplay);
   $('.fa-pause-circle').on('click', clickpause);
   $(".link_button").on('click', clicklink);
+
   $('.search_result').hover(function() {
     $(this).children()[2].className = 'gripper_container gripper_hover'
   }, function() {
@@ -134,12 +137,19 @@ $(".cell").click(function() {
   }
 });
 
+function addSrc(e){
+  url = $(this).data().url
+  $(this).children("#audio_container").children(".t_play").children('#src').attr('src',url)
+}
 //Function to handle play in a result object
 function clickplay(e) {
-  // $(this).parent().children()[2].attr('src', e.data.url)
-  console.log($(this).parent().children())
+  // file_path = $(this).parent().parent().data().url
+  // $(this).parent().children().children("#src").attr('src',file_path)
+  // $(this).parent().children().children("#wav").attr('src',file_path)
+  $(this).parent().children()[2].play();
+  // $(this).parent().children().children("#src").attr('src',e.data.url)
   // console.log(e.data.url)
-  // $(this).parent().children()[2].play();
+
   // var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
   // postServer(filename, false)
 }
