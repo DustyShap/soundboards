@@ -1,18 +1,18 @@
 //This file acts as the holder of all of the scripts/functions used in other files
 
-var $results = $("#results_container")
-var $result_object = $("#result_object")
-var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/'
+var $results = $("#results_container");
+var $result_object = $("#result_object");
+var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/';
 // var url = '/static/audio/'
 
 
 
 //Function to query the DB for the last 20 added drops
 function submitLastFifty(event) {
-  $("#password_window").hide()
-  $("#upload_window").hide()
+  $("#password_window").hide();
+  $("#upload_window").hide();
   $("#results_container").empty();
-  var chosen = 'last_fifty'
+  var chosen = 'last_fifty';
   $.ajax({
       data: {
         tags: null,
@@ -22,16 +22,16 @@ function submitLastFifty(event) {
       url: '/process'
     })
     .done(function(data) {
-      processData(data)
+      processData(data);
     });
-};
+}
 
 
 //Function that takes a searched value and queries the DB for associated tags
 function submitSearchData(event) {
 
-  $("#password_window").hide()
-  $("#upload_window").hide()
+  $("#password_window").hide();
+  $("#upload_window").hide();
   var chosen = $(".header_image").attr('id');
   // if the search drop button was clicked, the id of the header is search_drops
   $("#search_container").show().css('display', 'flex');
@@ -50,14 +50,14 @@ function submitSearchData(event) {
     .done(function(data) {
       processData(data);
     });
-};
+}
 
 //Function to submit Data to process endpoint when a name is clicked
 function submitData() {
 
 
-  $("#upload_window").hide()
-  $("#password_window").hide()
+  $("#upload_window").hide();
+  $("#password_window").hide();
   var chosen = $(".header_image").attr('id');
   $("#results_container").empty();
   $("#instructions").hide();
@@ -112,7 +112,7 @@ function processData(data) {
   $(".link_button").on('click', clicklink);
 
   $('.search_result').hover(function() {
-    $(this).children()[2].className = 'gripper_container gripper_hover'
+    $(this).children()[2].className = 'gripper_container gripper_hover';
   }, function() {
     $(this).children()[2].className = 'gripper_container';
   });
