@@ -116,8 +116,8 @@ function processData(data) {
   }, function() {
     $(this).children()[2].className = 'gripper_container';
   });
+  }
 }
-
 
 //CLICK FUNCTIONS
 
