@@ -104,10 +104,9 @@ function processData(data) {
     }
     $("#result" + i + " #transcription").text(transcription).css('color', 'black');
     $("#result" + i).attr('data-url',full_url)
-    // $("#result" + i + " #src").attr('src', $("#result" + i).attr('data-url'));
-    // $("#result" + i + " #wav").attr('src', $("#result" + i).attr('data-url'));
-  }
-  // $(".search_result").hover(searchHover)
+  
+
+
   $('.fa-play-circle').on('click', clickplay);
   $('.fa-pause-circle').on('click', clickpause);
   $(".link_button").on('click', clicklink);
