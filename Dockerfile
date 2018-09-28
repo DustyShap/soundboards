@@ -6,3 +6,4 @@ RUN pip install -r requirements.txt
 ADD . /code
 
 ENV FLASK_APP=application.py
+ENV UPLOAD_PATH='static/audio'

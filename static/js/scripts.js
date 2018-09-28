@@ -2,8 +2,8 @@
 
 var $results = $("#results_container");
 var $result_object = $("#result_object");
-var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/';
-// var url = '/static/audio/'
+// var url = 'https://s3-us-west-2.amazonaws.com/tmadrops/';
+var url = '/static/audio/'
 
 
 
@@ -103,8 +103,8 @@ function processData(data) {
       $("#result" + i + " #speaker").text(speaker).css('color', 'red').css('display', 'none');
     }
     $("#result" + i + " #transcription").text(transcription).css('color', 'black');
-    $("#result" + i).attr('data-url',full_url);
-
+    $("#result" + i + " #src").attr('src', full_url);
+    $("#result" + i + " #wav").attr('src', full_url);
 
 
   $('.fa-play-circle').on('click', clickplay);
@@ -139,13 +139,9 @@ $(".cell").click(function() {
 
 //Function to handle play in a result object
 function clickplay(e) {
-  file_path = $(this).parent().parent().data().url
-  // console.log(file_path)
-  $(this).parent().children().children("#src").attr('src',file_path)
-  $(this).parent().children().children("#wav").attr('src',file_path)
-  $(this).parent().children()[2].load();
-  $(this).parent().children()[2].play();
+    $(this).parent().children()[2].play();
 }
+
 
 //Function to handle pause in a result object
 function clickpause(e) {
