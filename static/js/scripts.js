@@ -2,7 +2,7 @@
 
 var $results = $("#results_container")
 var $result_object = $("#result_object")
-var url = '/static/audio/'
+var url = '../static/audio/'
 
 
 
@@ -94,7 +94,7 @@ function processData(data) {
     var filename = data.drops[i].filename;
     var speaker = data.drops[i].speaker;
     var transcription = data.drops[i].transcription;
-    var full_url = "../static/audio/" + filename;
+    var full_url = url + filename;
     $result_object.clone().appendTo($("#results_container")).attr('id', 'result' + i).addClass("search_result");
     $("#result" + i).attr('draggable', 'True');
     $("#result" + i + " #speaker").text(speaker).css('color', 'red');
@@ -124,9 +124,7 @@ $(".cell").click(function() {
 
   if ($(this).find('audio').length) {
     var audio = $(this.children)[2];
-    console.log(audio);
     var filename = $(this).children()[2].getAttribute('src').slice(16);
-    console.log(filename);
     var element = 'cell';
     audio.play();
     // postServer(filename, true)

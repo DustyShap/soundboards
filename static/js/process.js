@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     var $results = $("#results_container")
     var $result_object = $("#result_object")
-    var url = '/static/audio/'
+    
 
     //Display header based on who's audio is selected
     $(".chooser_button").click(function(){

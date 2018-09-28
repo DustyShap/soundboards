@@ -118,8 +118,6 @@ def add_wildcard(string):
 
 def process_drop_results(drops, search_method):
     drops_list = []
-    search_method = search_method
-    print('here ok')
     for drop in drops:
         drop_as_dict = drop.as_dict()
         drops_list.append(drop_as_dict)
