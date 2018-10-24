@@ -5,10 +5,10 @@ from flask_session import Session
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from models import Drop, db, AdminUser
+from models import Drop, db, AdminUser, ClickStat
 from create import create_app
 import csv
-import pytz
+import datetime
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 application = app = Flask(__name__)
@@ -85,6 +85,19 @@ def process():
 
     return process_drop_results(drops, search_method)
 
+@app.route("/click_stat", methods=["POST"])
+def click_stat():
+    filename = request.form['filename']
+    cell_clicked = request.form['cell_clicked']
+    drop_id = Drop.id_lookup(filename)
+    click = ClickStat(
+    drop_id=drop_id,
+    clicked_from_cell = False if cell_clicked == 'false' else True,
+    click_time=datetime.datetime.now().strftime("%m-%d-%Y %I:%M:%S")
+    )
+    db.session.add(click)
+    db.session.commit()
+    return 'none'
 
 # @app.route("/drop_stats", methods=['POST'])
 # def drop_stats():
@@ -110,6 +123,7 @@ def process():
 #     db.commit()
 #
 #     return ('', 204)
+
 
 
 def add_wildcard(string):
