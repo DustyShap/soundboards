@@ -9,6 +9,7 @@ from models import Drop, db, AdminUser, ClickStat
 from create import create_app
 import csv
 import datetime
+from pytz import timezone
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 application = app = Flask(__name__)
@@ -20,10 +21,11 @@ audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 app.app_context().push()
-
+TIMEZONE = timezone('America/Chicago')
 
 @app.route('/')
 def home():
+    sa_time = datetime.datetime.now(TIMEZONE)
     return render_template("index.html")
 
 
@@ -34,7 +36,6 @@ def upload_login():
         return redirect(url_for('home'))
     password_attempt = request.form['upload_password']
     password = db.session.query(AdminUser.password).first()
-    print(password_attempt)
     if password_attempt == password[0]:
         return jsonify({'password_correct': True})
     return jsonify({'password_correct': False})
@@ -93,7 +94,7 @@ def click_stat():
     click = ClickStat(
     drop_id=drop_id,
     clicked_from_cell = False if cell_clicked == 'false' else True,
-    click_time=datetime.datetime.now().strftime("%m-%d-%Y %I:%M:%S")
+    click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
     db.session.add(click)
     db.session.commit()
