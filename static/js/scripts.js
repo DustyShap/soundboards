@@ -136,7 +136,19 @@ $(".cell").click(function() {
 function clickplay(e) {
   $(this).parent().children()[2].play();
   var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
-  // postServer(filename, false)
+  console.log(filename)
+  postServer(filename, false)
+}
+
+function postServer(filename, cell_clicked){
+    $.ajax({
+      data: {
+        filename: filename,
+        cell_clicked: cell_clicked
+      },
+      type: 'POST',
+      url: '/click_stat'
+    })
 }
 
 //Function to handle pause in a result object
