@@ -86,6 +86,9 @@ def process():
     return process_drop_results(drops, search_method)
 
 
+@app.route('/robots.txt')
+def robots_dot_txt():
+	return "User-agent: *\nDisallow: /"
 # @app.route("/drop_stats", methods=['POST'])
 # def drop_stats():
 #     filename = request.form['filename'].replace(" ", "%20")
