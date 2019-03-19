@@ -3,6 +3,7 @@
 var $results = $("#results_container")
 var $result_object = $("#result_object")
 var url = '../static/audio/'
+var s3_url='https://s3-us-west-2.amazonaws.com/tmadrops/'
 
 
 
@@ -94,7 +95,7 @@ function processData(data) {
     var filename = data.drops[i].filename;
     var speaker = data.drops[i].speaker;
     var transcription = data.drops[i].transcription;
-    var full_url = url + filename;
+    var full_url = s3_url + filename;
     $result_object.clone().appendTo($("#results_container")).attr('id', 'result' + i).addClass("search_result");
     $("#result" + i).attr('draggable', 'True');
     $("#result" + i + " #speaker").text(speaker).css('color', 'red');
@@ -135,7 +136,8 @@ $(".cell").click(function() {
 //Function to handle play in a result object
 function clickplay(e) {
   $(this).parent().children()[2].play();
-  var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16);
+  var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(44)
+  console.log(filename)
   postServer(filename, false)
 }
 
@@ -187,16 +189,3 @@ $("#search_term").keyup(function() {
     $("#submit_button").prop('disabled', true).css('color', 'white').css('background-color', 'red');
   }
 });
-
-
-
-// function postServer(filename, cell_clicked) {
-//   $.ajax({
-//     data: {
-//       filename: filename,
-//       cell_clicked: cell_clicked
-//     },
-//     type: 'POST',
-//     url: '/drop_stats'
-//   })
-// }
