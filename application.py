@@ -7,6 +7,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from models import Drop, db, AdminUser, ClickStat
 from create import create_app
+import boto3
 import csv
 import datetime
 from pytz import timezone
@@ -21,6 +22,7 @@ audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
 configure_uploads(app, audio)
 app.app_context().push()
+s3 = boto3.client('s3')
 TIMEZONE = timezone('America/Chicago')
 
 @app.route('/')
@@ -43,8 +45,10 @@ def upload_login():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-
-    filename = audio.save(request.files['audio'])
+    dl_file = request.files['audio']
+    filename = dl_file.filename
+    s3.upload_fileobj(dl_file, 'upload-testing', filename)
+    # filename = audio.save(dl_file)
     speaker = request.form['speaker'].lower().strip()
     tags = request.form['tags'].lower()
     transcription = request.form['transcription'].lower().replace("'", "")
@@ -54,7 +58,6 @@ def upload():
                 speaker=speaker,
                 tags=tags,
                 transcription=transcription)
-
     db.session.add(file_upload)
     db.session.commit()
 
