@@ -137,8 +137,7 @@ $(".cell").click(function() {
 function clickplay(e) {
   $(this).parent().children()[2].play();
   var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(44)
-  console.log(filename)
-  postServer(filename, false)
+ // postServer(filename, false)
 }
 
 function postServer(filename, cell_clicked){

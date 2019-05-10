@@ -5,3 +5,4 @@ static/audio
 venv
 .DS_Store
 .env
+docker.env

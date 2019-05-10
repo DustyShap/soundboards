@@ -48,7 +48,6 @@ def upload():
     dl_file = request.files['audio']
     filename = dl_file.filename
     s3.upload_fileobj(dl_file, 'upload-testing', filename)
-    # filename = audio.save(dl_file)
     speaker = request.form['speaker'].lower().strip()
     tags = request.form['tags'].lower()
     transcription = request.form['transcription'].lower().replace("'", "")
