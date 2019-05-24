@@ -59,6 +59,12 @@ $(document).ready(function(){
             $(".header_image").attr('src', "../static/img/soundboards.jpg");
             $(".header_image").attr('id','jay jr');
             submitData();
+        } else if ($(this).text() === 'Iggy'){
+            addClass($(this),'iggy');
+            removeSearch()
+            $(".header_image").attr('src', "../static/img/soundboards.jpg");
+            $(".header_image").attr('id','iggy');
+            submitData();
         }  else if ($(this).text() === '@ProdJoe'){
             addClass($(this),'prodjoe');
             removeSearch()
@@ -112,7 +118,4 @@ $(document).ready(function(){
             }
          }
      });
-
-
-
 });

@@ -10,12 +10,13 @@ from create import create_app
 import boto3
 import csv
 import datetime
+import requests
 from pytz import timezone
 from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 application = app = Flask(__name__)
 
-
+speakers = ['doug', 'plowboy', 'larry', 'mike lee', 'tim', 'charlie', 'the cat', 'jay jr', 'prodjoe', 'timberfake']
 
 app = create_app()
 audio = UploadSet('audio', AUDIO)
@@ -26,8 +27,10 @@ s3 = boto3.client('s3')
 TIMEZONE = timezone('America/Chicago')
 
 @app.route('/')
-def home():
-    sa_time = datetime.datetime.now(TIMEZONE)
+@app.route('/<search_term>')
+def home(search_term=None, speaker=None):
+    if search_term and len(search_term) >= 3:
+        return render_template("index.html", search_term=search_term)
     return render_template("index.html")
 
 
@@ -137,8 +140,4 @@ def add_wildcard(string):
 
 
 def process_drop_results(drops, search_method):
-    drops_list = []
-    for drop in drops:
-        drop_as_dict = drop.as_dict()
-        drops_list.append(drop_as_dict)
-    return jsonify({"drops": drops_list, "search_method": search_method})
+    return jsonify({"drops": [drop.as_dict() for drop in drops], "search_method": search_method})

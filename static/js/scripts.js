@@ -27,6 +27,29 @@ function submitLastFifty(event) {
 };
 
 
+function submitUrlSearch(search_term){
+  $("#password_window").hide()
+  $("#upload_window").hide()
+  $("#search_container").show().css('display', 'flex');
+  $("#search_term").val(search_term);
+  $("#results_container").empty();
+  $("#instructions").hide();
+  $("#length_display").attr('display', 'none');
+  window.history.pushState("Clip That Off", "Clip That Off", "/");
+  $.ajax({
+      data: {
+        tags: search_term,
+        chosen: 'search_drops',
+      },
+      type: 'POST',
+      url: '/process'
+    })
+    .done(function(data) {
+      processData(data);
+    });
+};
+
+
 //Function that takes a searched value and queries the DB for associated tags
 function submitSearchData(event) {
 
@@ -52,10 +75,9 @@ function submitSearchData(event) {
     });
 };
 
+
 //Function to submit Data to process endpoint when a name is clicked
 function submitData() {
-
-
   $("#upload_window").hide()
   $("#password_window").hide()
   var chosen = $(".header_image").attr('id');
@@ -77,8 +99,6 @@ function submitData() {
       processData(data);
     });
 }
-
-
 
 
 //This function takes data returned from the server (which is drops returned from a query)

@@ -3,10 +3,10 @@
   <head>
      <meta charset='UTF-8'>
      <title>Clip That Off</title>
-     <link rel='stylesheet' type='text/css' href='static/css/styles.css' media='screen'>
-     <link rel="stylesheet" type ='text/css' href="static/css/font-awesome.min.css">
-     <link rel="stylesheet" type ='text/css' href="static/css/bootstrap.min.css">
-     <link rel="icon" href="http://www.clipthatoff.com/static/img/bryce.jpg">
+     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/styles.css') }}" media='screen'>
+     <link rel="stylesheet" type ='text/css' href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+     <link rel="stylesheet" type ='text/css' href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+     <link rel="icon" href="{{ url_for('static', filename='img/bryce.jpg') }}">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <meta name="author" content="Deke Dotem">
      <meta name="keywords" content="TMA, The Morning After, InsideSTL, ClipThatOff, Soundboard, Doug Vaughn, Deke Dotem">
@@ -23,7 +23,7 @@
     <div id="wrapper">
      <div id="sidebar">
       <div id="title">
-       <img class='header_image' src="../static/img/headerTMAupdate.jpg">
+        <img class='header_image' src="{{ url_for('static', filename='img/headerTMAupdate.jpg') }}">
       </div>
       <!--End title div-->
       <!-- Menu Buttons-->
@@ -37,6 +37,7 @@
           <div class="chooser_button">Charlie Marlow</div>
           <div class="chooser_button">Jimmy 'The Cat' Hayes</div>
           <div class="chooser_button">Jay Jr</div>
+          <div class="chooser_button">Iggy</div>
           <div class="chooser_button">@ProdJoe</div>
           <div class="chooser_button">Timberfake</div>
           <div class="chooser_button" id="upload_button">Upload</div>
@@ -102,7 +103,7 @@
           <div id="results_container">
             <div id="tma_image_container">
              <a id='tmalink' href ='http://www.insidestl.com' target="_blank">
-              <img src="../static/img/insideSTLupdate.jpg" alt="TMASTL" id="tma_image">
+               <img src="{{ url_for('static', filename='img/insideSTLupdate.jpg')}}" alt="TMASTL" id="tma_image">
              </a>
             </div>
 
@@ -183,5 +184,10 @@
      <script src='/static/js/process.js'></script>
      <script src='/static/js/upload.js'></script>
      <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
+     <script>
+       {% if search_term %}
+       submitUrlSearch('{{search_term}}')
+      {% endif %}
+     </script>
   </body>
 </html>
