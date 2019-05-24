@@ -179,7 +179,7 @@ function clickpause(e) {
 //Function to handle generating a link in a result object
 function clicklink(e) {
   var filename = $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
-  full = url + filename;
+  full = s3_url + filename;
   var a = $(this).parent()[0];
   a.setAttribute('href', full);
 }
