@@ -7,7 +7,7 @@ var s3_url='https://s3-us-west-2.amazonaws.com/tmadrops/'
 
 
 
-//Function to query the DB for the last 20 added drops
+//Function to query the DB for the last 50 added drops
 function submitLastFifty(event) {
   $("#password_window").hide()
   $("#upload_window").hide()
