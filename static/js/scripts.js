@@ -115,7 +115,7 @@ function processData(data) {
     var filename = data.drops[i].filename;
     var speaker = data.drops[i].speaker;
     var transcription = data.drops[i].transcription;
-    var full_url = s3_url + filename;
+    var full_url = url + filename;
     $result_object.clone().appendTo($("#results_container")).attr('id', 'result' + i).addClass("search_result");
     $("#result" + i).attr('draggable', 'True');
     $("#result" + i + " #speaker").text(speaker).css('color', 'red');
@@ -179,7 +179,7 @@ function clickpause(e) {
 //Function to handle generating a link in a result object
 function clicklink(e) {
   var filename = $(this).parent().parent()[0].children[2].children[0].getAttribute('src').slice(16);
-  full = s3_url + filename;
+  full = url + filename;
   var a = $(this).parent()[0];
   a.setAttribute('href', full);
 }
