@@ -52,7 +52,6 @@ function submitUrlSearch(search_term){
 
 //Function that takes a searched value and queries the DB for associated tags
 function submitSearchData(event) {
-
   $("#password_window").hide()
   $("#upload_window").hide()
   var chosen = $(".header_image").attr('id');
@@ -128,7 +127,7 @@ function processData(data) {
   }
   $('.fa-play-circle').on('click', clickplay);
   $('.fa-pause-circle').on('click', clickpause);
-  $(".link_button").on('click', clicklink);
+  $(".link_button").click(clicklink);
   $('.search_result').hover(function() {
     $(this).children()[2].className = 'gripper_container gripper_hover'
   }, function() {
