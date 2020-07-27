@@ -5,7 +5,7 @@ from flask_session import Session
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from models import Drop, db, AdminUser, ClickStat
+from models import Drop, db, AdminUser, ClickStat, SearchStat
 from create import create_app
 import boto3
 import csv
@@ -99,40 +99,28 @@ def click_stat():
     click = ClickStat(
     drop_id=drop_id,
     clicked_from_cell = False if cell_clicked == 'false' else True,
+    filename=filename,
     click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
     db.session.add(click)
     db.session.commit()
     return 'none'
 
+@app.route("/search_stat", methods=["POST"])
+def search_stat():
+    search_string = request.form['search_string']
+    search = SearchStat(
+        search_string=search_string,
+        search_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
+    )
+    db.session.add(search)
+    db.session.commit()
+    return 'none'
+
+
 @app.route('/robots.txt')
 def robots_dot_txt():
 	return "User-agent: *\nDisallow: /"
-# @app.route("/drop_stats", methods=['POST'])
-# def drop_stats():
-#     filename = request.form['filename'].replace(" ", "%20")
-#     cell_clicked = request.form['cell_clicked']
-#
-#     drop = db.execute(
-#      "SELECT id \
-#       FROM drops \
-#       WHERE filename = :filename", {
-#       "filename": filename}).fetchall()
-#
-#     drop_id = drop[0][0]
-#
-#     db.execute("INSERT INTO click_stats \
-#     (drop_id,clicked_from_cell,click_time)\
-#     VALUES \
-#     (:drop_id,:clicked_from_cell,now())", {
-#         "drop_id": drop_id,
-#         "clicked_from_cell": cell_clicked
-#     })
-#
-#     db.commit()
-#
-#     return ('', 204)
-
 
 
 def add_wildcard(string):

@@ -72,6 +72,7 @@ function submitSearchData(event) {
     })
     .done(function(data) {
       processData(data);
+      postSearchServer($('#search_term').val())
     });
 };
 
@@ -148,7 +149,7 @@ $(".cell").click(function() {
     var filename = $(this).children()[2].getAttribute('src').slice(16);
     var element = 'cell';
     audio.play();
-    // postServer(filename, true)
+    postServer(filename, true)
 
   }
 });
@@ -156,8 +157,8 @@ $(".cell").click(function() {
 //Function to handle play in a result object
 function clickplay(e) {
   $(this).parent().children()[2].play();
-  var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(44)
- // postServer(filename, false)
+  var filename = $(this).parent()[0].children[2].children[0].getAttribute('src').slice(16)
+  postServer(filename, false)
 }
 
 function postServer(filename, cell_clicked){
@@ -168,6 +169,16 @@ function postServer(filename, cell_clicked){
       },
       type: 'POST',
       url: '/click_stat'
+    })
+}
+
+function postSearchServer(search_string){
+    $.ajax({
+        data:{
+          search_string:search_string
+        },
+        type: 'POST',
+        url: '/search_stat'
     })
 }
 
