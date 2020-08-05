@@ -16,8 +16,6 @@ from flask_uploads import UploadSet, configure_uploads, AUDIO
 
 application = app = Flask(__name__)
 
-speakers = ['doug', 'plowboy', 'larry', 'mike lee', 'tim', 'charlie', 'the cat', 'jay jr', 'prodjoe', 'timberfake']
-
 app = create_app()
 audio = UploadSet('audio', AUDIO)
 app.config['UPLOADED_AUDIO_DEST'] = os.environ['UPLOAD_PATH']
@@ -26,42 +24,34 @@ app.app_context().push()
 s3 = boto3.client('s3')
 TIMEZONE = timezone('America/Chicago')
 
+
 @app.route('/')
 @app.route('/<search_term>')
 def home(search_term=None, speaker=None):
-    if search_term and len(search_term) >= 3:
-        return render_template("index.html", search_term=search_term)
-    return render_template("index.html")
+    return render_template("index.html", search_term=search_term
+            if search_term and len(search_term) >=3
+            else None)
 
 
 @app.route('/upload_login', methods=['GET', 'POST'])
 def upload_login():
-    error_msg = ""
     if request.method == 'GET':
         return redirect(url_for('home'))
     password_attempt = request.form['upload_password']
     password = db.session.query(AdminUser.password).first()
-    if password_attempt == password[0]:
-        return jsonify({'password_correct': True})
-    return jsonify({'password_correct': False})
+    return jsonify({'password_corrent': (password_attempt==password[0])})
 
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     dl_file = request.files['audio']
-    filename = dl_file.filename
     s3.upload_fileobj(dl_file, 'upload-testing', filename)
-    speaker = request.form['speaker'].lower().strip()
-    tags = request.form['tags'].lower()
-    transcription = request.form['transcription'].lower().replace("'", "")
-
     file_upload = Drop(
-                filename=filename,
-                speaker=speaker,
-                tags=tags,
-                transcription=transcription)
-    db.session.add(file_upload)
-    db.session.commit()
+                filename=dl_file.filename,
+                speaker=request.form['speaker'].lower().strip(),
+                tags=request.form['tags'].lower(),
+                transcription=request.form['transcription'].lower().replace("'",""))
+    database_add(file_upload)
 
     return jsonify({'file': filename})
 
@@ -97,14 +87,13 @@ def click_stat():
     cell_clicked = request.form['cell_clicked']
     drop_id = Drop.id_lookup(filename)
     click = ClickStat(
-    drop_id=drop_id,
-    clicked_from_cell = False if cell_clicked == 'false' else True,
-    filename=filename,
-    click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
+        drop_id=drop_id,
+        clicked_from_cell = False if cell_clicked == 'false' else True,
+        filename=filename,
+        click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
-    db.session.add(click)
-    db.session.commit()
-    return 'none'
+    database_add(click)
+    return ('', 201)
 
 @app.route("/search_stat", methods=["POST"])
 def search_stat():
@@ -113,9 +102,8 @@ def search_stat():
         search_string=search_string,
         search_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
-    db.session.add(search)
-    db.session.commit()
-    return 'none'
+    database_add(search)
+    return ('', 201)
 
 
 @app.route('/robots.txt')
@@ -123,8 +111,9 @@ def robots_dot_txt():
 	return "User-agent: *\nDisallow: /"
 
 
-def add_wildcard(string):
-    return "%" + string + "%"
+def database_add(element):
+    db.session.add(element)
+    db.session.commit()
 
 
 def process_drop_results(drops, search_method):

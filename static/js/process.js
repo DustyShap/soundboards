@@ -1,6 +1,62 @@
+var personalityData = {
+  'Mike Lee': {
+    cssClass: 'mikelee',
+    src: "../static/img/mikelee.jpg",
+    imageId: 'mike lee',
+  },
+  'Doug Vaughn': {
+    cssClass: 'doug',
+    src: "../static/img/vaughn.jpg",
+    imageId: 'doug',
+  },
+  'The Plow Boy': {
+    cssClass: 'plowboy',
+    src: "../static/img/plowboy.jpg",
+    imageId: 'plowboy',
+  },
+  'Larry Nickel': {
+    cssClass: 'larry',
+    src: "../static/img/larry.jpg",
+    imageId: 'larry',
+  },
+  'Tim McKernan': {
+    cssClass: 'tim',
+    src: "../static/img/tmck.jpg",
+    imageId: 'tim',
+  },
+  'Charlie Marlow': {
+    cssClass: 'charlie',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'charlie',
+  },
+  "Jimmy 'The Cat' Hayes": {
+    cssClass: 'cat',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'cat',
+  },
+  'Jay Jr': {
+    cssClass: 'jayjr',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'jay jr',
+  },
+  'Iggy': {
+    cssClass: 'iggy',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'iggy',
+  },
+  '@ProdJoe': {
+    cssClass: 'prodjoe',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'prodjoe',
+  },
+  'Timberfake': {
+    cssClass: 'timberfake',
+    src: "../static/img/soundboards.jpg",
+    imageId: 'timberfake',
+  },
+}
+
 $(document).ready(function(){
-
-
     var $results = $("#results_container")
     var $result_object = $("#result_object")
     
@@ -10,72 +66,14 @@ $(document).ready(function(){
         $("#no_results").hide()
         $(".header_image").removeAttr('id');
         $(".chooser_button").removeClass().addClass('chooser_button');
+        var buttonText = $(this).text();
 
-        if ($(this).text() == 'Mike Lee'){
-            addClass($(this),'mikelee')
+        if ( buttonText in personalityData ) {
+            var personality = personalityData[buttonText];
+            addClass($(this), personality.cssClass);
             removeSearch()
-            $(".header_image").attr('src', "../static/img/mikelee.jpg");
-            $(".header_image").attr('id','mike lee');
-            submitData();
-        } else if ($(this).text() == 'Doug Vaughn'){
-            addClass($(this),'doug')
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/vaughn.jpg");
-            $(".header_image").attr('id','doug');
-            submitData();
-        } else if ($(this).text() == 'The Plow Boy'){
-            addClass($(this),'plowboy')
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/plowboy.jpg");
-            $(".header_image").attr('id','plowboy');
-            submitData();
-        } else if ($(this).text() == 'Larry Nickel'){
-            addClass($(this),'larry')
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/larry.jpg");
-            $(".header_image").attr('id','larry');
-            submitData();
-        } else if ($(this).text() == 'Tim McKernan'){
-            addClass($(this),'tim')
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/tmck.jpg");
-            $(".header_image").attr('id','tim');
-            submitData();
-        } else if ($(this).text() == 'Charlie Marlow'){
-            addClass($(this),'charlie')
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','charlie');
-            submitData();
-        } else if ($(this).text() == "Jimmy 'The Cat' Hayes"){
-            addClass($(this),'cat');
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','cat');
-            submitData();
-        } else if ($(this).text() === 'Jay Jr'){
-            addClass($(this),'jayjr');
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','jay jr');
-            submitData();
-        } else if ($(this).text() === 'Iggy'){
-            addClass($(this),'iggy');
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','iggy');
-            submitData();
-        }  else if ($(this).text() === '@ProdJoe'){
-            addClass($(this),'prodjoe');
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','prodjoe');
-            submitData();
-        }  else if ($(this).text() === 'Timberfake'){
-            addClass($(this),'timberfake');
-            removeSearch()
-            $(".header_image").attr('src', "../static/img/soundboards.jpg");
-            $(".header_image").attr('id','timberfake');
+            $(".header_image").attr('src', personality.src);
+            $(".header_image").attr('id', personality.imageId);
             submitData();
         } else if ($(this).text() == 'Search All Drops'){
             $(this).addClass('button_chose');
