@@ -25,7 +25,7 @@ class Drop(db.Model):
                 Drop.filename == filename
         ).first()
         return drop.id
-        
+
 
 
 
@@ -45,5 +45,11 @@ class ClickStat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drop_id = db.Column(db.Integer, db.ForeignKey('drops.id'), nullable=False)
     clicked_from_cell = db.Column(db.Boolean, nullable=False)
-    click_time = db.Column(db.DateTime, nullable=False)
     filename = db.Column(db.String, nullable=False)
+    click_time = db.Column(db.DateTime, nullable=False)
+
+class SearchStat(db.Model):
+    __tablename__ = 'search_stats'
+    id = db.Column(db.Integer, primary_key=True)
+    search_string = db.Column(db.String, nullable=False)
+    search_time = db.Column(db.DateTime, nullable=False)
