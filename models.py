@@ -46,3 +46,4 @@ class ClickStat(db.Model):
     drop_id = db.Column(db.Integer, db.ForeignKey('drops.id'), nullable=False)
     clicked_from_cell = db.Column(db.Boolean, nullable=False)
     click_time = db.Column(db.DateTime, nullable=False)
+    filename = db.Column(db.String, nullable=False)

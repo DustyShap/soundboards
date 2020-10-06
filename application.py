@@ -98,6 +98,7 @@ def click_stat():
     drop_id = Drop.id_lookup(filename)
     click = ClickStat(
     drop_id=drop_id,
+    filename=filename,
     clicked_from_cell = False if cell_clicked == 'false' else True,
     click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
