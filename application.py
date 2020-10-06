@@ -91,10 +91,6 @@ def click_stat():
     filename=filename,
     clicked_from_cell = False if cell_clicked == 'false' else True,
     click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
-        drop_id=drop_id,
-        clicked_from_cell = False if cell_clicked == 'false' else True,
-        filename=filename,
-        click_time=datetime.datetime.now(TIMEZONE).strftime("%m-%d-%Y %I:%M:%S")
     )
     database_add(click)
     return ('', 201)
