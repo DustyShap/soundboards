@@ -39,15 +39,15 @@ def upload_login():
         return redirect(url_for('home'))
     password_attempt = request.form['upload_password']
     password = db.session.query(AdminUser.password).first()
-    return jsonify({'password_corrent': (password_attempt==password[0])})
+    return jsonify({'password_correct': (password_attempt==password[0])})
 
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    dl_file = request.files['audio']
-    s3.upload_fileobj(dl_file, 'upload-testing', filename)
+    filename = audio.save(request.files['audio'])
+    # s3.upload_fileobj(dl_file, 'upload-testing', dl_file.filename)
     file_upload = Drop(
-                filename=dl_file.filename,
+                filename=filename,
                 speaker=request.form['speaker'].lower().strip(),
                 tags=request.form['tags'].lower(),
                 transcription=request.form['transcription'].lower().replace("'",""))
