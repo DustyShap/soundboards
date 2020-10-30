@@ -56,7 +56,6 @@ $(document).ready(function(){
         } else {
           $("#speaker").hide()
           $("#speaker").val($("#upload_speaker_chooser option:selected").val())
-          console.log($("#upload_speaker_chooser option:selected").val())
         }
       })
 
